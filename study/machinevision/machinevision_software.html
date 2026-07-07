@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MachineVision-Software</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #6366f1;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .section h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin: 15px 0 10px;
+        }
+
+        .card ul {
+            padding-left: 18px;
+            list-style: disc;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--sub);
+        }
+
+        .li-desc {
+            margin-top: 4px;
+            padding-left: 14px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .img-box {
+            margin: 12px 0;
+            text-align: center;
+        }
+
+        .img-box img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2937;
+            color: var(--sub);
+        }
+
+        .breadcrumb a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                color: #e5e7eb;
+            }
+
+        .breadcrumb span {
+            margin: 0 6px;
+            font-size: 12px;
+        }
+
+        .detail-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          padding: 6px 12px;
+          font-size: 13px;
+          color: var(--primary);
+          border: 1px solid var(--primary);
+          border-radius: 999px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+
+        .detail-btn:hover {
+          background: var(--primary);
+          color: white;
+        }
+
+        .arrow {
+          transition: transform 0.2s;
+        }
+
+        .detail-btn:hover .arrow {
+          transform: translateX(3px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span>›</span>
+            <a href="../study.html">Study Archive</a>
+            <span>›</span>
+            <a href="./machinevision_introduction.html">머신 비전의 이해</a>
+            <span>›</span>
+            <span>소프트웨어 (Software)</span>
+        </div>
+    </div>
+
+    <nav>
+        <h3>소프트웨어 (Software)</h3>
+        <!--<ul>
+            <li><a href="#projects">네이게이션추가</a></li>
+        </ul>-->
+    </nav>
+</header>
+
+<section>
+    <div class="section">
+        <h2>1. 개요</h2>
+        <div class="card">
+            <ul>
+                <li>머신 비전 시스템에서 이미징 소프트웨어는 하드웨어와 응용 프로그램 사이를 연결하는 핵심 역할을 담당</li>
+                <li>이미징 소프트웨어의 주요 역할</li>
+                    <div class="li-desc">카메라 하드웨어와의 인터페이스</div>
+                    <div class="li-desc">카메라 기능 제어 (노출, 게인, 트리거 등)</div>
+                    <div class="li-desc">이미지 수신, 처리 및 분석</div>
+                    <div class="li-desc">이미지 결과를 이용한 의사결정 수행</div>
+                    <div class="li-desc">다른 연결된 장치 또는 기계와 통신</div>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. 소프트웨어 종류</h2>
+        <div class="card">
+            <h3>① 카메라 뷰어 (Camera Viewer)</h3>
+            <ul>
+                <li>카메라와 네트워크 환경을 간단하게 설정하고 이미지를 실시간으로 확인할 수 있는 기본 소프트웨어</li>
+                <li>주요 기능</li>
+                    <div class="li-desc">네트워크 구성 : 카메라를 네트워크에 연결하고 IP 설정</div>
+                    <div class="li-desc">카메라 구성 : 노출, 게인, 해상도 등 카메라 파라미터 설정</div>
+                    <div class="li-desc">이미지 캡처 / 향상 / 표시 / 기록</div>
+                    <div class="li-desc">분석 도구 : 히스토그램, 라인 플롯(Line Plot) 등 이미지 분석 기능 제공</div>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_software_viewer.png" alt="카메라 뷰어(eCapture)">
+                </div>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>② 포괄적인 소프트웨어 (Comprehensive Software)</h3>
+            <ul>
+                <li>카메라 뷰어의 모든 기능을 포함하며, 복잡한 멀티카메라 환경과 고급 이미지 처리를 위한 확장 기능을 제공</li>
+                <li>주요 기능</li>
+                    <div class="li-desc">프로젝트 관리 : 검사 프로젝트 단위로 설정 저장 및 관리</div>
+                    <div class="li-desc">다중 카메라 / 서버 구성 : 여러 대의 카메라를 동시에 제어하고 구성</div>
+                    <div class="li-desc">GPU 지원 : GPU 가속을 활용한 고속 이미지 처리</div>
+                    <div class="li-desc">3D 이미지 재구성 : 2D 이미지 데이터를 기반으로 3D 형상 생성</div>
+                    <div class="li-desc">3D 개체 뷰어 : 재구성된 3D 데이터를 시각적으로 탐색</div>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_software_comprehensive.png" alt="포괄적인 소프트웨어(eCapture Pro)">
+                </div>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>③ SDK (Software Development Kit)</h3>
+            <ul>
+                <li>개발자가 자체 애플리케이션에 카메라 기능을 통합할 수 있도록 제공되는 개발 도구 모음</li>
+                <li>주요 구성 요소</li>
+                    <div class="li-desc">코드 샘플 : 주요 기능 구현을 위한 예제 코드 제공</div>
+                    <div class="li-desc">라이브러리 : 카메라 제어 및 이미지 처리를 위한 함수 라이브러리</div>
+                    <div class="li-desc">API : 카메라와 소프트웨어 간 인터페이스 명세</div>
+                    <div class="li-desc">문서 : 상세 사용 설명서 및 레퍼런스 매뉴얼</div>
+                    <div class="li-desc">컴파일러 / 디버거 : 개발 및 디버깅 환경 지원</div>
+                <li>지원 언어 : C / C++ / C# / Python</li>
+                <li>지원 플랫폼 : Windows / Linux / ARM</li>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_software_sdk.png" alt="SDK(eSDK)">
+                </div>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 NDoubleuK Portfolio</p>
+</footer>
+
+</body>
+</html>

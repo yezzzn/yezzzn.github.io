@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MachineVision-Interface</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #6366f1;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .section h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin: 15px 0 10px;
+        }
+
+        .card ul {
+            padding-left: 18px;
+            list-style: disc;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--sub);
+        }
+
+        .li-desc {
+            margin-top: 4px;
+            padding-left: 14px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .img-box {
+            margin: 12px 0;
+            text-align: center;
+        }
+
+        .img-box img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 14px;
+        }
+
+        th {
+            background: rgba(99,102,241,0.15);
+            color: var(--text);
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #1f2937;
+        }
+
+        td {
+            padding: 9px 14px;
+            color: var(--sub);
+            border-bottom: 1px solid #1f2937;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2937;
+            color: var(--sub);
+        }
+
+        .breadcrumb a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                color: #e5e7eb;
+            }
+
+        .breadcrumb span {
+            margin: 0 6px;
+            font-size: 12px;
+        }
+
+        .detail-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          padding: 6px 12px;
+          font-size: 13px;
+          color: var(--primary);
+          border: 1px solid var(--primary);
+          border-radius: 999px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+
+        .detail-btn:hover {
+          background: var(--primary);
+          color: white;
+        }
+
+        .arrow {
+          transition: transform 0.2s;
+        }
+
+        .detail-btn:hover .arrow {
+          transform: translateX(3px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span>›</span>
+            <a href="../study.html">Study Archive</a>
+            <span>›</span>
+            <a href="./machinevision_introduction.html">머신 비전의 이해</a>
+            <span>›</span>
+            <span>인터페이스 주변기기 (Interface)</span>
+        </div>
+    </div>
+
+    <nav>
+        <h3>인터페이스 주변기기 (Interface)</h3>
+        <!--<ul>
+            <li><a href="#projects">네이게이션추가</a></li>
+        </ul>-->
+    </nav>
+</header>
+
+<section>
+    <div class="section">
+        <h2>1. 개요</h2>
+        <div class="card">
+            <ul>
+                <li>인터페이스 주변기기는 카메라와 컴퓨팅 플랫폼 사이에서 이미지 데이터를 전달하는 역할을 담당</li>
+                <li>사용하는 케이블 규격(Ethernet, USB, CoaXPress, Camera Link)에 따라 필요한 주변기기가 달라짐</li>
+                <li>인터페이스 주변기기의 선택은 전송 속도, 케이블 길이, 다중 카메라 구성 여부 등을 고려하여 결정</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. Ethernet 인터페이스</h2>
+        <div class="card">
+            <h3>① 네트워크 인터페이스 카드 (NIC, Network Interface Card)</h3>
+            <ul>
+                <li>PCIe 슬롯을 통해 컴퓨터 마더보드에 연결하는 확장 카드</li>
+                <li>OSI 모델의 물리 계층 및 데이터 링크 계층에 대한 전자 회로를 구현</li>
+                <li>고속 GigE 카메라 연결에 필수적이며, 마더보드 내장 이더넷 포트 대비 높은 버퍼 크기와 성능을 제공</li>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_interface_nic.png" alt="NIC(네트워크 인터페이스 카드)">
+                </div>
+            </ul>
+            <h3>② 스위치 (Switch)</h3>
+            <ul>
+                <li>동일한 LAN(Local Area Network) 내에서 이더넷 장치를 연결하는 장비</li>
+                <li>수신한 패킷의 헤더를 읽어 대상 주소를 파악하고 해당 포트로만 전달 (브로드캐스트 없음)</li>
+                <li>머신 비전에서 스위치가 필요한 경우</li>
+                    <div class="li-desc">멀티플렉싱 : 고속 멀티 카메라 시스템에서 여러 이더넷 포트의 픽셀 데이터를 통합하여 단일 포트로 출력</div>
+                    <div class="li-desc">멀티캐스팅 : 카메라 데이터를 여러 호스트 PC로 전송</div>
+                    <div class="li-desc">PTP(Precision Time Protocol) : 여러 카메라의 타임스탬프를 단일 장치 시계와 동기화</div>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_interface_switch.jpg" alt="네트워크 스위치">
+                </div>
+            </ul>
+            <h3>③ 이더넷 허브 (Ethernet Hub)</h3>
+            <ul>
+                <li>여러 장치를 연결할 수 있으나, 스위치와 달리 연결된 모든 장치로 패킷을 브로드캐스트</li>
+                <li>스위치 대비 효율이 낮아 현재 머신 비전 환경에서는 스위치를 주로 사용</li>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_interface_hub.png" alt="이더넷 허브">
+                </div>
+            </ul>
+            <h3>④ 마더보드 내장 이더넷 포트</h3>
+            <ul>
+                <li>대부분의 마더보드에 기본 탑재되어 있으며, 주로 1Gbps를 지원 (일부 5Gbps / 10Gbps)</li>
+                <li>제한된 내부 버퍼 크기와 낮은 성능으로 인해 고속 머신 비전 애플리케이션에는 권장하지 않음</li>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_interface_motherboard.png" alt="마더보드 이더넷 포트">
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>3. USB 인터페이스</h2>
+        <div class="card">
+            <h3>① USB PCIe 카드</h3>
+            <ul>
+                <li>PC의 USB 포트 수를 늘리는 PCIe 기반 확장 카드</li>
+                <li>USB 2.0, USB 3.0 등 다양한 표준과 USB-A, USB-B, USB-C, Micro-USB 커넥터를 지원하는 제품이 시판 중</li>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_interface_usbcard.jpg" alt="USB PCIe 카드">
+                </div>
+            </ul>
+            <h3>② USB 포트 허브</h3>
+            <ul>
+                <li>컴퓨터에 연결하여 USB 포트를 추가 확장하는 외부 장치</li>
+                <li>추가 USB 장치 연결이 필요할 때 사용</li>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_interface_usbhub.jpg" alt="USB 허브">
+                </div>
+            </ul>
+            <h3>③ 마더보드 내장 USB 포트</h3>
+            <ul>
+                <li>요즘 대부분의 마더보드에는 USB 3.0 포트가 내장되어 있으며, 일부는 USB 2.0과 USB 3.0을 함께 지원</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>4. CoaXPress 인터페이스</h2>
+        <div class="card">
+            <h3>① 프레임 그래버 (Frame Grabber)</h3>
+            <ul>
+                <li>카메라에서 개별 프레임을 캡처하여 처리하는 전용 확장 카드</li>
+                <li>주요 기능</li>
+                    <div class="li-desc">실시간 압축</div>
+                    <div class="li-desc">관심 영역(ROI) 오프로드로 추가 대역폭 활용</div>
+                    <div class="li-desc">다양한 고급 획득 및 이미지 처리 기능 지원</div>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_interface_cxp.png" alt="CoaXPress 프레임 그래버">
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>5. Camera Link / CLHS 인터페이스</h2>
+        <div class="card">
+            <h3>① 프레임 그래버 (Frame Grabber)</h3>
+            <ul>
+                <li>Camera Link 카메라에서 프레임을 취득하는 전용 확장 카드</li>
+                <li>주요 온보드 처리 기능</li>
+                    <div class="li-desc">프로그래밍 가능한 관심 영역(ROI)</div>
+                    <div class="li-desc">픽셀 데시메이션 (Pixel Decimation)</div>
+                    <div class="li-desc">이미지 스케일링 (Image Scaling)</div>
+                    <div class="li-desc">조회 테이블 (Lookup Table)</div>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_interface_clhs.jpg" alt="Camera Link 프레임 그래버">
+                </div>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 NDoubleuK Portfolio</p>
+</footer>
+
+</body>
+</html>

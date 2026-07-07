@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #6366f1;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .section h2 { 
+            font-size: 22px; 
+            margin-bottom: 15px; 
+            border-left: 4px solid var(--primary); 
+            padding-left: 10px; 
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin: 15px 0 10px;
+        }
+
+        .card ul {
+            padding-left: 18px;
+            list-style: disc;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--sub);
+        }
+
+        .li-desc {
+            margin-top: 4px;
+            padding-left: 14px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .img-box {
+            margin: 12px 0;
+            text-align: center;
+        }
+
+        .img-box img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2937;
+            color: var(--sub);
+        }
+
+        .breadcrumb a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                color: #e5e7eb;
+            }
+
+        .breadcrumb span {
+            margin: 0 6px;
+            font-size: 12px;
+        }
+
+        .detail-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          padding: 6px 12px;
+          font-size: 13px;
+          color: var(--primary);
+          border: 1px solid var(--primary);
+          border-radius: 999px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+        
+        .detail-btn:hover {
+          background: var(--primary);
+          color: white;
+        }
+        
+        .arrow {
+          transition: transform 0.2s;
+        }
+        
+        .detail-btn:hover .arrow {
+          transform: translateX(3px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span>›</span>
+            <a href="../study.html">Study Archive</a>
+            <span>›</span>
+            <a href="./semiconductor_process.html">반도체 공정의 이해</a>
+            <span>›</span>
+            <span>증착 공정 (Deposition)</span>
+        </div>
+    </div>
+
+    <nav>
+        <h3>증착 공정 (Deposition)</h3>
+        <!--<ul>
+            <li><a href="#projects">네이게이션추가</a></li>
+        </ul>-->
+    </nav>
+</header>
+
+<section>
+    <div class="section">
+        <h2>1. 개요</h2>
+        <div class="card">
+            <ul>
+                <li>회로 간의 구분과 연결, 보호 역할을 하는 박막(thin film)을 만드는 과정</li>
+                <li>사전적 의미로 '박막(thin film)'이란 단순한 기계 가공으로는 실현 불가능한 1um(마이크로미터) 이하의 얇은 막을 뜻함</li>
+                <li>웨이퍼 위에 원하는 분자 또는 원자 단위의 박막을 입히는 일련의 과정</li>
+                <li>두께가 워낙 얇기 때문에 웨이퍼 위에 균일하게 박막을 형성하기 위해서는 정교하고 세밀한 기술력이 필요</li>
+                <li>박막은 크게 회로들 간 전기적인 신호를 연결해주는 금속막(전도)층과 내부 연결층을 전기적으로 분리하거나 오염원으로부터 차단시켜주는 절연막층으로 구분</li>
+
+                <div class="img-box">
+                    <img src="../../images/deposition_structure.png" alt="증착구조">
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. 물리적 방법(PVD)과 화학적 방법(CVD)</h2>
+        <div class="card">
+            <h3>① 물리적 기상증착방법 (PVD, Physical Vapor Deposition)</h3>
+            <ul>
+                <li>금속 박막의 증착에 주로 사용되며 화학반응이 수반되지는 않음</li>
+                <li>스퍼터링(Sputtering)</li>
+                  <div class="li-desc">PVD의 한 종류</div>
+                  <div class="li-desc">플라즈마 이온으로 타겟 금속을 때려서 튀어나온 원자를 웨이퍼에 증착하는 방식</div>
+                  <div class="li-desc">금속 타겟 준비 → 이온으로 때임 → 금속 원자가 튀어나옴 → 웨이퍼에 달라붙음</div>
+                  <div class="li-desc">스퍼터링 타 제조 업체 : 지오엘리먼트</div>
+            </ul>
+            <h3>② 화학적 기상증착방법 (CVD, Chemical Vapor Deposition)</h3>
+            <ul>
+                <li>가스의 화학 반응으로 형성된 입자들을 외부 에너지가 부여된 수증기 형태로 쏘아 증착 시키는 방법</li>
+                <li>도체, 부도체, 반도체의 박막증착에 모두 사용될 수 있는 기술</li>
+                <li>현재 반도체 공정에서는 화학적 기상증착방법(CVD)를 주로 사용하고 있음</li>
+                <li>사용하는 외부 에너지에 따라 열 CVD, 플라즈마 CVD, 광 CVD로 세분화 할 수 있음</li>
+                <li>플라즈마 CVD는 저온에서 형성이 가능하고 두께 균일도를 조절할 수 있으며, 대량 처리가 가능하다는 장점으로 가장 많이 이용되고 있음</li>
+            </ul>
+            <h3>ⓑ 원자층 증착방법 (ALD, Atomic Layer Deposition)</h3>
+            <ul>
+                <li>원자층 단위로 아주 얇고 균일하게 박막을 증착하는 방식</li>
+                <li>PVD와 CVD 방법의 경우, 패턴이 깊고 좁아질수록 내부까지 균일하게 코팅하기 어려움</li>
+                <li>특히 FinFET, 3D NAND, GAA 구조 같은 3D 구조에서는 깊은 구멍 내부까지 균일한 박막이 필요 → ALD가 강력한 퍼포먼스를 보여줌</li>
+            </ul>
+            <h3>③ 주요 업체</h3>
+            <ul>
+                <li>국내 : 원익IPS, 주성엔지니어링, TES, 유진테크(산화막)</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 NDoubleuK Portfolio</p>
+</footer>
+
+</body>
+</html>

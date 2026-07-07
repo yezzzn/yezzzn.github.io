@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #6366f1;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            nav h1 {
+                font-size: 18px;
+            }
+
+            nav ul {
+                list-style: none;
+                display: flex;
+                gap: 20px;
+            }
+
+            nav a {
+                text-decoration: none;
+                color: var(--sub);
+                transition: 0.3s;
+            }
+
+                nav a:hover {
+                    color: var(--text);
+                }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 20px;
+            margin-bottom: 20px;
+        }
+
+            .section h2 { 
+                font-size: 22px; 
+                margin-bottom: 15px; 
+                border-left: 4px solid var(--primary); 
+                padding-left: 10px; 
+            }
+
+        .hero {
+            text-align: center;
+            padding: 140px 20px 100px;
+        }
+
+            .hero h2 {
+                font-size: 36px;
+                font-weight: 700;
+                margin-bottom: 15px;
+            }
+
+            .hero h3 {
+                text-align: left;
+                font-size: 30px;
+                font-weight: 700;
+                margin-bottom: 15px;
+            }
+
+            .hero p {
+                color: var(--sub);
+                font-size: 18px;
+            }
+
+            .hero p3 {
+                text-align: left;
+                color: var(--sub);
+                font-size: 18px;
+            }
+
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            border-radius: 999px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+            .btn:hover {
+                opacity: 0.8;
+            }
+
+        h2.section-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            transition: 0.3s;
+            margin-bottom: 14px;
+        }
+
+            .card:hover {
+                transform: translateY(-6px);
+                border-color: var(--primary);
+            }
+
+            .card h3 {
+                margin-bottom: 10px;
+            }
+
+            .card p {
+                color: var(--sub);
+                font-size: 14px;
+            }
+
+            .card ul { 
+                padding-left: 20px; 
+            } 
+        
+            .card li { 
+                margin-top: 4px;
+                margin-bottom: 8px; 
+                padding-left: 5px;
+                color: var(--sub); 
+                display: block;
+            } 
+               
+            .card li-desc { 
+                margin-top: 4px; font-size: 13px; color: var(--sub); padding-left: 15px; display: block;
+            }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2937;
+            color: var(--sub);
+        }
+
+        @media (max-width: 600px) {
+            .hero h2 {
+                font-size: 26px;
+            }
+        }
+
+        .breadcrumb a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                color: #e5e7eb;
+            }
+
+        .breadcrumb span {
+            margin: 0 6px;
+            font-size: 12px;
+        }
+
+        .detail-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          padding: 6px 12px;
+          font-size: 13px;
+          color: var(--primary);
+          border: 1px solid var(--primary);
+          border-radius: 999px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+        
+        .detail-btn:hover {
+          background: var(--primary);
+          color: white;
+        }
+        
+        .arrow {
+          transition: transform 0.2s;
+        }
+        
+        .detail-btn:hover .arrow {
+          transform: translateX(3px);
+        }
+
+        .img-box {
+          margin: 12px 0 16px;
+          text-align: center;
+        }
+        
+        .img-box img {
+          width: 100%;
+          max-width: 600px;
+          border-radius: 10px;
+          border: 1px solid #1f2937;
+        }
+        
+        .img-caption {
+          margin-top: 6px;
+          font-size: 13px;
+          color: var(--sub);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span>›</span>
+                <a href="../study.html">Study Archive</a>
+                <span>›</span>
+                <a href="./semiconductor_process.html">반도체 공정의 이해</a>
+                <span>›</span>
+                <span>산화 공정 (Oxidation)</span>
+            </div>
+        </div>
+
+        <nav>
+            <h3>산화 공정 (Oxidation)</h3>
+            <!--<ul>
+                <li><a href="#projects">네이게이션추가</a></li>
+            </ul>-->
+        </nav>
+    </header>
+    
+<!--
+    <section="hero">
+        <h3>반도체 공정의 이해</h3>
+        <p3>전체 공정 흐름 및 핵심 포인트 정리</p3>
+    </section>
+-->
+   
+    <section id="section">
+        <div class="section">
+            <h2>1. 개요</h2>
+            <div class="card">
+                <li>· Wafer 제작 공정 후 부도체 상태인 wafer에 절연막 역할을 하는 산화막(SiO₂)을 형성시키는 공정</li>
+                <li>     ① 산화막은 회로와 회로 사이에 누설 전류가 흐르는 것을 차단</li>
+                <li>     ② 이온주입 공정에서 확산 방지막 역할</li>  
+                <li>     ③ 식각 공정에서 식각 방지막 역할</li>
+                <li></li>
+                <li>· 규소(Si)는 산화규소(SiO₂)를 만드는 재료 역할을 하는데 이를 전구체라고 한다</li>
+                <li>     정보! 전구체를 취급하는 기업</li>
+                <li>     대표기업(국내) : DNF, LAKE MATERIALS, TEMC, CNS, 한솔 케미칼, 솔브레인 등</li>
+                <div class="img-box">
+                      <img src="../../images/oxidation_wafer.png" alt="산화막이 형성된 웨이퍼">
+                      <!-- <p class="img-caption">실리콘 용액을 결정 성장시켜 잉곳을 형성하는 과정</p> -->
+                </div>
+            </div>
+        </div>
+            
+        <div class="section">
+            <h2>2. 전체 공정 흐름</h2>
+            <div class="card">
+                <h3 class="sub-title-h3">① 산화막 형성?</h3>
+                <ul>
+                    <li>· 반도체 웨이퍼는 대기 중 혹은 화학물질 내에서 산소에 노출되면 산화막을 형성</li>
+               </ul>
+                
+                <div class="img-box">
+                    <img src="../../images/oxidation_method.png" alt="반도체 웨이퍼 열산화 방법">
+                    <!-- <p class="img-caption">실리콘 용액을 결정 성장시켜 잉곳을 형성하는 과정</p> -->
+                </div>
+                <h3 class="sub-title-h3">② 산화막 형성 방법</h3>
+                <ul>
+                    <li>· 열산화 (Thermal Oxidation)</li>
+                    <li>     → 산화반응에 사용되는 기체에 따라 건식산화(Dry Oxidation)와 습식산화(Wet Oxidation)으로 나뉨</li>
+                    <li>     → 건식산화는 순수한 산소(O₂)만을 이용하기 때문에 산화막 성장속도가 느려 주로 얇은 막을 형성 (전기적 특성이 좋은 산화물을 만들 수 있음)</li>
+                    <li>     → 습식산화는 산소(O₂)와 함께 용해도가 큰 수증기(H₂O)를 사용하기 때문에 성장속도가 빠르고 보다 두꺼운 막 형성 가능</li>
+                    <li>       다만, 건식 산화에 비해 산화층의 밀도가 낮음</li>
+                    <li>     → 보통 동일한 온도와 시간에서 습식산화를 통해 얻어진 산화막은 건식산화를 사용한 것보다 약 5~10배 정도 더 두꺼움</li>
+                    <li>· 플라즈마 보강</li>
+                    <li>· 화학적 기상 증착(PECVD)</li>
+                    <li>· 전기 화학적 양극 처리</li>
+                    <li>· 위 방법 이외에도 여러가지 방법들이 존재</li>
+                 </ul>
+            </div>
+        </div>
+    </section>
+</body>
+<footer>
+    <p>© 2026 NDoubleuK Portfolio</p>
+</footer>
+</html>

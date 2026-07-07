@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #6366f1;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .section h2 { 
+            font-size: 22px; 
+            margin-bottom: 15px; 
+            border-left: 4px solid var(--primary); 
+            padding-left: 10px; 
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin: 15px 0 10px;
+        }
+
+        .card ul {
+            padding-left: 18px;
+            list-style: disc;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--sub);
+        }
+
+        .li-desc {
+            margin-top: 4px;
+            padding-left: 14px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .img-box {
+            margin: 12px 0;
+            text-align: center;
+        }
+
+        .img-box img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2937;
+            color: var(--sub);
+        }
+
+        .breadcrumb a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                color: #e5e7eb;
+            }
+
+        .breadcrumb span {
+            margin: 0 6px;
+            font-size: 12px;
+        }
+
+        .detail-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          padding: 6px 12px;
+          font-size: 13px;
+          color: var(--primary);
+          border: 1px solid var(--primary);
+          border-radius: 999px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+        
+        .detail-btn:hover {
+          background: var(--primary);
+          color: white;
+        }
+        
+        .arrow {
+          transition: transform 0.2s;
+        }
+        
+        .detail-btn:hover .arrow {
+          transform: translateX(3px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span>›</span>
+            <a href="../study.html">Study Archive</a>
+            <span>›</span>
+            <a href="./semiconductor_process.html">반도체 공정의 이해</a>
+            <span>›</span>
+            <span>포토 공정 (Photolithography)</span>
+        </div>
+    </div>
+
+    <nav>
+        <h3>포토 공정 (Photolithography)</h3>
+        <!--<ul>
+            <li><a href="#projects">네이게이션추가</a></li>
+        </ul>-->
+    </nav>
+</header>
+
+<section>
+    <div class="section">
+        <h2>1. 개요</h2>
+        <div class="card">
+            <ul>
+                <li>산화공정 이후의 Wafer에 반도체 회로를 그려 넣는 공정</li>
+                <li>Wafer 위에 회로 패턴이 담긴 마스크 상을 빛을 이용해 비춰 회로를 그리기 때문에 Photo Lithography라는 이름이 붙여짐</li>
+                <li>패턴을 형성하는 방법은 흑백 사진을 만들 때, 필름에 형성된 상을 인화지에 인화하는 것과 유사함</li>
+                <li>반도체는 집적도가 증가할수록 칩을 구성하는 단위 소자 역시 미세 공정을 사용해 작게 만들어야 함</li>
+                <li>미세 회로 패턴 구현은 포토 공정에 의해 결정됨(집적도가 높아질수록 포토 공정 기술 수준도 함께 요구됨)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. 전체 공정 흐름</h2>
+        <div class="card">
+            <h3>① 웨이퍼에 회로 패턴을 만드는 준비 단계</h3>
+            <ul>
+                <li>CAD(Computer-aided design)를 이용해 Wafer에 그려 넣을 회로를 설계</li>
+                <li>전자회로 패턴으로 설계되는 이 도면에 엔지니어들이 설계한 정밀회로를 담으며, 그 정밀도가 반도체의 집적도를 결정</li>
+            </ul>
+
+            <h3>② 사진 원판의 역할을 하는 포토마스크 만들기</h3>
+            <div class="img-box">
+                <img src="../../images/photo_photomask.png" alt="포토마스크(Photo Mask)">
+            </div>
+            <ul>
+                <li>포토마스크(Photo Mask) : 설계된 회로 패턴은 순도가 높은 석영(Quartz)을 가공해서 만든 기판 위에 크롬(Cr)으로 미세 회로를 형상화</li>
+                <li>마스크는 Reticle이라고도 부르는데, 이것은 회로 패턴을 고스란히 담은 필름으로 사진 원판의 기능을 하게 됨</li>
+                <li>마스크는 보다 세밀한 패터닝을 위해 반도체 회로보다 크게 제작되며, 렌즈를 이용해 빛을 축소하여 조사하게 됨</li>
+                <li>Blank Mask : IC미세회로가 그려지지 않은 마스크</li>
+                <li>국내 주요 업체
+                    <div class="li-desc">Blank Mask: S&S TECH</div>
+                    <div class="li-desc">Photo Mask: S&S TECH, FST (상용화 단계는 아님)</div>
+                    <div class="li-desc">펠리클(Pellicle): FST</div>
+                </li>
+            </ul>
+
+            <h3>③ 감광액 도포</h3>
+            <div class="img-box">
+                <img src="../../images/photo_photoresist.png" alt="감광액 도포">
+            </div>
+            <ul>
+                <li>Wafer 표면에 빛에 민감한 물질인 감광액(PR, Photo Resist)을 골고루 바르는 작업</li>
+                <li>보다 고품질의 미세한 회로 패턴을 얻기 위해서는 감광액(PR) 막이 얇고 균일해야 하며 빛에 대한 감도가 높아야 함</li>
+                <li>국내 주요 업체
+                    <div class="li-desc">감광액 : 동진세미켐</div>
+                    <div class="li-desc">감광액 원료 : 이엔에프테크놀로, Purit</div>
+                    <div class="li-desc">위 업체들은 감광액 이외에도 식각 공정에 사용되는 여러가지 화학물질 제작</div>
+                </li>
+            </ul>
+
+            <h3>④ 노광 공정</h3>
+            <div class="img-box">
+                <img src="../../images/photo_stepper.png" alt="노광">
+            </div>
+            <ul>
+                <li>노광(Stepper Exposure) : 감광액 막을 형성한 Wafer위에 노광장비를 사용해 회로 패턴이 담긴 마스크에 빛을 통과시켜 회로를 찍어내는 공정</li>
+                <li>반도체 공정에서의 노광은 빛을 선택적으로 조사하는 과정</li>
+                <li>대표적인 EUV 장비 제조 회사 = ASML (네덜란드)</li>
+            </ul>
+
+            <h3>⑤ 현상 공정</h3>
+            <div class="img-box">
+                <img src="../../images/photo_develop.png" alt="현상">
+            </div>
+            <ul>
+                <li>웨이퍼에 현상액을 뿌려 가며 노광된 영역과 노광 되지 않은 영역을 선택적으로 제거해 회로 패턴을 형성하는 공정</li>
+                <li>포토공정의 마지막 단계로 일반 사진을 현상하는 과정과 동일하며, 패턴의 형상이 결정되기 때문에 매우 중요함</li>
+            </ul>
+
+            <h3>⑥ 검사</h3>
+            <ul>
+                <li>각종 측정 장비와 광학 현미경 등을 통해 패턴이 잘 그려졌는지 검사를 진행</li>
+            </ul>
+
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 NDoubleuK Portfolio</p>
+</footer>
+
+</body>
+</html>

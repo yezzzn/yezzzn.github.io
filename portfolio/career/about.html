@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --primary: #6366f1;
+      --text: #e5e7eb;
+      --sub: #9ca3af;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section h2 {
+      margin-bottom: 20px;
+      border-left: 4px solid var(--primary);
+      padding-left: 10px;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 20px;
+      background: var(--card);
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid #1f2937;
+    }
+
+    .company {
+      font-weight: 600;
+    }
+
+    .date {
+      color: var(--sub);
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .desc ul {
+      padding-left: 20px;
+    }
+
+    .desc li {
+      margin-bottom: 6px;
+      color: var(--sub);
+    }
+
+    .highlight {
+      color: var(--primary);
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: var(--sub);
+      text-decoration: none;
+    }
+
+    .back:hover { color: var(--text); }
+
+    @media (max-width: 700px) {
+      .item {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <a href="../../index.html" class="back">← 홈으로 돌아가기</a>
+
+  <h1>Career</h1>
+
+  <div class="section">
+    <h2>경력 사항</h2>
+
+    <div class="timeline">
+
+      <div class="item">
+        <div>
+          <div class="company">인텍플러스</div>
+          <div class="date">2013.01 ~ 현재</div>
+        </div>
+        <div class="desc">
+          <ul>
+            <li>TS본부 TS8그룹 / 책임연구원</li>
+            <li class="highlight">신호처리 및 Frame Grabber 미들웨어 개발</li>
+            <li>2D Vision 알고리즘 및 딥러닝 검사 SW 개발</li>
+            <li>프로젝트 총괄 (국내/해외 고객 대응)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="item">
+        <div>
+          <div class="company">한국소비자원</div>
+          <div class="date">2011.09 ~ 2012.09</div>
+        </div>
+        <div class="desc">
+          <ul>
+            <li>정보화 추진팀</li>
+            <li>웹 사이트 관리 및 개인정보 보호 사업</li>
+            <li>T-Price 사이트 개설</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="item">
+        <div>
+          <div class="company">파이널데이터</div>
+          <div class="date">2009.12 ~ 2010.08</div>
+        </div>
+        <div class="desc">
+          <ul>
+            <li>Mobile Forensic 파트 인턴</li>
+            <li>Forensic 정보 Viewer 개발 (XML report viewer)</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="section">
+    <h2>상세 경험</h2>
+
+    <div class="item">
+      <div>
+        <div class="company">신호처리 파트</div>
+        <div class="date">2013 ~ 2016</div>
+      </div>
+      <div class="desc">
+        <ul>
+          <li>Frame Grabber Library 및 Middleware 개발</li>
+          <li>3D Camera 제작 참여 (Slit-beam 기반)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="item" style="margin-top:20px;">
+      <div>
+        <div class="company">비전 개발 파트</div>
+        <div class="date">2017 ~ 현재</div>
+      </div>
+      <div class="desc">
+        <ul>
+          <li>2D 검사 솔루션 개발</li>
+          <li>Display 검사 (Flexible / Rigid)</li>
+          <li>2차전지 검사 공정 대응</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

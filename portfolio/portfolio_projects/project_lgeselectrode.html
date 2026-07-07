@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Detail</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --primary: #6366f1;
+      --text: #e5e7eb;
+      --sub: #9ca3af;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Pretendard', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--sub);
+      margin-bottom: 40px;
+    }
+
+    .section {
+      margin-bottom: 50px;
+    }
+
+    .section h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      border-left: 4px solid var(--primary);
+      padding-left: 10px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #1f2937;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .highlight {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 30px;
+      text-decoration: none;
+      color: var(--sub);
+    }
+
+    .breadcrumb {
+  margin-bottom: 30px;
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.breadcrumb a {
+  color: #9ca3af;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: #e5e7eb;
+}
+
+.breadcrumb span {
+  margin: 0 6px;
+}
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="breadcrumb">
+  <a href="../../index.html">홈</a>
+  <span>›</span>
+  <a href="../portfolio.html">Portfolio</a>
+  <span>›</span>
+  <span>Dry & Wet Electrode Inspection Project</span>
+  </div>
+
+  <h1>Dry & Wet Electrode External Inspection Machine (Coating Process)</h1>
+  <p class="subtitle">건/습식 전극 외관 검사 시스템</p>
+
+  <div class="section">
+    <h2>1. 프로젝트 개요</h2>
+    <div class="card">
+      <p>
+        2차전지 Coater 공정의 첫 외관 검사 시스템 개발 프로젝트.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. 문제 상황 (Before)</h2>
+    <div class="card">
+      <ul>
+        <li>설비 속도 증가에 따른 Tact-time 개선</li>
+        <li>전극 오실레이션(Oscillation)에 맞는 Align 및 영역 구분</li>
+        <li>미세 결함에 대한 영상 시인성 확보 및 검출 정확도</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. 해결 방법 (How)</h2>
+    <div class="card">
+      <ul>
+        <li>영상 그랩, 검사, 결과 도출에 대한 다중 Thread를 이용한 Tact-time 안정화</li>
+        <li>Auto Align 기능을 개발하여 전극 오실레이션에 맞는 자동 Alignment 구현</li>
+        <li>추가 조명 검토를 진행하여 영상 시인성 확보를 위한 노력</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. 핵심 기술</h2>
+    <div class="card">
+      <ul>
+        <li><span class="highlight"></span> 다중 Thread 활용 및 resource scheduling 기능 구현</li>
+        <li>Area Tracing을 진행하여 영역에 대한 Edge detect 및 Line detection으로 자동 기능 구현</li>
+        <li>CIS 광학계에 적용할 수 있는 동축 조명 (Side 조명의 단점을 보완)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>5. 결과 (After)</h2>
+    <div class="card">
+      <ul>
+        <li>검출 정확도 <span class="highlight">+20% 향상</span></li>
+        <li>오검출율 <span class="highlight">40% 감소</span></li>
+        <li>검사 속도 <span class="highlight">20% 개선</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>6. 트러블슈팅</h2>
+    <div class="card">
+      <ul>
+        <li>160mpm 속도에서 resource control 문제 → HW 사양 업그레이드 및 SW 관점에서 방안 모색 중</li>
+        <li>Roll-to-roll 설비에서 Only D/L 검사 시퀀스를 진행 할 수 있는 방안 모색 중</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

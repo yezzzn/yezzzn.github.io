@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MachineVision-Lens</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #6366f1;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .section h2 { 
+            font-size: 22px; 
+            margin-bottom: 15px; 
+            border-left: 4px solid var(--primary); 
+            padding-left: 10px; 
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin: 15px 0 10px;
+        }
+
+        .card ul {
+            padding-left: 18px;
+            list-style: disc;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--sub);
+        }
+
+        .li-desc {
+            margin-top: 4px;
+            padding-left: 14px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .img-box {
+            margin: 12px 0;
+            text-align: center;
+        }
+
+        .img-box img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2937;
+            color: var(--sub);
+        }
+
+        .breadcrumb a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                color: #e5e7eb;
+            }
+
+        .breadcrumb span {
+            margin: 0 6px;
+            font-size: 12px;
+        }
+
+        .detail-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          padding: 6px 12px;
+          font-size: 13px;
+          color: var(--primary);
+          border: 1px solid var(--primary);
+          border-radius: 999px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+        
+        .detail-btn:hover {
+          background: var(--primary);
+          color: white;
+        }
+        
+        .arrow {
+          transition: transform 0.2s;
+        }
+        
+        .detail-btn:hover .arrow {
+          transform: translateX(3px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span>›</span>
+            <a href="../study.html">Study Archive</a>
+            <span>›</span>
+            <a href="./machinevision_introduction.html">머신 비전의 이해</a>
+            <span>›</span>
+            <span>조명 (Illumination)</span>
+        </div>
+    </div>
+
+    <nav>
+        <h3>조명 (Illumination)</h3>
+        <!--<ul>
+            <li><a href="#projects">네이게이션추가</a></li>
+        </ul>-->
+    </nav>
+</header>
+
+<section>
+    <div class="section">
+        <h2>1. 개요</h2>
+        <div class="card">
+            <ul>
+                <h3>조명의 역할 및 정의</h3>
+                <li>카메라는 물체가 반사한 빛을 캡처하여 이미지를 생성한다.</li>
+                <li>물체의 표면 특성(투명, 반투명, 불투명)에 따라 빛의 반사와 흡수 정도가 달라진다.</li>
+                <li>정확한 분석을 위해 머신 비전 시스템에는 적절한 조명이 필요하다.</li>
+                <li>조명은 광원의 위치, 각도, 반사 특성, 색상 스펙트럼을 고려해 설계된다.</li>
+                <!-- 이미지 추가 -->
+                <!--
+                 <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_lens_composition.png" alt="렌즈구성">
+                </div>
+              -->
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. 조명 기술</h2>
+        <div class="card">
+            <h3>① 위치 기반 조명</h3>
+            <ul>
+                <li>전면 조명</li>
+                  <div class="li-desc">카메라와 광원이 모두 같은 쪽에서 대상 정명을 향함.</div>
+                <li>백 라이트</li>
+                  <div class="li-desc">카메라와 광원은 대상 장면을 중앙에 두고 서로 마주보게 위치함.</div>
+                 <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_illumination_position.png" alt="조명">
+                </div>
+            </ul>
+            <h3>② 각도 기반 조명</h3>
+            <ul>
+                <li>직접 조명</li>
+                  <div class="li-desc">매우 좁은 각도로 퍼지는 광선이 대상 장면의 모든 지점을 비춘다.</div>
+                  <div class="li-desc">강한 그림자를 드리우고, 이미지에서 텍스처를 두드러지게 한다.</div>
+                <li>확산 조명</li>
+                  <div class="li-desc">넓은 각도로 퍼지는 광선이 대상 장면의 모든 지점을 비춘다.</div>
+                  <div class="li-desc">그림자가 거의 없으며 음영을 제거하고, 텍스처를 더욱 분명하게 만든다.</div>
+                    <div class="li-desc" style="margin-left:20px;">- 축 확산 조명 : 빔 스플리터는 확산된 빛을 대상에서 아래쪽으로 반사함</div>
+                    <div class="li-desc" style="margin-left:20px;">- 확산 돔 조명 : 반구 모양의 거울은 확산된 빛을 반사하여 대상을 비춤</div>
+                 <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_illumination_angle.png" alt="조명">
+                </div>
+            </ul>
+            <h3>③ 반사 자연 기반 조명</h3>
+            <ul>
+                <li>암시야 조명</li>
+                  <div class="li-desc">광원이 카메라의 센서로 직접 전송되지 않도록 배치</div>
+                <li>명시야 조명</li>
+                  <div class="li-desc">광원이 카메라의 센서로 직접 전송되도록 배치</div>
+                 <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_illumination_reflection.png" alt="조명">
+                </div>
+            </ul>
+            <h3>④ 패턴 기반 조명</h3>
+            <ul>
+                <li>구조화된 조명</li>
+                  <div class="li-desc">점, 격자 또는 보다 복잡한 모양과 같은 조명 패턴이 물체에 비스듬히 투사 됨</div>
+            </ul>
+            <h3>⑤ 색상 스펙트럼 기반 조명</h3>
+            <ul>
+                <li>RGB 조명</li>
+                  <div class="li-desc">단색 이미지의 경우 빛은 일반적으로 Red, Green, Blue의 좁은 파장 대역</div>
+                <li>백색 조명</li>
+                  <div class="li-desc">컬러 이미지를 위해서 백색광이 필요</div>
+            </ul>
+            <h3>⑥ 광 스펙트럼 기반 조명</h3>
+            <ul>
+                <li>자외선 조명</li>
+                  <div class="li-desc">자외선(UV)은 가시광선(200nm~400nm)보다 짧은 파장(400nm~780nm)의 스펙트럼</div>
+                <li>SWIR 조명</li>
+                  <div class="li-desc">SWIR(Short-Wave Infrared) 스펙트럼(900nm ~ 2,500nm)은 가시광선에 가장 가까운 적외선(780nm 및 1mm) 영역</div>
+                <li>근적외선 조명</li>
+                  <div class="li-desc">근적외선(NIR) 파장은 780-1400nm 범위</div>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Smay Portfolio</p>
+</footer>
+
+</body>
+</html>

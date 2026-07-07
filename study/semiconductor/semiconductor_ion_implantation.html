@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #6366f1;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .section h2 { 
+            font-size: 22px; 
+            margin-bottom: 15px; 
+            border-left: 4px solid var(--primary); 
+            padding-left: 10px; 
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin: 15px 0 10px;
+        }
+
+        .card ul {
+            padding-left: 18px;
+            list-style: disc;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--sub);
+        }
+
+        .li-desc {
+            margin-top: 4px;
+            padding-left: 14px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .img-box {
+            margin: 12px 0;
+            text-align: center;
+        }
+
+        .img-box img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2937;
+            color: var(--sub);
+        }
+
+        .breadcrumb a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                color: #e5e7eb;
+            }
+
+        .breadcrumb span {
+            margin: 0 6px;
+            font-size: 12px;
+        }
+
+        .detail-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          padding: 6px 12px;
+          font-size: 13px;
+          color: var(--primary);
+          border: 1px solid var(--primary);
+          border-radius: 999px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+        
+        .detail-btn:hover {
+          background: var(--primary);
+          color: white;
+        }
+        
+        .arrow {
+          transition: transform 0.2s;
+        }
+        
+        .detail-btn:hover .arrow {
+          transform: translateX(3px);
+        }
+
+    </style>
+</head>
+    
+<body>
+<header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span>›</span>
+            <a href="../study.html">Study Archive</a>
+            <span>›</span>
+            <a href="./semiconductor_process.html">반도체 공정의 이해</a>
+            <span>›</span>
+            <span>이온주입 공정 (Ion Implantation)</span>
+        </div>
+    </div>
+
+    <nav>
+        <h3>이온주입 공정 (Ion Implantation)</h3>
+        <!--<ul>
+            <li><a href="#projects">네이게이션추가</a></li>
+        </ul>-->
+    </nav>
+</header>
+
+<section>
+    <div class="section">
+        <h2>1. 개요</h2>
+        <div class="card">
+            <ul>
+                <li>반도체가 전기적인 특성을 갖도록 만드는 과정</li>
+                <li>전기가 통하는 도체와, 통하지 않는 부도체의 성질을 동시에 가진 반도체</li>
+                <li>순수한 반도체는 규소로 되어있어 전기가 통하지 않으나 불순물을 넣어 전류가 흐르게 하는 전도성을 갖게 되는 것</li>
+                <li>이때 불순물을 이온(Ion)이라고 함</li>
+                    <div class="li-desc">15족 원소 인(P), 비소(As), 13족 원소 붕소(B)등을 사용</div>
+                    <div class="li-desc">N형 반도체 = 15족 원소를 주입한 반도체</div>
+                    <div class="li-desc">P형 반도체 = 13족 원소를 주입한 반도체</div>
+                <li>도핑(Doping) = 전기가 잘 흐르게 하거나, 특정 방향으로만 흐르게 만드는 과정 = 이온주입 공정</li>
+                
+              <div class="img-box">
+                    <img src="../../images/ion_implantation.png" alt="이온주입">
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. 공정의 흐름</h2>
+        <div class="card">
+            <h3>＊ 원자의 종류</h3>
+            <ul>
+                <li>N형 도핑 : 전자 증가, 대표적으로 Phosphorus (P), Arsenic (As)</li>
+                <li>P형 도핑 : 정공 증가, 대표적으로 Boron(B)</li>
+                <li>핵심 원리</li>
+                  <div class="li-desc">"이온을 전기적으로 가속해서 실리콘에 충돌시킴"</div>
+            </ul>
+            <h3>① 이온 생성 (Ion Source)</h3>
+            <ul>
+                <li>목적 : 도핑 원자를 이온화</li>
+                <li>고온의 플라즈마를 사용하여 전자 충돌로 이온을 생성</li>
+                <li>예시</li>
+                  <div class="li-desc">BF3 → B+</div>
+                  <div class="li-desc">PH3 → P+</div>
+                  <div class="li-desc">AsH3 → As+</div>
+            </ul>
+            <h3>② 이온 추출 (Extraction)</h3>
+            <ul>
+                <li>생성된 이온을 전압을 인가하여 전기장으로 끌어냄 → Ion beam 생성</li>
+            </ul>
+            <h3>③ Mass Analyzer ★★★</h3>
+            <ul>
+                <li>Ion source에는 원하는 이온 + 불순물이 다 섞여 있음</li>
+                  <div class="li-desc">B+, BF2+, 기타 이온</div>
+                <li>자기장을 사용하여 질량마다 휘는 정도가 다른 이온의 특성을 이용하여 원하는 이온을 걸러낸다</li>
+                <li>로렌츠 힘 : F = q(v X B)</li>
+                <li>질량이 작은 것은 많이 휘고, 질량이 큰 것은 상대적으로 덜 휨</li>
+            </ul>
+            <h3>④ Acceleration ★★★</h3>
+            <ul>
+                <li>실리콘 내부에 침투시키기 위해 이온을 고속으로 가속 시킴</li>
+                <li>에너지 = 침투깊이, 에너지가 높을수록 더 깊이 들어감 (에너지의 범위 : 수 keV ~ MeV)</li>
+            </ul>
+           <h3>⑤ Implantation</h3>
+            <ul>
+                <li>가속 시킨 이온을 웨이퍼에 충돌시켜 주입 시키는 과정</li>
+                <li>이온이 Si(규소) 내부 원자와 충돌하면서 에너지를 잃고 특정 깊이에서 멈추게 됨</li>
+                <li>Projected Range (Rp) = 평균 침투 깊이</li>
+                <li>분포 형태는 완벽히 일정하지 않고, 가우시안 분포와 비슷한 형태</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 NDoubleuK Portfolio</p>
+</footer>
+
+</body>
+</html>

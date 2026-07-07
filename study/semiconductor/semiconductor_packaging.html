@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #6366f1;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .section h2 { 
+            font-size: 22px; 
+            margin-bottom: 15px; 
+            border-left: 4px solid var(--primary); 
+            padding-left: 10px; 
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin: 15px 0 10px;
+        }
+
+        .card ul {
+            padding-left: 18px;
+            list-style: disc;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--sub);
+        }
+
+        .li-desc {
+            margin-top: 4px;
+            padding-left: 14px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .img-box {
+            margin: 12px 0;
+            text-align: center;
+        }
+
+        .img-box img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2937;
+            color: var(--sub);
+        }
+
+        .breadcrumb a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                color: #e5e7eb;
+            }
+
+        .breadcrumb span {
+            margin: 0 6px;
+            font-size: 12px;
+        }
+
+        .detail-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          padding: 6px 12px;
+          font-size: 13px;
+          color: var(--primary);
+          border: 1px solid var(--primary);
+          border-radius: 999px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+        
+        .detail-btn:hover {
+          background: var(--primary);
+          color: white;
+        }
+        
+        .arrow {
+          transition: transform 0.2s;
+        }
+        
+        .detail-btn:hover .arrow {
+          transform: translateX(3px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span>›</span>
+            <a href="../study.html">Study Archive</a>
+            <span>›</span>
+            <a href="./semiconductor_process.html">반도체 공정의 이해</a>
+            <span>›</span>
+            <span>패키징 공정 (Packaging)</span>
+        </div>
+    </div>
+
+    <nav>
+        <h3>패키징 공정 (Packaging)</h3>
+        <!--<ul>
+            <li><a href="#projects">네이게이션추가</a></li>
+        </ul>-->
+    </nav>
+</header>
+
+<section>
+    <div class="section">
+        <h2>1. 개요</h2>
+        <div class="card">
+            <ul>
+                <li>반도체 칩이 외부와 신호를 주고 받을 수 있도록 길을 만들고, 다양한 외부환경으로부터 안전하게 보호받는 형태로 만드는 과정</li>
+                    <div class="li-desc">베어칩(Bare chip) or 다이(Die) : 완성된 웨이퍼의 반도체 칩을 낱개로 하나하나 잘라낸 것</div>
+                    <div class="li-desc">베어칩은 외부와 전기신호를 주고 받을 수 없으며, 외부 충격에 손상되기 쉬움</div>
+                    <div class="li-desc">즉, 직접회로(IC)가 기판이나 전자기기에 장착되기 위해선 그에 맞는 포장이 필요</div>
+                <li>집적회로와 전자기기를 연결하고 고온, 고습, 화학약품, 진동/충격 등의 외부환경으로부터 회로를 보호하기 위한 공정</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. 전체 공정의 흐름</h2>
+        <div class="card">
+            <h3>① 웨이퍼 절단</h3>
+            <ul>
+                <div class="img-box">
+                        <img src="../../images/packaging_wafercutting.png" alt="웨이퍼절단">
+                </div>
+                <li>웨이퍼를 낱개의 칩으로 분리하는 과정</li>
+                <li>웨이퍼에는 수백 개의 칩이 촘촘히 배열되어 있고, 각 칩은 스크라이브 라인(Scribe Line)으로 구분</li>
+                <li>다이아몬드 톱이나 레이저 광선을 이용하여 스크라이브 라인을 따라 절단</li>
+                <li>웨이퍼 절단 작업은 '웨이퍼 소잉(Wafer Sawing)'이나, '다이싱(Dicing)'이라 불림</li>
+                <li>주요 업체</li>
+                    <div class="li-desc">소잉 장비 업체 : 일본(Disco), 한국(한미반도체)</div>
+                    <div class="li-desc">레이저 커팅 장비 업체 : 이오테크닉스 (레이저에 특화된 사업체)</div>
+            </ul>
+            <h3>② 칩 접착(Die Attach)</h3>
+            <ul>
+                <div class="img-box">
+                        <img src="../../images/packaging_dieattach.png" alt="리드프레임">
+                </div>
+                <li>절단된 칩들은 리드프레임(Lead Frame) 또는 PCB(Printed Circuit Board) 위에 옮겨짐</li>
+                <li>리드프레임은 반도체 칩과 외부 회로 간 전기신호를 전달하고, 외부 환경으로부터 칩을 보호, 지지해주는 골격 역할을 함</li>
+                <li>주요 업체</li>
+                    <div class="li-desc">리드프레임 제작 업체 : 해성디에스</div>
+            </ul>
+            <h3>③ 금선 연결</h3>
+            <ul>
+                <div class="img-box">
+                        <img src="../../images/packaging_goldenline.png" alt="금선연결">
+                </div>
+                <li>반도체의 전기적 특성을 위해 기판 위에 올려진 반도체 칩의 접점과 기판의 접점을 가는 금선을 사용하여 연결하는 공정</li>
+                <li>'와이어 본딩(Wire Bonding)' 방식</li>
+                <li>전통적인 와이어본딩 방식 외에 반도체의 속도를 향상시키기 위해 칩의 회로와 기판을 직접 볼 형태의 범프(Bump)로 연결하는 패키징 방식</li>
+                <li>'플립칩(Flip Chip)' 방식</li>
+                <li>FC-BGA(Flip Chip - Ball Grid Array) 기판 참고</li>
+                <div class="img-box">
+                        <img src="../../images/packaging_wirebonding.png" alt="와이어본딩과 플립칩">
+                </div>
+                <li>플립칩 방식의 장점 : 전기저항이 작고 속도가 빠르며, 작은 폼팩터(Form Factor) 구현이 가능</li>
+                <li>범프의 소재로는 주로 금(Au) 또는 솔더(Solder, 주석/납/은 화합물)가 사용됨</li>
+                <li>주요 업체</li>
+                    <div class="li-desc">FC-BGA 기판 제작 업체 : 삼성전기, LG이노텍, 심텍, 대덕전자 등</div>
+                    <div class="li-desc">범프 제작 업체 : MK전자, 덕산하이메탈</div>
+                    <div class="li-desc">다이 본딩 업체 : 프로텍</div>
+                    <div class="li-desc">HBM TC본더 : 한미반도체</div>
+            </ul>
+            <h3>④ 성형(Molding) 공정</h3>
+            <ul>
+                <div class="img-box">
+                        <img src="../../images/packaging_molding.png" alt="성형공정">
+                </div>
+                <li>열, 습기 등의 물리적인 환경으로부터 반도체 집적회로를 보호하고, 원하는 형태의 패키지로 만들기 위한 공정</li>
+                <li>금선 연결까지 끝난 반도체 칩을 화학수지로 밀봉하는 공정을 거치면 우리가 흔히 보는 반도체가 됨</li>
+            </ul>
+            <h3>⑤ 테스트(Testing) 공정</h3>
+            <ul>
+                <div class="img-box">
+                        <img src="../../images/packaging_test.png" alt="테스트">
+                </div>
+                <li>패키징 공정이 완료되면 반도체 제품의 최종 불량유무를 선별하는 패키지 테스트(Package Test)를 시행</li>
+                <li>완제품 형태를 갖춘 후에 검사를 진행하기 때문에 '파이널 테스트(Final Test)'라고도 함</li>
+                <li>반도체를 검사장비(Tester)에 넣고 다양한 조건의 전압이나 전기신호, 온도, 습도 등을 가해 제품의 전기적 특성, 기능적 특성, 동작 속도 등을 측정</li>
+                <li>테스트 데이터를 분석해 제조공정이나 조립공정에 피드백함으로써 제품의 질을 개선하는 역할도 함</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 NDoubleuK Portfolio</p>
+</footer>
+
+</body>
+</html>

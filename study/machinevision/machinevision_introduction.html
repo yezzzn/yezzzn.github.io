@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Machine Vision Introduction</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #6366f1;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            nav h1 {
+                font-size: 18px;
+            }
+
+            nav ul {
+                list-style: none;
+                display: flex;
+                gap: 20px;
+            }
+
+            nav a {
+                text-decoration: none;
+                color: var(--sub);
+                transition: 0.3s;
+            }
+
+                nav a:hover {
+                    color: var(--text);
+                }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 20px;
+            margin-bottom: 20px;
+        }
+
+            .section h2 { 
+                font-size: 22px; 
+                margin-bottom: 15px; 
+                border-left: 4px solid var(--primary); 
+                padding-left: 10px; 
+            }
+
+        .hero {
+            text-align: center;
+            padding: 140px 20px 100px;
+        }
+
+            .hero h2 {
+                font-size: 36px;
+                font-weight: 700;
+                margin-bottom: 15px;
+            }
+
+            .hero h3 {
+                text-align: left;
+                font-size: 30px;
+                font-weight: 700;
+                margin-bottom: 15px;
+            }
+
+            .hero p {
+                color: var(--sub);
+                font-size: 18px;
+            }
+
+            .hero p3 {
+                text-align: left;
+                color: var(--sub);
+                font-size: 18px;
+            }
+
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            border-radius: 999px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+            .btn:hover {
+                opacity: 0.8;
+            }
+
+        h2.section-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            transition: 0.3s;
+            margin-bottom: 14px;
+        }
+
+            .card:hover {
+                transform: translateY(-6px);
+                border-color: var(--primary);
+            }
+
+            .card h3 {
+                margin-bottom: 10px;
+            }
+
+            .card p {
+                color: var(--sub);
+                font-size: 14px;
+            }
+
+            .card ul { 
+                padding-left: 20px; 
+            } 
+        
+            .card li { 
+                margin-bottom: 8px; color: var(--sub); 
+            } 
+               
+            .card li-desc { 
+                margin-top: 4px; font-size: 13px; color: var(--sub); padding-left: 10px; display: block;
+            }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2937;
+            color: var(--sub);
+        }
+
+        @media (max-width: 600px) {
+            .hero h2 {
+                font-size: 26px;
+            }
+        }
+
+        .breadcrumb a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                color: #e5e7eb;
+            }
+
+        .breadcrumb span {
+            margin: 0 6px;
+            font-size: 12px;
+        }
+
+        .detail-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          padding: 6px 12px;
+          font-size: 13px;
+          color: var(--primary);
+          border: 1px solid var(--primary);
+          border-radius: 999px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+        
+        .detail-btn:hover {
+          background: var(--primary);
+          color: white;
+        }
+        
+        .arrow {
+          transition: transform 0.2s;
+        }
+        
+        .detail-btn:hover .arrow {
+          transform: translateX(3px);
+        }
+
+        .img-box {
+          margin: 12px 0 16px;
+          text-align: center;
+        }
+        
+        .img-box img {
+          width: 100%;
+          max-width: 600px;
+          border-radius: 10px;
+          border: 1px solid #1f2937;
+        }
+        
+        .img-caption {
+          margin-top: 6px;
+          font-size: 13px;
+          color: var(--sub);
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span>›</span>
+                <a href="../study.html">Study Archive</a>
+                <span>›</span>
+                <span>머신 비전의 이해</span>
+            </div>
+        </div>
+
+        <nav>
+            <h3>머신 비전에 대하여</h3>
+            <!--<ul>
+                <li><a href="#projects">네이게이션추가</a></li>
+            </ul>-->
+        </nav>
+    </header>
+    
+<!--
+    <section="hero">
+        <h3>반도체 공정의 이해</h3>
+        <p3>전체 공정 흐름 및 핵심 포인트 정리</p3>
+    </section>
+-->
+   
+    <section id="section">
+        <div class="section">
+            <h2>1. 개요</h2>
+            <div class="card">
+                <ul>
+                <li>산업 자동화의 모든 단계에서 부품과 제품을 검사, 측정 및 분석</li>
+                <li>머신 비전을 사용한 자동화된 시스템이 구성 요소, 제품, 패턴, 코드 또는 기타 물체를 보고 해당 정보를 사용하여 의사결정을 내릴 수 있음</li>
+                <li>제조 부품과 제품을 검사, 측정, 분류할 수 있기 때문에 머신 비전은 산업 자동화의 성능과 유연성을 크게 향상 시킬 수 있음</li>
+                <li>머신 비전은 이 모든 것을 빠른 속도와 높은 정확성으로 수행하여 제품 품질을 개선하고 폐기물을 줄이는 역할을 함</li>
+                <li>자동화된 장비가 물체를 찾고 식별하며 재질, 상태, 방향 및 기타 세부 정보에 대한 정보를 저장하여 나중에 분석도 가능함</li>
+                <li>이러한 데이터는 효율성 향상을 추구하는 공장에 매우 중요한 역할을 함</li>
+
+                 <div class="img-box">
+                     <img src="../../images/machinevision/machinevision_introduction.png" alt="machinevision">
+                </div>
+                </ul>
+            </div>
+        </div>
+        <div class="section">
+            <h2>2. 머신 비전 시스템의 구성</h2>
+            <div class="card">
+                <ul>
+                <h3 class="sub-title-h3"><a href="./machinevision_camera.html" class="detail-btn">1. 카메라</a></h3>
+                <h3 class="sub-title-h3"><a href="./machinevision_lens.html" class="detail-btn">2. 렌즈</a></h3>
+                <h3 class="sub-title-h3"><a href="./machinevision_illumination.html" class="detail-btn">3. 조명</a></h3>
+                <h3 class="sub-title-h3"><a href="./machinevision_cable.html" class="detail-btn">4. 케이블 연결</a></h3>
+                <h3 class="sub-title-h3"><a href="./machinevision_interface.html" class="detail-btn">5. 인터페이스</a></h3>
+                <h3 class="sub-title-h3"><a href="./machinevision_computing.html" class="detail-btn">6. 컴퓨팅 플랫폼</a></h3>
+                <h3 class="sub-title-h3"><a href="./machinevision_software.html" class="detail-btn">7. 소프트웨어</a></h3>
+                </ul>
+            </div>
+        </div>
+            
+        <div class="section">
+            <h2>3. 머신 비전의 이점</h2>
+            <div class="card">
+                <ul>
+                   <li>제품 품질 개선</li>
+                       <li-desc>결함으로 인해 거부된 제품은 비용, 낭비 및 평판 손상의 중요한 원인</li-desc>
+                       <li-desc>머신 비전을 통한 자동 검사는 속도와 정확성을 개선하여 포장 또는 배송 전에 많은 종류의 문제를 포착</li-desc>
+                   <li>부품 및 제품 추적</li>
+                        <li-desc>머신 비전 시스템은 최초 생산부터 배송, 최종 판매에 이르기까지 모든 단계에서 제품 및 포장물에 있는 코드를 판독하여 중요한 추적 정보를 제공</li-desc>
+                        <li-desc>이를 통해 발송인은 포장물의 현재 위치를 알 수 있고 지연이나 배송 오류를 신속하게 감지하고 손상이나 기타 문제를 추적하여 그 원인을 찾을 수 있음</li-desc>
+                   <li>생산성 및 전체 장비 효율성 향상</li>
+                        <li-desc>머신 비전 시스템은 작업 속도를 높이고, 사이클 시간을 단축하며, 교대 과정에서 성능이 저하되지 않음</li-desc>
+                        <li-desc>이 시스템은 설치된 모든 장비를 가장 효율적으로 사용할 수 있는 정보를 제공</li-desc>
+                   <li>폐기물 절감</li>
+                        <li-desc>머신 비전은 제조상의 결함을 포착하거나, 과충전을 식별하거나, 결함의 원인을 파악함으로써 폐기물과 폐기율을 줄일 수 있음</li-desc>
+                        <li-desc>이를 통해 시간이 지남에 따라 간접비를 제어하고 원자재 비용을 절감할 수 있음</li-desc>
+                    <li>인력 부족 극복</li>
+                        <li-desc>제조의 자동화, 검사의 자동화 등 여러 분야에서 단순인력의 배치를 줄이는 것이 가능</li-desc>
+                        <li-desc>반대로 숙련된 인력을 고부가가치 활동을 위해 보유할 수 있음</li-desc>
+                    <li>프로세스 개선</li>
+                        <li-desc>제품 품질의 변화를 즉시 감지하고 제품 수명 주기의 모든 단계에 대한 시각적인 기록을 유지</li-desc>
+                        <li-desc>이러한 형태의 빅데이터는 프로세스 병목 현상, 기계 기능 저하 및 일반적인 오류 원인을 밝혀 지속적인 프로세스 개선을 가능케 함</li-desc>
+                    <li>규정 준수 보장</li>
+                        <li-desc>프로세스 개선 결정을 내리는 데 사용되는 머신 비전 생성 데이터 및 이미지는 제약, 의료기기, 자동차, 식음료등과 같은 산업에서 보고 규정을 준수하는 데 필요한 데이터도 제공</li-desc>
+                    <li>안전성 개선</li>
+                        <li-desc>산업 자동화를 가능하게 함으로써 작업자는 시끄럽고 잠재적으로 위험한 기계와의 상호작용을 최소화 할 수 있음</li-desc>
+                        <li-desc>장비 문제가 있는 경우 머신 비전이 제공하는 정보를 통해 원격으로 진단하고 조정할 수 있음</li-desc>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. 머신 비전의 사용</h2>
+            <div class="card">
+                <h3 class="sub-title-h3">제조 시설 및 공장과 물류 공급업체 및 창고</h3>
+                <ul>
+                    <li>머신 비전은 끊임없이 진화하고 있으며, 두 가지 주요 유형의 조직에서 지속적으로 증가하는 다양한 작업을 수행</li>
+                    <li>제조 시설 및 공장은 머신 비전을 사용하여 제조 프로세스 전반에 걸쳐 운영을 자동화</li>
+                    <li>물류 공급업체 및 창고는 일반적으로 바코드 또는 기타 인코딩 기호를 판독하여 라우팅, 추적 및 발송을 자동화</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+<footer>
+    <p>© 2026 NDoubleuK Portfolio</p>
+</footer>
+</html>

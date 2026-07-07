@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #6366f1;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .section h2 { 
+            font-size: 22px; 
+            margin-bottom: 15px; 
+            border-left: 4px solid var(--primary); 
+            padding-left: 10px; 
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin: 15px 0 10px;
+        }
+
+        .card ul {
+            padding-left: 18px;
+            list-style: disc;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--sub);
+        }
+
+        .li-desc {
+            margin-top: 4px;
+            padding-left: 14px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .img-box {
+            margin: 12px 0;
+            text-align: center;
+        }
+
+        .img-box img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2937;
+            color: var(--sub);
+        }
+
+        .breadcrumb a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                color: #e5e7eb;
+            }
+
+        .breadcrumb span {
+            margin: 0 6px;
+            font-size: 12px;
+        }
+
+        .detail-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          padding: 6px 12px;
+          font-size: 13px;
+          color: var(--primary);
+          border: 1px solid var(--primary);
+          border-radius: 999px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+        
+        .detail-btn:hover {
+          background: var(--primary);
+          color: white;
+        }
+        
+        .arrow {
+          transition: transform 0.2s;
+        }
+        
+        .detail-btn:hover .arrow {
+          transform: translateX(3px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span>›</span>
+            <a href="../study.html">Study Archive</a>
+            <span>›</span>
+            <a href="./semiconductor_process.html">반도체 공정의 이해</a>
+            <span>›</span>
+            <span>금속 배선 공정 (Metal Interconnect)</span>
+        </div>
+    </div>
+
+    <nav>
+        <h3>금속 배선 공정 (Metal Interconnect)</h3>
+        <!--<ul>
+            <li><a href="#projects">네이게이션추가</a></li>
+        </ul>-->
+    </nav>
+</header>
+
+<section>
+    <div class="section">
+        <h2>1. 개요</h2>
+        <div class="card">
+            <ul>
+                <li>반도체 회로에 전기적 신호가 잘 전달 되도록 전기길(금속선)을 연결하는 과정</li>
+                <li>전기가 잘 통하는 금속의 성질을 이용</li>
+                <li>반도체의 회로 패턴을 따라 금속선(Metal Line)을 이어주는 과정</li>
+                <li>금속 재료의 필요 조건</li>
+                    <div class="li-desc">웨이퍼와의 부착성</div>
+                    <div class="li-desc">전기 저항이 낮은 물질</div>
+                    <div class="li-desc">열적ㆍ화학적 안정성</div>
+                    <div class="li-desc">높은 신뢰성</div>
+                    <div class="li-desc">제조 가격</div>
+                <li>대표적인 금속 : 알루미늄(Al), 티타늄(Ti), 텅스텐(W) 등이 있음</li>
+
+                <div class="img-box">
+                    <img src="../../images/metal_interconnect_needto.png" alt="금속재료의필요조건">
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. 전체 공정의 흐름</h2>
+        <div class="card">
+            <h3>① 금속의 증기화</h3>
+            <ul>
+                <li>금속을 진공 챔버에 넣고 낮은 압력에서 끓이거나 전기적 충격을 주면 금속은 증기 상태가 됨</li>
+            </ul>
+            <h3>② 금속막 형성</h3>
+            <ul>
+                <li>웨이퍼를 금속의 증기화가 진행된 진공 챔버에 넣으면 얇은 금속막이 형성 됨</li>
+                <li>대표적인 반도체용 금속 배선 재료로는 알루미늄(Al)이 있음</li>
+                    <div class="li-desc">장점 : 산화막(Silicon Dioxide)과의 부착성이 좋고, 가공성이 뛰어남</div>
+                    <div class="li-desc">단점 : 알루미늄(Al)은 실리콘(Si)과 만나면 서로 섞이려는 성질이 있음</div>
+                    <div class="li-desc">실리콘 웨이퍼의 경우 알루미늄 배선 과정에서 접합면이 파괴되는 현상이 생길 수 있음</div>
+                <li>베리어 메탈(Barrier Metal) : 알루미늄과 웨이퍼 접합면 사이에 장벽(Barrier) 역할을 하는 금속을 증착</li>
+                    <div class="li-desc">이중으로 박막을 형성해 접합면이 파괴되는 것을 막을 수 있음</div>
+                <div class="img-box">
+                    <img src="../../images/metal_interconnect_process.png" alt="금속배선">
+                </div>
+                <li>금속 배선 공정에서도 좁은 영역에 균일한 박막을 형성시키기 위해 화학적 기상증착(CVD)으로의 전환이 이루어지고 있음</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 NDoubleuK Portfolio</p>
+</footer>
+
+</body>
+</html>

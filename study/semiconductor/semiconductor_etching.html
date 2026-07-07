@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #6366f1;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .section h2 { 
+            font-size: 22px; 
+            margin-bottom: 15px; 
+            border-left: 4px solid var(--primary); 
+            padding-left: 10px; 
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin: 15px 0 10px;
+        }
+
+        .card ul {
+            padding-left: 18px;
+            list-style: disc;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--sub);
+        }
+
+        .li-desc {
+            margin-top: 4px;
+            padding-left: 14px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .img-box {
+            margin: 12px 0;
+            text-align: center;
+        }
+
+        .img-box img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2937;
+            color: var(--sub);
+        }
+
+        .breadcrumb a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                color: #e5e7eb;
+            }
+
+        .breadcrumb span {
+            margin: 0 6px;
+            font-size: 12px;
+        }
+
+        .detail-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          padding: 6px 12px;
+          font-size: 13px;
+          color: var(--primary);
+          border: 1px solid var(--primary);
+          border-radius: 999px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+        
+        .detail-btn:hover {
+          background: var(--primary);
+          color: white;
+        }
+        
+        .arrow {
+          transition: transform 0.2s;
+        }
+        
+        .detail-btn:hover .arrow {
+          transform: translateX(3px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span>›</span>
+            <a href="../study.html">Study Archive</a>
+            <span>›</span>
+            <a href="./semiconductor_process.html">반도체 공정의 이해</a>
+            <span>›</span>
+            <span>식각 공정 (Etching)</span>
+        </div>
+    </div>
+
+    <nav>
+        <h3>식각 공정 (Etching)</h3>
+        <!--<ul>
+            <li><a href="#projects">네이게이션추가</a></li>
+        </ul>-->
+    </nav>
+</header>
+
+<section>
+    <div class="section">
+        <h2>1. 개요</h2>
+        <div class="card">
+            <ul>
+                <li>반도체의 구조를 형성하는 패턴을 만드는 과정</li>
+                <li>필요한 회로 패턴을 제외한 나머지 부분을 제외 시키는 역할</li>
+                <li>회화에서 에칭 기법은 산의 화학작용을 방지하는 방식제(그라운드)를 바른 동판을 날카로운 도구를 이용하여 긁어내 동판을 노출시키는 과정</li>
+                <li>이때 동판을 부식액(묽은 질산)에 넣고, 부식의 진행 정도를 조절하여 이미지를 만듦</li>
+
+                <div class="img-box">
+                    <img src="../../images/etching_process.png" alt="식각공정(Etching)">
+                </div>
+                
+                <li>반도체 식각공정도 웨이퍼에 액체 또는 기체의 부식액(etchant)을 이용해 불필요한 부분을 선택적으로 제거한 후 반도체 회로 패턴을 만듦</li>
+                <li>포토공정에서 형성된 감광액 부분을 남겨둔 채 나머지 부분을 부식액을 이용해 벗겨 냄으로써 회로를 형성, 식각이 끝나면 감광액은 제거</li>
+                <li>위 과정을 반복하여 반도체를 구성하는 여러 층의 얇은 막에 원하는 회로 패턴을 형성하는 과정</li>
+                <li>식각 반응을 일으키는 물질의 상태에 따라 습식(Wet)과 건식(Dry)으로 나뉨</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. 습식(Wet)과 건식(Dry) 식각</h2>
+        <div class="card">
+            <h3>① 건식 식각 (Dry Etching)</h3>
+            <ul>
+                <li>반응성 기체, 이온 등을 이용해 특정 부위를 식각하는 방법</li>
+                <li>단점 : 습식에 비해 비용이 비싸고 방법이 까다로움</li>
+                <li>장점 : 정교한 식각이 가능하여 나노 단위로 고집적화되는 반도체 기술 변화에 따라 수율을 높이기 위한 방법으로 건식 식각이 확대되는 추세</li>
+                <li>플라즈마(Plasma) 식각이라고도 하며, 일반 대기압보다 낮은 압력인 진공 챔버(Chamber)에 가스를 주입</li>
+                <li>전기 에너지를 공급하여 플라즈마를 발생 시킴</li>
+                <li>플라즈마(Plasma)</li>
+                    <div class="li-desc">고체-액체-기체를 넘어선 물질의 제 4상태</div>
+                    <div class="li-desc">많은 수의 자유전자, 이온, 중성의 원자 또는 분자로 구성되어 이온화된 기체</div>
+                    <div class="li-desc">이온화는 전기적으로 중성인 원자 또는 분자가 자신이 보유하고 있던 전자를 떼어 내거나 추가로 확보함으로써, 양전하 또는 음전하 상태로 바뀌는 현상</div>
+                    <div class="li-desc">전기에너지에 의해 형성된 충분한 크기의 자기장이 기체에 가해질 때, 기체가 충돌하고 이온화됨으로써 발생</div>
+                    <div class="li-desc">자기장이 자유전자를 가속화시켜 높은 에너지를 가진 자유전자가 중성의 원자나 분자와 충돌하여 이온화를 일으킴</div>
+                    <div class="img-box">
+                        <img src="../../images/etching_plasma.png" alt="플라즈마의 생성">
+                    </div>
+                <li>위의 이온화에 의해 생성된 추가 전자도 연쇄 반응(Avalanche)에 의해 또 다른 이온화를 일으키면서 이온의 수가 기하급수적으로 늘어남</li>
+                <li>위의 상태를 '플라즈마 상태'라고 함</li>
+                <li>플라즈마 상태에서 해리된 반응성 원자(Radical Atom)가 웨이퍼 위를 덮고 있는 막질 원자와 만나 강한 휘발성을 띠면서 표면에서 떨어져 나가게 됨</li>
+                <li>이러한 반응을 통해 감광액(PR, Photo Resist) 보호막으로 가려져 있지 않은 막질은 제거되는 것</li>
+                <li>건식 식각 과정의 주요 사항</li>
+                    <div class="li-desc">균일도(Uniformity) 유지</div>
+                    <div class="li-desc">→ 식각이 이루어지는 속도가 웨이퍼 상의 여러 지점에서 '얼마나 동일한 가'</div>
+                    <div class="li-desc">→ 부위 별 식각 속도가 다를 경우, 형성된 모양이 부위별로 다르게 되어 불량 발생 또는 특성이 달라지는 문제 발생 가능성 있음</div>
+                    <div class="li-desc">식각 속도(Etch Rate)</div>
+                    <div class="li-desc">→ 일정 시간 동안 막질을 얼마나 제거할 수 있는지를 의미</div>
+                    <div class="li-desc">→ 식각 속도는 주로 표면 반응에 필요한 반응성 원자와 이온의 양, 이온이 가진 에너지에 의해서 변화</div>
+                    <div class="li-desc">→ 즉, 이러한 인자의 조절 능력을 높여 전체적인 수율을 향상시키기 위해 노력이 필요</div>
+                    <div class="li-desc">선택비(Selectivity), 형상(Profile) 등의 주요 인자들도 주요 사항들로 중요하게 여겨지고 있음</div>
+                <li>주요 업체</li>
+                    <div class="li-desc">국외 : Lam Research, Applied Materials</div>
+                    <div class="li-desc">국내 : 원익IPS, PSK, TES</div>
+            </ul>
+            <h3>② 습식 식각 (Wet Etching)</h3>
+            <ul>
+                <li>용액을 이용 화학적인 반응을 통해 식각하는 방법</li>
+            </ul>
+            <h3>③ 주요 업체</h3>
+            <ul>
+                <li>국외 : Lam Research, Applied Materials</li>
+                <li>국내 : 원익IPS, PSK, TES</li>
+                <li>세정 장비 업체</li>
+                    <div class="li-desc">습식 : 제우스</div>
+                    <div class="li-desc">건식 : PSK</div>
+                <li>SIC 링 관련 업체</li>
+                    <div class="li-desc">TCK</div>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 NDoubleuK Portfolio</p>
+</footer>
+
+</body>
+</html>

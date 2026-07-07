@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #6366f1;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .section h2 { 
+            font-size: 22px; 
+            margin-bottom: 15px; 
+            border-left: 4px solid var(--primary); 
+            padding-left: 10px; 
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin: 15px 0 10px;
+        }
+
+        .card ul {
+            padding-left: 18px;
+            list-style: disc;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--sub);
+        }
+
+        .li-desc {
+            margin-top: 4px;
+            padding-left: 14px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .img-box {
+            margin: 12px 0;
+            text-align: center;
+        }
+
+        .img-box img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2937;
+            color: var(--sub);
+        }
+
+        .breadcrumb a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                color: #e5e7eb;
+            }
+
+        .breadcrumb span {
+            margin: 0 6px;
+            font-size: 12px;
+        }
+
+        .detail-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          padding: 6px 12px;
+          font-size: 13px;
+          color: var(--primary);
+          border: 1px solid var(--primary);
+          border-radius: 999px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+        
+        .detail-btn:hover {
+          background: var(--primary);
+          color: white;
+        }
+        
+        .arrow {
+          transition: transform 0.2s;
+        }
+        
+        .detail-btn:hover .arrow {
+          transform: translateX(3px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span>›</span>
+            <a href="../study.html">Study Archive</a>
+            <span>›</span>
+            <a href="./semiconductor_process.html">반도체 공정의 이해</a>
+            <span>›</span>
+            <span>EDS 공정 (Electrical Die Sorting)</span>
+        </div>
+    </div>
+
+    <nav>
+        <h3>EDS 공정 (Electrical Die Sorting)</h3>
+        <!--<ul>
+            <li><a href="#projects">네이게이션추가</a></li>
+        </ul>-->
+    </nav>
+</header>
+
+<section>
+    <div class="section">
+        <h2>1. 개요</h2>
+        <div class="card">
+            <ul>
+                <li>수많은 제조공정을 거친 반도체 칩은 마지막 절차인 테스트를 통해 양품, 불량품을 선별하게 됨</li>
+                    <div class="li-desc">웨이퍼 완성 단계에서 이루어지는 EDS공정(Electrical Die Sorting)</div>
+                    <div class="li-desc">조립공정을 거친 패키지 상태에서 이루어지는 패키징공정(Packaging)</div>
+                    <div class="li-desc">제품이 출하되기 전 소비자의 관점에서 실시되는 품질 테스트 등<</div>
+                <li>EDS공정(Electrical Die Sorting)은?</li>
+                <li>웨이퍼 위에 전자회로를 그리는 FAB 공정과 최종적인 제품의 형태를 갖추는 패키지 공정 사이에 진행</li>
+                <li>전기적 특성검사를 통해 개별 칩들이 원하는 품질 수준에 도달했는지를 확인하는 공정</li>
+                <li>EDS공정의 목적</li>
+                    <div class="li-desc">웨이퍼 상태 반도체 칩의 양품/불량품 선별</div>
+                    <div class="li-desc">불량 칩 중 수선 가능한 칩의 양품화</div>
+                    <div class="li-desc">FAB 공정 또는 설계에서 발견된 문제점의 수정</div>
+                    <div class="li-desc">불량 칩을 미리 선별해 이후 진행되는 패키지공정 및 테스트 작업의 효율 향상</div>
+                <li>반도체의 수율을 높이기 위해 반드시 필요한 공정 → 반도체의 생산성과 직결</li>
+                <li>프로브 카드(Probe Card)에 웨이퍼를 접촉시켜 진행</li>
+                <li>프로브 카드에 있는 수많은 미세한 핀(Pin)이 웨이퍼와 접촉해 전기를 보내고 그 신호를 통해 불량 칩을 선별하게 됨</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. 전체 공정의 흐름</h2>
+        <div class="card">
+            <ul>
+                <div class="img-box">
+                        <img src="../../images/eds_process.png" alt="EDS공정">
+                </div>
+            </ul>
+            <h3>① ET Test & WBI (Electrical Test & Wafer Burn In)</h3>
+            <ul>
+                <li>ET Test(Electrical Test)는 반도체 집적회로(IC) 동작에 필요한 개별소자들(트랜지스터, 저항, 캐패시터, 다이오드)에 대해 전기적 직류전압, 전류특성의 파라미터를 테스트하여 동작 여부를 판별하는 과정</li>
+                <li>이어지는 WBI공정(Wafer Burn In)은 웨이퍼에 일정 온도의 열을 가한 다음 AC(교류)/DC(직류) 전압을 가해 제품의 결함, 약한 부분 등 잠재적인 불량 요인을 찾아내는 과정</li>
+                <li>주요 업체</li>
+                    <div class="li-desc">프로브카드 : 마이크로투나노, 티에스이(TSE)</div>
+                    <div class="li-desc">테스트 소켓 : 리노공업(포고형), ISC(러버형)</div>
+                    <div class="li-desc">Burn In 테스트 장비 : 유니테스트, 디아이, 와이씨</div>
+                    <div class="li-desc">Handler/Burn In sorter 장비 : 제이티, 테크윙</div>
+            </ul>
+            <h3>② Hot/Cold Test</h3>
+            <ul>
+                <li>Hot/Cold 공정에서는 전기적 신호를 통해 웨이퍼 상의 각각의 칩 중 불량품이 있는지 판정. 수선 가능한 칩은 수선 공정에서 처리하도록 정보를 저장하는데 이때, 특정 온도에서 정상적으로 동작하는지 판별하기 위해 상온보다 높고 낮은 온도의 테스트가 병행 됨</li>
+            </ul>
+            <h3>③ Repair/Final Test</h3>
+            <ul>
+                <li>Hot/Cold 공정에서 수선 가능으로 판정된 칩들을 수선하고, 수선이 끝나면 Final Test 공정을 통해 수선이 제대로 이루어졌는지 재차 검증</li>
+                <li>EDS공정에서 중요한 단계로 볼 수 있음</li>
+            </ul>
+            <h3>④ Inking</h3>
+            <ul>
+                <li>불량 칩에 특수 잉크를 찍어 육안으로도 불량을 식별할 수 있도록 만드는 공정을 의미하며, Hot/Cold Test공정에서 불량으로 판정된 칩, Final Test공정에서 재검증 결과 불량으로 처리된 칩, 그리고 웨이퍼에서 완성되지 않은 반도체 칩(Dummy Die)등을 구별</li>
+                <li>이렇게 처리된 불량 칩은 조립 작업을 진행하지 않기 때문에 조립 및 검사 공정에서 사용되는 원부자재, 설비, 시간, 인원 등의 손실 절감 효과가 있음</li>
+                <li>Inking 공정을 마친 웨이퍼는 건조(Bake)된 후, QC(Quality Control)검사를 거쳐 조립공정으로 옮겨지게 됨</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 NDoubleuK Portfolio</p>
+</footer>
+
+</body>
+</html>

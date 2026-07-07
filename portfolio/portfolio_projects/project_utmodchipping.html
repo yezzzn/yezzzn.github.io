@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Detail</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --primary: #6366f1;
+      --text: #e5e7eb;
+      --sub: #9ca3af;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Pretendard', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--sub);
+      margin-bottom: 40px;
+    }
+
+    .section {
+      margin-bottom: 50px;
+    }
+
+    .section h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      border-left: 4px solid var(--primary);
+      padding-left: 10px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #1f2937;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .highlight {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 30px;
+      text-decoration: none;
+      color: var(--sub);
+    }
+
+    .breadcrumb {
+  margin-bottom: 30px;
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.breadcrumb a {
+  color: #9ca3af;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: #e5e7eb;
+}
+
+.breadcrumb span {
+  margin: 0 6px;
+}
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  
+  <div class="breadcrumb">
+  <a href="../../index.html">홈</a>
+  <span>›</span>
+  <a href="../portfolio.html">Portfolio</a>
+  <span>›</span>
+  <span>UT Mod Chipping Project</span>
+  </div>
+
+  <h1>UT Mod Chipping Edge Inpection Machine</h1>
+  <p class="subtitle">휴대폰 디스플레이 Cell 타겟의 Edge 불량 검사 시스템</p>
+
+  <div class="section">
+    <h2>1. 프로젝트 개요</h2>
+    <div class="card">
+      <p>
+        Flexible Cell 및 Rigid Cell의 Edge 미세 Crack 및 Chipping 불량 검출을 위한 개발 프로젝트
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. 문제 상황 (Before)</h2>
+    <div class="card">
+      <ul>
+        <li>1.2um 해상도의 Area Camera를 이용한 고속 촬상이 가능한 조명 수배</li></li>
+        <li>카메라 자체 Exposure Time Delay로 인한 조명 동기화 문제</li>
+        <li>조명 광원의 Rise Time 문제</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. 해결 방법 (How)</h2>
+    <div class="card">
+      <ul>
+        <li>80mm/s 사양에 15us 노출이 최대 시간인점을 감안하여, 여러 조명업체 컨택 후 적합한 조명 선정</li>
+        <li>추후에는 조명업체와 협업하여 200mm/s(최대노출 6us) 가능한 광학계 구성까지 개발 완료</li>
+        <li>자체 실험을 통해 카메라의 Exposure Time Delay를 확인하여, 조명 Delay를 추가하여 동기화 문제 해결</li>
+        <li>조명 광원의 Rise Time 문제도 Exposure Time Delay 문제와 함께 Delay 및 Dummy Setting으로 해결</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. 핵심 기술</h2>
+    <div class="card">
+      <ul>
+        <li><span class="highlight">On-the-Fly 방식을 가능하게 하는</span> 조명 선정 및 AF module</li>
+        <li>Alignment 기술 : Accuracy ±0.01°</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>5. 결과 (After)</h2>
+    <div class="card">
+      <ul>
+        <li>80mm/s 부터 200mm/s 속도 커버 가능한 광학계 개발로 고객사 Needs 충족</li>
+        <li>현재 까지도 위 광학시스템은 꾸준한 수익성 모델로 자리 잡음</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>6. 트러블슈팅</h2>
+    <div class="card">
+      <ul>
+        <li>Grab Fail 이슈 발생 → 단계 별 디버깅 및 테스트로 HW 시스템 구성에서 특정 상황에서 Trigger 미출력 문제 확인 후 해결</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

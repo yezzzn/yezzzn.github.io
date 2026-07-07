@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>스터디 검토 리포트</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --primary: #6366f1;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --text: #e5e7eb;
+      --sub: #9ca3af;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #1f2937;
+      z-index: 100;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav h1 { font-size: 16px; color: var(--sub); }
+
+    .breadcrumb { font-size: 13px; color: var(--sub); }
+    .breadcrumb a { color: var(--sub); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--text); }
+    .breadcrumb span { margin: 0 6px; }
+
+    nav ul { list-style: none; display: flex; gap: 20px; }
+    nav a { text-decoration: none; color: var(--sub); font-size: 14px; transition: 0.3s; }
+
+    /* 수정 이력 */
+    .history-list { list-style: none; padding: 0; }
+    .history-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid #1f2937; align-items: flex-start; }
+    .history-item:last-child { border-bottom: none; }
+    .history-round { flex-shrink: 0; width: 72px; text-align: center; padding: 4px 0; border-radius: 6px; font-size: 12px; font-weight: 700; background: rgba(99,102,241,0.15); color: #818cf8; }
+    .history-date { flex-shrink: 0; font-size: 12px; color: var(--sub); width: 90px; padding-top: 2px; }
+    .history-content { flex: 1; }
+    .history-content .title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    .history-content ul { list-style: none; padding: 0; }
+    .history-content ul li { font-size: 13px; color: var(--sub); padding: 2px 0; }
+    .history-content ul li::before { content: "· "; color: var(--primary); }
+    .history-badge { display: inline-block; padding: 1px 7px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-left: 6px; }
+    .history-badge.fix { background: rgba(16,185,129,0.15); color: var(--success); }
+    .history-badge.find { background: rgba(245,158,11,0.15); color: var(--warning); }
+    nav a:hover { color: var(--text); }
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px 60px;
+      border-bottom: 1px solid #1f2937;
+    }
+
+    .hero h2 { font-size: 32px; font-weight: 700; margin-bottom: 10px; }
+    .hero p { color: var(--sub); font-size: 16px; }
+    .hero .date { margin-top: 10px; font-size: 13px; color: #6366f1; }
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    section + section { padding-top: 0; }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #1f2937;
+    }
+
+    /* 진행 현황 카드 */
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .status-card {
+      background: var(--card);
+      border: 1px solid #1f2937;
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .status-card .label { font-size: 13px; color: var(--sub); margin-bottom: 6px; }
+    .status-card .value { font-size: 28px; font-weight: 700; }
+    .status-card .value.green { color: var(--success); }
+    .status-card .value.yellow { color: var(--warning); }
+    .status-card .value.red { color: var(--danger); }
+
+    /* 공정 진행률 */
+    .progress-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .progress-table th, .progress-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid #1f2937;
+    }
+
+    .progress-table th { color: var(--sub); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .progress-table tr:hover td { background: rgba(99, 102, 241, 0.05); }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .badge.done { background: rgba(16, 185, 129, 0.15); color: var(--success); }
+    .badge.partial { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+    .badge.empty { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+
+    .progress-bar-wrap { background: #1f2937; border-radius: 999px; height: 6px; width: 120px; overflow: hidden; }
+    .progress-bar { height: 100%; border-radius: 999px; background: var(--primary); }
+
+    /* 오타 테이블 */
+    .typo-section { margin-bottom: 40px; }
+    .typo-section h3 { font-size: 16px; margin-bottom: 14px; color: var(--sub); }
+
+    .typo-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .typo-table th, .typo-table td { padding: 10px 14px; border-bottom: 1px solid #1f2937; vertical-align: top; }
+    .typo-table th { color: var(--sub); font-weight: 600; font-size: 11px; text-transform: uppercase; }
+    .typo-table td:first-child { color: #818cf8; font-family: monospace; white-space: nowrap; }
+    .typo-table .original { color: var(--danger); }
+    .typo-table .fix { color: var(--success); }
+    .priority-high { color: var(--danger); font-weight: 700; }
+    .priority-mid { color: var(--warning); }
+    .priority-low { color: var(--sub); }
+
+    .typo-status { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+    .typo-status.fixed { background: rgba(16,185,129,0.15); color: var(--success); }
+    .typo-status.remain { background: rgba(239,68,68,0.15); color: var(--danger); }
+    .typo-status.new { background: rgba(99,102,241,0.15); color: #818cf8; }
+    .typo-table tr.row-fixed td { opacity: 0.45; }
+    .typo-table tr.row-fixed td.original { text-decoration: line-through; }
+
+    /* 추천 카드 */
+    .recommend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    .recommend-card {
+      background: var(--card);
+      border: 1px solid #1f2937;
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    .recommend-card .tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .recommend-card .tag.urgent { background: rgba(239,68,68,0.15); color: var(--danger); }
+    .recommend-card .tag.expand { background: rgba(99,102,241,0.15); color: #818cf8; }
+    .recommend-card .tag.quality { background: rgba(16,185,129,0.15); color: var(--success); }
+
+    .recommend-card h3 { font-size: 15px; margin-bottom: 8px; }
+    .recommend-card ul { list-style: none; padding: 0; }
+    .recommend-card ul li { font-size: 13px; color: var(--sub); padding: 3px 0; }
+    .recommend-card ul li::before { content: "→ "; color: var(--primary); }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid #1f2937;
+      color: var(--sub);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>›</span>
+      <a href="study.html">Study Archive</a>
+      <span>›</span>
+      <span>스터디 검토 리포트</span>
+    </div>
+    <ul>
+      <li><a href="#status">진행 현황</a></li>
+      <li><a href="#history">수정 이력</a></li>
+      <li><a href="#typos">오타 보고</a></li>
+      <li><a href="#recommend">추가 추천</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <h2>스터디 검토 리포트</h2>
+  <p>반도체 / 2차전지 / 디스플레이 / 머신 비전 스터디 현황 및 검토</p>
+  <div class="date">최종 검토일: 2026-06-24 (3차 — 전체 수정 완료)</div>
+</div>
+
+<!-- 진행 현황 -->
+<section id="status">
+  <h2 class="section-title">📊 전체 진행 현황</h2>
+
+  <div class="status-grid">
+    <div class="status-card">
+      <div class="label">전체 HTML 파일 수</div>
+      <div class="value">21</div>
+    </div>
+    <div class="status-card">
+      <div class="label">내용 작성 완료</div>
+      <div class="value green">13</div>
+    </div>
+    <div class="status-card">
+      <div class="label">미작성(플레이스홀더)</div>
+      <div class="value yellow">4</div>
+    </div>
+    <div class="status-card">
+      <div class="label">섹션 자체 미생성</div>
+      <div class="value red">2</div>
+    </div>
+    <div class="status-card">
+      <div class="label">1차 발견 오타/오류</div>
+      <div class="value">28</div>
+    </div>
+    <div class="status-card">
+      <div class="label">수정 완료</div>
+      <div class="value green">29</div>
+    </div>
+    <div class="status-card">
+      <div class="label">미수정 잔여</div>
+      <div class="value green">0</div>
+    </div>
+  </div>
+
+  <table class="progress-table">
+    <thead>
+      <tr>
+        <th>영역</th>
+        <th>파일</th>
+        <th>상태</th>
+        <th>진행률</th>
+        <th>비고</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>반도체 공정</td>
+        <td>semiconductor_process.html</td>
+        <td><span class="badge done">완료</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:100%"></div></div></td>
+        <td>개요, 전/후공정, 소부장 업체</td>
+      </tr>
+      <tr>
+        <td>반도체 공정</td>
+        <td>semiconductor_wafer.html</td>
+        <td><span class="badge done">완료</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:100%"></div></div></td>
+        <td>오타 5건 → <span style="color:var(--success);font-size:12px;">✅ 전체 수정완료</span></td>
+      </tr>
+      <tr>
+        <td>반도체 공정</td>
+        <td>semiconductor_oxidation.html</td>
+        <td><span class="badge done">완료</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:100%"></div></div></td>
+        <td>오타 2건 → <span style="color:var(--success);font-size:12px;">✅ 전체 수정완료</span></td>
+      </tr>
+      <tr>
+        <td>반도체 공정</td>
+        <td>semiconductor_photolithography.html</td>
+        <td><span class="badge done">완료</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:100%"></div></div></td>
+        <td>오타 3건 + 메모 노출 → <span style="color:var(--success);font-size:12px;">✅ 전체 수정완료</span></td>
+      </tr>
+      <tr>
+        <td>반도체 공정</td>
+        <td>semiconductor_etching.html</td>
+        <td><span class="badge done">완료</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:100%"></div></div></td>
+        <td>습식(Dry→Wet) → <span style="color:var(--success);font-size:12px;">✅ 전체 수정완료</span></td>
+      </tr>
+      <tr>
+        <td>반도체 공정</td>
+        <td>semiconductor_deposition.html</td>
+        <td><span class="badge done">완료</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:100%"></div></div></td>
+        <td>오타 4건 → <span style="color:var(--success);font-size:12px;">✅ 전체 수정완료</span></td>
+      </tr>
+      <tr>
+        <td>반도체 공정</td>
+        <td>semiconductor_ion_implantation.html</td>
+        <td><span class="badge done">완료</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:100%"></div></div></td>
+        <td>오타 2건 → <span style="color:var(--success);font-size:12px;">✅ 전체 수정완료</span></td>
+      </tr>
+      <tr>
+        <td>반도체 공정</td>
+        <td>semiconductor_metal_interconnect.html</td>
+        <td><span class="badge done">완료</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:85%"></div></div></td>
+        <td>내용 추가 여지 있음</td>
+      </tr>
+      <tr>
+        <td>반도체 공정</td>
+        <td>semiconductor_electrical_die_sorting.html</td>
+        <td><span class="badge done">완료</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:100%"></div></div></td>
+        <td>오타 5건 → <span style="color:var(--success);font-size:12px;">✅ 전체 수정완료</span></td>
+      </tr>
+      <tr>
+        <td>반도체 공정</td>
+        <td>semiconductor_packaging.html</td>
+        <td><span class="badge done">완료</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:100%"></div></div></td>
+        <td>오타 2건 → <span style="color:var(--success);font-size:12px;">✅ 전체 수정완료</span></td>
+      </tr>
+      <tr>
+        <td>2차전지 공정</td>
+        <td>(파일 없음)</td>
+        <td><span class="badge empty">미생성</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:0%"></div></div></td>
+        <td>Study 목록에 항목만 존재</td>
+      </tr>
+      <tr>
+        <td>디스플레이 공정</td>
+        <td>(파일 없음)</td>
+        <td><span class="badge empty">미생성</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:0%"></div></div></td>
+        <td>Study 목록에 항목만 존재</td>
+      </tr>
+      <tr>
+        <td>머신 비전</td>
+        <td>machinevision_introduction.html</td>
+        <td><span class="badge done">완료</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:100%"></div></div></td>
+        <td>오타 2건 → <span style="color:var(--success);font-size:12px;">✅ 전체 수정완료</span></td>
+      </tr>
+      <tr>
+        <td>머신 비전</td>
+        <td>machinevision_camera.html</td>
+        <td><span class="badge done">완료</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:85%"></div></div></td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>머신 비전</td>
+        <td>machinevision_lens.html</td>
+        <td><span class="badge done">완료</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:100%"></div></div></td>
+        <td>오타 2건 → <span style="color:var(--success);font-size:12px;">✅ 전체 수정완료</span></td>
+      </tr>
+      <tr>
+        <td>머신 비전</td>
+        <td>machinevision_illumination.html</td>
+        <td><span class="badge done">완료</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:100%"></div></div></td>
+        <td>파장 수치 오류 → <span style="color:var(--success);font-size:12px;">✅ 전체 수정완료</span></td>
+      </tr>
+      <tr>
+        <td>머신 비전</td>
+        <td>machinevision_cable.html</td>
+        <td><span class="badge empty">미작성</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:5%"></div></div></td>
+        <td>플레이스홀더만 존재</td>
+      </tr>
+      <tr>
+        <td>머신 비전</td>
+        <td>machinevision_interface.html</td>
+        <td><span class="badge empty">미작성</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:5%"></div></div></td>
+        <td>플레이스홀더만 존재</td>
+      </tr>
+      <tr>
+        <td>머신 비전</td>
+        <td>machinevision_computing.html</td>
+        <td><span class="badge empty">미작성</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:5%"></div></div></td>
+        <td>플레이스홀더만 존재</td>
+      </tr>
+      <tr>
+        <td>머신 비전</td>
+        <td>machinevision_software.html</td>
+        <td><span class="badge empty">미작성</span></td>
+        <td><div class="progress-bar-wrap"><div class="progress-bar" style="width:5%"></div></div></td>
+        <td>플레이스홀더만 존재</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 수정 이력 -->
+<section id="history">
+  <h2 class="section-title">📋 수정 이력</h2>
+  <ul class="history-list">
+
+    <li class="history-item">
+      <div class="history-round">3차</div>
+      <div class="history-date">2026-06-24</div>
+      <div class="history-content">
+        <div class="title">잔여 오타 직접 수정 <span class="history-badge fix">7건 수정</span></div>
+        <ul>
+          <li>semiconductor_wafer — <code>반도체 직접회로</code> → <code>집적회로</code> (3곳)</li>
+          <li>semiconductor_oxidation — <code>재료역할을</code> → <code>재료 역할을</code></li>
+          <li>semiconductor_photolithography — <code>결정되기 문에</code> → <code>결정되기 때문에</code></li>
+          <li>semiconductor_deposition — <code>기술력이 필</code> → <code>필요</code> / <code>금속 타켓</code> → <code>타겟</code></li>
+          <li>semiconductor_ion_implantation — <code>흐르게하는</code> → <code>흐르게 하는</code></li>
+          <li>semiconductor_packaging — <code>옮겨 짐</code> → <code>옮겨짐</code></li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="history-item">
+      <div class="history-round">2차</div>
+      <div class="history-date">2026-06-24</div>
+      <div class="history-content">
+        <div class="title">1차 수정 결과 재검토 <span class="history-badge find">미수정 6건 + 신규 1건 발견</span></div>
+        <ul>
+          <li>22건 수정 완료 확인</li>
+          <li>미수정 6건 추가 확인 (띄어쓰기, 문장 절단 등)</li>
+          <li>신규 발견 1건 — semiconductor_wafer <code>반도체 직접회로</code> (2곳)</li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="history-item">
+      <div class="history-round">1차</div>
+      <div class="history-date">2026-06-22</div>
+      <div class="history-content">
+        <div class="title">전체 파일 오타 검수 및 보고 <span class="history-badge find">28건 발견</span></div>
+        <ul>
+          <li>반도체 공정 10개 파일, 머신 비전 8개 파일 전수 검토</li>
+          <li>내용 오류(높음) 6건 — 습식(Dry→Wet), 적기적인→전기적인, 파장 수치 오기 등</li>
+          <li>명백한 오타(중간) 17건 — Inling→Inking, 결합→결함, 펌프→범프 등</li>
+          <li>띄어쓰기/어색한 표현(낮음) 5건</li>
+        </ul>
+      </div>
+    </li>
+
+  </ul>
+</section>
+
+<!-- 오타 보고 -->
+<section id="typos">
+  <h2 class="section-title">🔍 오타 및 오류 보고</h2>
+  <p style="color:var(--sub); font-size:14px; margin-bottom:6px;">우선순위: <span class="priority-high">■ 높음</span> (내용 오류) &nbsp; <span class="priority-mid">■ 중간</span> (명백한 오타) &nbsp; <span class="priority-low">■ 낮음</span> (띄어쓰기/어색한 표현)</p>
+  <p style="color:var(--sub); font-size:14px; margin-bottom:30px;">상태: <span class="typo-status fixed">✅ 수정완료</span> &nbsp; <span class="typo-status remain">❌ 미수정</span> &nbsp; <span class="typo-status new">🆕 신규</span></p>
+
+  <!-- 반도체 -->
+  <div class="typo-section">
+    <h3>반도체 공정</h3>
+    <table class="typo-table">
+      <thead>
+        <tr>
+          <th>상태</th>
+          <th>파일</th>
+          <th>원문</th>
+          <th>수정 제안</th>
+          <th>우선순위</th>
+          <th>설명</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_etching</td>
+          <td class="original">2. 습식(Dry)과 건식(Dry) 식각</td>
+          <td class="fix">2. 습식(Wet)과 건식(Dry) 식각</td>
+          <td><span class="priority-high">높음</span></td>
+          <td>습식 식각의 영문은 Wet이 맞음</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_ion_implantation</td>
+          <td class="original">반도체가 적기적인 특성을 갖도록</td>
+          <td class="fix">반도체가 전기적인 특성을 갖도록</td>
+          <td><span class="priority-high">높음</span></td>
+          <td>명백한 내용 오타</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_wafer</td>
+          <td class="original">많은 소자를 하나의 칩 안에 직접한 전자부품</td>
+          <td class="fix">많은 소자를 하나의 칩 안에 집적한 전자부품</td>
+          <td><span class="priority-high">높음</span></td>
+          <td>직접회로(X) → 집적회로(O). IC는 집적(集積)</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_wafer</td>
+          <td class="original">반도체 직접회로 (2곳)</td>
+          <td class="fix">반도체 집적회로</td>
+          <td><span class="priority-high">높음</span></td>
+          <td>같은 파일 내 '직접회로' 표기 2건 추가 발견 — 집적(集積)이 맞음</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_electrical_die_sorting</td>
+          <td class="original">제품의 결합, 약한 부분 등 잠재적인 불량</td>
+          <td class="fix">제품의 결함, 약한 부분 등 잠재적인 불량</td>
+          <td><span class="priority-high">높음</span></td>
+          <td>결합(結合) → 결함(缺陷)</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_electrical_die_sorting</td>
+          <td class="original">패키징공정(Pakaging)</td>
+          <td class="fix">패키징공정(Packaging)</td>
+          <td><span class="priority-mid">중간</span></td>
+          <td>영문 오타</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_electrical_die_sorting</td>
+          <td class="original">손실 점감 효과</td>
+          <td class="fix">손실 절감 효과</td>
+          <td><span class="priority-mid">중간</span></td>
+          <td>점감(漸減) → 절감(節減)</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_electrical_die_sorting</td>
+          <td class="original">Inling 공정을 마친 웨이퍼</td>
+          <td class="fix">Inking 공정을 마친 웨이퍼</td>
+          <td><span class="priority-mid">중간</span></td>
+          <td>영문 오타</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_packaging</td>
+          <td class="original">펌프 제작 업체 : MK전자</td>
+          <td class="fix">범프 제작 업체 : MK전자</td>
+          <td><span class="priority-mid">중간</span></td>
+          <td>펌프(pump) → 범프(bump)</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_packaging</td>
+          <td class="original">위에 옮겨 짐</td>
+          <td class="fix">위에 옮겨짐</td>
+          <td><span class="priority-low">낮음</span></td>
+          <td>띄어쓰기 오류</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_deposition</td>
+          <td class="original">대량 처리가 가능하느는 장점으로</td>
+          <td class="fix">대량 처리가 가능하다는 장점으로</td>
+          <td><span class="priority-mid">중간</span></td>
+          <td>오타</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_deposition</td>
+          <td class="original">기술력이 필</td>
+          <td class="fix">기술력이 필요</td>
+          <td><span class="priority-mid">중간</span></td>
+          <td>문장 절단 오타</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_deposition</td>
+          <td class="original">증착 시키는 방</td>
+          <td class="fix">증착 시키는 방법</td>
+          <td><span class="priority-mid">중간</span></td>
+          <td>문장 절단 오타</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_deposition</td>
+          <td class="original">금속 타켓 준비</td>
+          <td class="fix">금속 타겟 준비</td>
+          <td><span class="priority-low">낮음</span></td>
+          <td>'타겟(Target)' 표기 일부 미수정 (207행은 수정, 208행은 잔존)</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_photolithography</td>
+          <td class="original">결정되기 문에</td>
+          <td class="fix">결정되기 때문에</td>
+          <td><span class="priority-mid">중간</span></td>
+          <td>'대문에' 수정 시 '때'가 누락되어 '문에'로 남아있음</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_photolithography</td>
+          <td class="original">렌즈를 이용 빛을 축소해 조사하게</td>
+          <td class="fix">렌즈를 이용해 빛을 축소하여 조사하게 됨</td>
+          <td><span class="priority-mid">중간</span></td>
+          <td>문장 불완전, 조사 누락</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_photolithography</td>
+          <td class="original">"이 부분에는 어떤게 있을까?"</td>
+          <td class="fix">삭제</td>
+          <td><span class="priority-high">높음</span></td>
+          <td>공개 페이지 미완성 메모 노출 — 삭제 확인</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_oxidation</td>
+          <td class="original">얻어지 산화막</td>
+          <td class="fix">얻어진 산화막</td>
+          <td><span class="priority-mid">중간</span></td>
+          <td>어미 탈락 오타</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_oxidation</td>
+          <td class="original">재료역할을 하는데</td>
+          <td class="fix">재료 역할을 하는데</td>
+          <td><span class="priority-low">낮음</span></td>
+          <td>띄어쓰기 오류</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_wafer</td>
+          <td class="original">굳이는 작업</td>
+          <td class="fix">굳히는 작업</td>
+          <td><span class="priority-mid">중간</span></td>
+          <td>'굳히다'의 활용형</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_wafer</td>
+          <td class="original">지름이 클 수록</td>
+          <td class="fix">지름이 클수록</td>
+          <td><span class="priority-low">낮음</span></td>
+          <td>'~ㄹ수록'은 붙여 씀</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>semiconductor_ion_implantation</td>
+          <td class="original">전류가 흐르게하는</td>
+          <td class="fix">전류가 흐르게 하는</td>
+          <td><span class="priority-low">낮음</span></td>
+          <td>띄어쓰기 오류</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 머신 비전 -->
+  <div class="typo-section">
+    <h3>머신 비전</h3>
+    <table class="typo-table">
+      <thead>
+        <tr>
+          <th>상태</th>
+          <th>파일</th>
+          <th>원문</th>
+          <th>수정 제안</th>
+          <th>우선순위</th>
+          <th>설명</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>machinevision_illumination</td>
+          <td class="original">가시광선(200nm~400nm)보다 짧은 파장(400nm~780nm)</td>
+          <td class="fix">가시광선(400nm~780nm)보다 짧은 파장(200nm~400nm)</td>
+          <td><span class="priority-high">높음</span></td>
+          <td>파장 수치 뒤바뀜 — 수정 확인</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>machinevision_illumination</td>
+          <td class="original">대상 정명을 향함</td>
+          <td class="fix">대상 장면을 향함</td>
+          <td><span class="priority-mid">중간</span></td>
+          <td>오타</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>machinevision_introduction</td>
+          <td class="original">제조 츠로세스 전반에 걸쳐</td>
+          <td class="fix">제조 프로세스 전반에 걸쳐</td>
+          <td><span class="priority-mid">중간</span></td>
+          <td>오타</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>machinevision_introduction</td>
+          <td class="original">잠재적으로 위함한 기계</td>
+          <td class="fix">잠재적으로 위험한 기계</td>
+          <td><span class="priority-mid">중간</span></td>
+          <td>오타</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>machinevision_lens</td>
+          <td class="original">일반적으로 05x ~ 10x의 배율 범위</td>
+          <td class="fix">일반적으로 0.5x ~ 10x의 배율 범위</td>
+          <td><span class="priority-mid">중간</span></td>
+          <td>소수점 누락</td>
+        </tr>
+        <tr class="row-fixed">
+          <td><span class="typo-status fixed">✅ 수정완료</span></td>
+          <td>machinevision_lens</td>
+          <td class="original">엔토센트릭/ 엔도센트릭 렌즈</td>
+          <td class="fix">엔토센트릭 렌즈 (통일)</td>
+          <td><span class="priority-low">낮음</span></td>
+          <td>Entocentric 표기 통일 확인</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 추가 추천 -->
+<section id="recommend">
+  <h2 class="section-title">💡 추가하면 좋을 내용 추천</h2>
+
+  <div class="recommend-grid">
+
+    <div class="recommend-card">
+      <span class="tag urgent">긴급 — 미작성</span>
+      <h3>2차전지 공정 섹션</h3>
+      <ul>
+        <li>전극 공정 (믹싱 → 코팅 → 건조 → 압연)</li>
+        <li>조립 공정 (노칭 → 스태킹/와인딩 → 탭 용접)</li>
+        <li>화성 공정 (충방전, SEI 형성)</li>
+        <li>대표 불량: 리튬 덴드라이트, 전극 균열, 수분 침투</li>
+        <li>검출 방식: X-ray, 초음파, 비전 검사</li>
+      </ul>
+    </div>
+
+    <div class="recommend-card">
+      <span class="tag urgent">긴급 — 미작성</span>
+      <h3>디스플레이 공정 섹션</h3>
+      <ul>
+        <li>LCD / OLED 공정 비교</li>
+        <li>TFT 어레이 공정 (포토, 식각, 증착)</li>
+        <li>봉지(Encapsulation) 공정</li>
+        <li>대표 불량: Dark Spot, Mura, 단선/단락</li>
+        <li>검출 방식: AOI, Mura 검사, 전기 테스트</li>
+      </ul>
+    </div>
+
+    <div class="recommend-card">
+      <span class="tag urgent">긴급 — 미작성</span>
+      <h3>머신 비전 미완성 페이지</h3>
+      <ul>
+        <li>케이블: GigE, USB3, CoaXPress 규격 비교</li>
+        <li>인터페이스: GenICam, GigE Vision 표준</li>
+        <li>컴퓨팅: GPU/FPGA 활용, 임베디드 vs PC</li>
+        <li>소프트웨어: Halcon, VisionPro, OpenCV 비교</li>
+      </ul>
+    </div>
+
+    <div class="recommend-card">
+      <span class="tag expand">확장 — 반도체</span>
+      <h3>각 공정별 주요 불량 및 검출</h3>
+      <ul>
+        <li>포토 공정: CD 오차, 오버레이 불량 → OCD, SEM 검사</li>
+        <li>식각 공정: 언더컷, 잔류물 → SEM, OES 모니터링</li>
+        <li>증착 공정: 두께 불균일, 파티클 → 광학 측정</li>
+        <li>패키징: 와이어 단선, 범프 불량 → X-ray, 초음파</li>
+      </ul>
+    </div>
+
+    <div class="recommend-card">
+      <span class="tag expand">확장 — 머신 비전</span>
+      <h3>검사 알고리즘 섹션</h3>
+      <ul>
+        <li>전통적 알고리즘: Blob 분석, 패턴 매칭, 엣지 검출</li>
+        <li>딥러닝 기반: CNN, Anomaly Detection, Segmentation</li>
+        <li>불량 분류 방법론 비교</li>
+        <li>반도체/배터리/디스플레이 검사 적용 사례</li>
+      </ul>
+    </div>
+
+    <div class="recommend-card">
+      <span class="tag quality">품질 향상</span>
+      <h3>References 보강</h3>
+      <ul>
+        <li>2차전지 참고자료 추가</li>
+        <li>디스플레이 참고자료 추가</li>
+        <li>머신 비전 참고자료 추가 (NI, Cognex 공식 문서 등)</li>
+        <li>이미지 출처 각 페이지별 명시</li>
+      </ul>
+    </div>
+
+    <div class="recommend-card">
+      <span class="tag quality">품질 향상</span>
+      <h3>반도체 공정 심화</h3>
+      <ul>
+        <li>CMP 공정(Chemical Mechanical Planarization) 추가</li>
+        <li>세정 공정(Cleaning) 추가</li>
+        <li>EUV 노광 상세 내용</li>
+        <li>3D NAND / FinFET / GAA 구조 설명</li>
+      </ul>
+    </div>
+
+    <div class="recommend-card">
+      <span class="tag quality">품질 향상</span>
+      <h3>카메라 페이지 보강</h3>
+      <ul>
+        <li>CCD vs CMOS 센서 비교</li>
+        <li>라인스캔 vs 에리어스캔 카메라</li>
+        <li>컬러 vs 흑백 카메라 선택 기준</li>
+        <li>글로벌 셔터 vs 롤링 셔터</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 NDoubleUK · 스터디 검토 리포트 · 1차: 2026-06-22 · 2차: 2026-06-24</p>
+</footer>
+
+</body>
+</html>

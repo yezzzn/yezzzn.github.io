@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MachineVision-Camera</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #6366f1;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .section h2 { 
+            font-size: 22px; 
+            margin-bottom: 15px; 
+            border-left: 4px solid var(--primary); 
+            padding-left: 10px; 
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin: 15px 0 10px;
+        }
+
+        .card ul {
+            padding-left: 18px;
+            list-style: disc;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--sub);
+        }
+
+        .li-desc {
+            margin-top: 4px;
+            padding-left: 14px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .img-box {
+            margin: 12px 0;
+            text-align: center;
+        }
+
+        .img-box img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2937;
+            color: var(--sub);
+        }
+
+        .breadcrumb a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                color: #e5e7eb;
+            }
+
+        .breadcrumb span {
+            margin: 0 6px;
+            font-size: 12px;
+        }
+
+        .detail-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          padding: 6px 12px;
+          font-size: 13px;
+          color: var(--primary);
+          border: 1px solid var(--primary);
+          border-radius: 999px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+        
+        .detail-btn:hover {
+          background: var(--primary);
+          color: white;
+        }
+        
+        .arrow {
+          transition: transform 0.2s;
+        }
+        
+        .detail-btn:hover .arrow {
+          transform: translateX(3px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span>›</span>
+            <a href="../study.html">Study Archive</a>
+            <span>›</span>
+            <a href="./machinevision_introduction.html">머신 비전의 이해</a>
+            <span>›</span>
+            <span>카메라 (Camera)</span>
+        </div>
+    </div>
+
+    <nav>
+        <h3>카메라 (Camera)</h3>
+        <!--<ul>
+            <li><a href="#projects">네이게이션추가</a></li>
+        </ul>-->
+    </nav>
+</header>
+
+<section>
+    <div class="section">
+        <h2>1. 개요</h2>
+        <div class="card">
+            <ul>
+                <li>렌즈 마운트, 이미지 센서, 프로세서, 전력 전자 장치 및 통신 인터페이스를 포함하는 보호 케이스</li>
+                <li>들어오는 빛(광자)을 전기 신호(전자)로 변환하는 이미지 센서가 있음</li>
+                <li>이미지 센서 구성</li>
+                    <div class="li-desc">"포토다이오드" : 호출된 배열 노출 광자의 전자기 에너지가 마이크로 전압으로 변환되는 포텐셜 우물 역할</div>
+                    <div class="li-desc">"ADC(Analog-to-Digital Converter)" : 디지털 값을 출력</div>
+                    <div class="li-desc">"이미지센서"</div>
+                    <div class="li-desc">물리적 구조 : CCD, CMOS</div>
+                    <div class="li-desc">픽셀 치수 : Area scan, Line scan</div>
+                    <div class="li-desc">채도 유형 : Color, Mono</div>
+                    <div class="li-desc">셔터 유형 : Global, Rolling</div>
+                    <div class="li-desc">광 스펙트럼 및 빛의 편광 : UV, SWIR, NIR</div>
+                <li>각각의 포토다이오드는 감지기 디지털 이미지의 픽셀에 해당</li>
+                <li>포토다이오드가 아날로그 값과 연결되어 있는 반면 이미지 픽셀은 디지털 값과 연결되어 있음</li>
+                <li>픽셀은 디지털 이미지에서 가장 작은 요소이며, '그림 요소'의 약자</li>                        
+                <!-- 이미지 추가 -->
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_camera.png" alt="카메라구조">
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. 디지털 이미지 개념</h2>
+        <div class="card">
+            <h3>① 해상도 (Resolution)</h3>
+            <ul>
+                <li>디지털 이미지는 픽셀로 구성되며, 이미지 해상도는 이미지의 픽셀 열과 픽셀 행 수를 측정한 것</li>
+                  <div class="li-desc">1280 X 1024의 이미지 해상도는 이미지의 너비가 1280픽셀, 높이가 1024픽셀임을 나타냄</div>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_camera_resolution.png" alt="해상도">
+                </div>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>② (빛의)세기 (Intensity)</h3>
+            <ul>
+                <li>이미지 픽셀의 밝기를 세기(Intensity)라고 함</li>
+                <li>ADC의 비트 심도가 클수록 세기를 표현할 수 있는 범위가 커짐</li>
+                    <div class="li-desc">　 예를 들어, ADC의 비트 심도가 8비트인 경우 세기를 표현하는 데 사용할 수 있는 값은 256(0~255)가 됨</div>
+                    <div class="li-desc">　 ADC의 비트 심도가 12비트인 경우 세기를 표현하는 데 사용할 수 있는 값은 4096이 됨</div>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_camera_intensity.png" alt="Intensity">
+                </div>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>③ 노출 (Exposure)</h3>
+            <ul>
+                <li>포토다이오드가 빛에 노출되는 시간을 나타냄</li>
+                <li>노출 시간은 일반적으로 마이크로초(us) 및 밀리초(ms) 단위로 측정</li>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_camera_exposure.png" alt="노출">
+                </div>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>④ 증폭 (Gain)</h3>
+            <ul>
+                <li>픽셀에 대한 강도 값의 증폭</li>
+                <li>센서에서 포토다이오드 전하의 세기가 커지면 아날로그 게인(analog gain)</li>
+                <li>전하가 디지털 값으로 변화된 후 픽셀 값이 커지면 디지털 게인(digital gain)</li>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_camera_gain.png" alt="Gain">
+                </div>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>⑤ 프레임 속도 (Framerate)</h3>
+            <ul>
+                <li>측정된 프레임 속도 (초당 프레임 또는 FPS)</li>
+                <li>포토 센서가 1초에 출력할 수 있는 이미지 수</li>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_camera_framerate.png" alt="프레임속도">
+                </div>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 NDoubleuK Portfolio</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MachineVision-Computing Platform</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #6366f1;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .section h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin: 15px 0 10px;
+        }
+
+        .card ul {
+            padding-left: 18px;
+            list-style: disc;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--sub);
+        }
+
+        .li-desc {
+            margin-top: 4px;
+            padding-left: 14px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .img-box {
+            margin: 12px 0;
+            text-align: center;
+        }
+
+        .img-box img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2937;
+            color: var(--sub);
+        }
+
+        .breadcrumb a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                color: #e5e7eb;
+            }
+
+        .breadcrumb span {
+            margin: 0 6px;
+            font-size: 12px;
+        }
+
+        .detail-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          padding: 6px 12px;
+          font-size: 13px;
+          color: var(--primary);
+          border: 1px solid var(--primary);
+          border-radius: 999px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+
+        .detail-btn:hover {
+          background: var(--primary);
+          color: white;
+        }
+
+        .arrow {
+          transition: transform 0.2s;
+        }
+
+        .detail-btn:hover .arrow {
+          transform: translateX(3px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span>›</span>
+            <a href="../study.html">Study Archive</a>
+            <span>›</span>
+            <a href="./machinevision_introduction.html">머신 비전의 이해</a>
+            <span>›</span>
+            <span>컴퓨팅 플랫폼 (Computing Platform)</span>
+        </div>
+    </div>
+
+    <nav>
+        <h3>컴퓨팅 플랫폼 (Computing Platform)</h3>
+        <!--<ul>
+            <li><a href="#projects">네이게이션추가</a></li>
+        </ul>-->
+    </nav>
+</header>
+
+<section>
+    <div class="section">
+        <h2>1. 개요</h2>
+        <div class="card">
+            <ul>
+                <li>머신 비전 카메라 내부의 프로세서(임베디드 프로세서 또는 FPGA)는 이미지 센서에서 픽셀 값을 읽고, 이미지를 처리하여 외부 장치로 출력하는 역할을 담당</li>
+                <li>카메라 내부 프로세서는 전력 소비와 발열을 최소화하는 방향으로 설계되어, 매우 높은 프레임 속도의 후처리에는 처리 능력이 제한적임</li>
+                <li>고속·고해상도 카메라에서 나오는 대량의 이미지 데이터를 후처리할 경우, 외부 컴퓨팅 플랫폼으로 데이터를 보내 처리하는 것이 권장됨</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. 컴퓨팅 플랫폼의 종류</h2>
+        <div class="card">
+            <h3>① 소비자 PC (Consumer PC)</h3>
+            <ul>
+                <li>가장 유연하고 저렴한 옵션으로, 기성 구성 요소를 사용하여 시스템을 설계 가능</li>
+                <li>이더넷, USB, CoaXPress, Camera Link 등 다양한 인터페이스로 머신 비전 카메라와 연결 가능</li>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_computing_pc.jpeg" alt="소비자 PC">
+                </div>
+            </ul>
+            <h3>② 산업용 PC (Industrial PC)</h3>
+            <ul>
+                <li>먼지, 이물질 차단을 위한 견고한 케이스에 내장</li>
+                <li>충격, 진동, 극한 온도 등 산업 환경의 혹독한 조건을 견딜 수 있도록 설계</li>
+                <li>소비자 PC와 동일한 인터페이스(이더넷, USB 등)로 카메라와 연결 가능</li>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_computing_industrial.png" alt="산업용 PC">
+                </div>
+            </ul>
+            <h3>③ 비전 컨트롤러 (Vision Controller)</h3>
+            <ul>
+                <li>PC 기능에 더해 직렬 및 I/O 장치 지원을 추가로 제공하는 전용 시스템</li>
+                <li>내장 인터페이스</li>
+                    <div class="li-desc">RS232 / RS485 포트</div>
+                    <div class="li-desc">아날로그 I/O 및 디지털 I/O</div>
+                <li>PLC(프로그래밍 가능 로직 컨트롤러) 및 산업용 통신 모듈과 쉬운 통합 가능</li>
+                <li>Modbus 직렬과 같은 통신 프로토콜 구현 지원, 일부 제품은 조명 제어를 위한 PWM 기능 탑재</li>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_computing_visioncontroller.png" alt="비전 컨트롤러">
+                </div>
+            </ul>
+            <h3>④ 임베디드 시스템 (Embedded System)</h3>
+            <ul>
+                <li>자율 주행 차량, 드론, 의료 기기 등 대형 시스템에 내장할 수 있도록 설계된 고도로 구성 가능한 컴퓨터</li>
+                <li>이더넷 및 USB 등 표준 인터페이스를 지원하여 머신 비전 카메라와 쉽게 연동 가능</li>
+                <li>대표 제품 : NVIDIA Jetson Orin, NVIDIA Jetson Xavier</li>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_computing_embedded.png" alt="임베디드 시스템(NVIDIA Jetson)">
+                </div>
+            </ul>
+            <h3>⑤ 워크스테이션 PC (Workstation PC)</h3>
+            <ul>
+                <li>성능과 비용의 균형을 맞출 때 다중 카메라 시스템 구축에 선호되는 선택지</li>
+                <li>대표 프로세서 : AMD Threadripper PRO, Intel i9</li>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_computing_workstation.png" alt="워크스테이션 PC">
+                </div>
+            </ul>
+            <h3>⑥ 엔터프라이즈 서버 (Enterprise Server)</h3>
+            <ul>
+                <li>고속 다중 카메라 시스템에서 처리 노드로의 픽셀 데이터 배포 관리에 탁월한 성능 제공</li>
+                <li>이미지 처리 워크로드에도 높은 성능을 발휘</li>
+                <li>대표 프로세서 : AMD EPYC, Intel Xeon</li>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_computing_server.png" alt="엔터프라이즈 서버">
+                </div>
+            </ul>
+            <h3>⑦ 클라우드 기반 시스템 (Cloud-based System)</h3>
+            <ul>
+                <li>AI·딥러닝을 활용하는 머신 비전 애플리케이션의 복잡성이 증가할수록, PC 기반 시스템만으로 처리 요구사항을 충족하기 어려울 수 있음</li>
+                <li>클라우드 기반 플랫폼은 처리를 탄력적으로 확장할 수 있는 리소스를 제공</li>
+                <li>대표 플랫폼 : AWS, Azure, Google Cloud</li>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_computing_cloud.png" alt="클라우드 기반 시스템">
+                </div>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 NDoubleuK Portfolio</p>
+</footer>
+
+</body>
+</html>

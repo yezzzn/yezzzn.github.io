@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Detail</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --primary: #6366f1;
+      --text: #e5e7eb;
+      --sub: #9ca3af;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Pretendard', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--sub);
+      margin-bottom: 40px;
+    }
+
+    .section {
+      margin-bottom: 50px;
+    }
+
+    .section h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      border-left: 4px solid var(--primary);
+      padding-left: 10px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #1f2937;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .highlight {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 30px;
+      text-decoration: none;
+      color: var(--sub);
+    }
+
+.breadcrumb a {
+  color: #9ca3af;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: #e5e7eb;
+}
+
+.breadcrumb span {
+  margin: 0 6px;
+}
+
+  </style>
+</head>
+  
+<body>
+
+  <div class="container">
+  <div class="breadcrumb">
+    <a href="../../index.html">홈</a>
+    <span>›</span>
+    <a href="../portfolio.html">Portfolio</a>
+    <span>›</span>
+    <span>YOUMCELL Project</span>
+  </div>
+
+  <h1>Youm Cell External Inspection Machine</h1>
+  <p class="subtitle">Flexible Cell 타겟의 외관 검사 시스템</p>
+
+  <div class="section">
+    <h2>1. 프로젝트 개요</h2>
+    <div class="card">
+      <p>
+        모듈 공정 이전의 Cell 공정 단계에서 Flexible Cell의 최종 외관 검사를 위한 검사 시스템 개발 프로젝트
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. 문제 상황 (Before)</h2>
+    <div class="card">
+      <ul>
+        <li>미세 결함의 영상 시인성 확보</li>
+        <li>Non-vacuum 상태에서 안정적인 영상 확보</li>
+        <li>Rule-based 검사에서 Deeplearning 검사로의 전환</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>3. 해결 방법 (How)</h2>
+    <div class="card">
+      <ul>
+        <li>미세 결함(Dent, Stain 등) 영상 시인성 확보를 위해 <sapn class="highlight">광학계 구조 변경</sapn></li>
+        <li>Partial Vacuum 방식 고안 및 3차 고도화 → Deflectometry를 이용한 광학계 변경</li>
+        <li>Cognex社 D/L model을 이용, 장시간 학습을 통한 검출력 향상으로 Rule-based 검출력 성능을 역전</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. 핵심 기술</h2>
+    <div class="card">
+      <ul>
+        <li><span class="highlight">Deflectometry 광학 기술</span>을 이용한 Non-vacuum 영상 확보</li>
+        <li>Deeplearning 기반 결함 분류</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>5. 결과 (After)</h2>
+    <div class="card">
+      <ul>
+        <li>검출 정확도 <span class="highlight">+13% 향상</span></li>
+        <li>오검출율 <span class="highlight">30% 감소</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>6. 트러블슈팅</h2>
+    <div class="card">
+      <ul>
+        <li>Partial Vacuum의 Overlap 영역에서 Image Merge 시, 왜곡 발생 → Align 정확도 향상 및 광학계 구조 변경</li>
+        <li>돔조명 및 동축 조명의 Uniformity 확보 실패 → 밝기 보정 전처리 추가 및 입고 조명에 대한 성적서 개념 추가</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
