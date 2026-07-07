@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MachineVision-Lens</title>
+    <title>MachineVision-Illumination</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -44,17 +44,23 @@
             padding: 20px;
         }
 
+        nav p {
+            color: var(--sub);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
         section {
             max-width: 1100px;
             margin: auto;
             padding: 60px 20px;
         }
 
-        .section h2 { 
-            font-size: 22px; 
-            margin-bottom: 15px; 
-            border-left: 4px solid var(--primary); 
-            padding-left: 10px; 
+        .section h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
         }
 
         .card {
@@ -104,6 +110,64 @@
             border: 1px solid #1f2937;
         }
 
+        .svg-box {
+            margin: 16px 0;
+            text-align: center;
+        }
+
+        .svg-box svg {
+            width: 100%;
+            max-width: 640px;
+            height: auto;
+            background: #0b1120;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 14px;
+        }
+
+        .compare-table th,
+        .compare-table td {
+            border: 1px solid #1f2937;
+            padding: 10px 12px;
+            text-align: left;
+            color: var(--sub);
+        }
+
+        .compare-table th {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .note {
+            background: rgba(99, 102, 241, 0.08);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .note strong {
+            color: var(--primary);
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
         footer {
             text-align: center;
             padding: 40px 20px;
@@ -130,6 +194,7 @@
           align-items: center;
           gap: 6px;
           margin-top: 10px;
+          margin-right: 8px;
           padding: 6px 12px;
           font-size: 13px;
           color: var(--primary);
@@ -138,18 +203,25 @@
           text-decoration: none;
           transition: 0.2s;
         }
-        
+
         .detail-btn:hover {
           background: var(--primary);
           color: white;
         }
-        
+
         .arrow {
           transition: transform 0.2s;
         }
-        
+
         .detail-btn:hover .arrow {
           transform: translateX(3px);
+        }
+
+        .nav-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
     </style>
@@ -171,93 +243,256 @@
     </div>
 
     <nav>
-        <h3>조명 (Illumination)</h3>
-        <!--<ul>
-            <li><a href="#projects">네이게이션추가</a></li>
-        </ul>-->
+        <h3>조명 (Illumination) - 심화</h3>
+        <p>머신비전 개발자를 위한 조명 설계 심화 학습</p>
     </nav>
 </header>
 
 <section>
+
     <div class="section">
         <h2>1. 개요</h2>
         <div class="card">
+            <h3>조명의 역할 및 정의</h3>
             <ul>
-                <h3>조명의 역할 및 정의</h3>
-                <li>카메라는 물체가 반사한 빛을 캡처하여 이미지를 생성한다.</li>
-                <li>물체의 표면 특성(투명, 반투명, 불투명)에 따라 빛의 반사와 흡수 정도가 달라진다.</li>
-                <li>정확한 분석을 위해 머신 비전 시스템에는 적절한 조명이 필요하다.</li>
-                <li>조명은 광원의 위치, 각도, 반사 특성, 색상 스펙트럼을 고려해 설계된다.</li>
-                <!-- 이미지 추가 -->
-                <!--
-                 <div class="img-box">
-                    <img src="../../images/machinevision/machinevision_lens_composition.png" alt="렌즈구성">
+                <li>카메라는 물체가 반사(또는 투과)한 빛을 캡처하여 이미지를 생성함</li>
+                <li>물체의 표면 특성(투명, 반투명, 불투명, 정반사, 난반사)에 따라 빛의 반사·흡수·투과 정도가 달라짐</li>
+                <li>동일한 카메라·렌즈·알고리즘이라도 조명 설계에 따라 검출 성능이 크게 달라짐</li>
+                <li>조명은 광원의 위치, 각도, 반사 특성, 색상(파장) 스펙트럼을 종합적으로 고려해 설계함</li>
+            </ul>
+            <div class="note">
+                <strong>개발자 노트</strong> — 머신비전에서는 "Garbage in, Garbage out" 원칙이 조명에서 가장 두드러집니다. 결함과 배경의 명암 대비(Contrast)를 조명 단계에서 최대한 확보하면 이진화·엣지 검출 같은 알고리즘이 단순해지고 안정적이 되지만, 대비가 나쁜 이미지는 아무리 정교한 알고리즘으로도 보정에 한계가 있습니다. 조명 설계에 들이는 시간이 곧 알고리즘 개발 시간을 줄여줍니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. 위치 기반 조명 : Front Lighting vs Back Lighting</h2>
+        <div class="card">
+            <ul>
+                <li>전면 조명 (Front Lighting)</li>
+                    <div class="li-desc">카메라와 광원이 모두 같은 쪽에서 대상 장면을 향함</div>
+                    <div class="li-desc">표면의 색상, 질감, 인쇄 상태, 스크래치 등 "표면 정보"를 검사할 때 사용</div>
+                <li>백 라이트 (Back Lighting)</li>
+                    <div class="li-desc">카메라와 광원이 대상 장면을 중앙에 두고 서로 마주보게 위치함</div>
+                    <div class="li-desc">대상을 실루엣(그림자)으로 만들어 외곽선을 뚜렷하게 하므로, 치수 측정·형상 검사·이물 검출에 유리함</div>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_illumination_position.png" alt="조명 위치: 전면조명과 백라이트">
                 </div>
-              -->
+            </ul>
+            <div class="note">
+                <strong>개발자 노트</strong> — 표면에 무엇이 있는지 봐야 하면 전면 조명, 대상의 정확한 외곽 크기·형상만 필요하면 백 라이트가 정답에 가깝습니다. 텔레센트릭 렌즈(렌즈 페이지 참고)와 백 라이트를 함께 쓰면 왜곡 없는 정밀 치수 측정 시스템을 구성할 수 있습니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>3. 각도 기반 조명 : 직접 조명 vs 확산 조명</h2>
+        <div class="card">
+            <ul>
+                <li>직접 조명 (Directed Lighting)</li>
+                    <div class="li-desc">매우 좁은 각도로 퍼지는 광선이 대상 장면을 비춤</div>
+                    <div class="li-desc">강한 그림자를 만들고 표면의 요철·텍스처를 두드러지게 함</div>
+                <li>확산 조명 (Diffused Lighting)</li>
+                    <div class="li-desc">넓은 각도로 퍼지는 광선이 대상 장면 전체를 고르게 비춤</div>
+                    <div class="li-desc">그림자와 정반사 하이라이트(Hot Spot)를 줄여 균일한 밝기의 이미지를 만듦</div>
+                    <div class="li-desc" style="margin-left:20px;">- 축 확산 조명(On-axis / Coaxial Diffuse) : 빔 스플리터(반투과 거울)로 광원을 카메라와 동일한 광축으로 반사시켜, 그림자·정반사 얼룩 없이 대상을 비춤</div>
+                    <div class="li-desc" style="margin-left:20px;">- 확산 돔 조명(Dome Diffuse) : 반구형 돔 내부에서 빛을 여러 번 산란시켜 모든 방향에서 균일하게 비춤. 곡면·정반사 표면(금속 캔, 곡면 유리 등)에 효과적</div>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_illumination_angle.png" alt="조명 각도: 직접조명과 확산조명">
+                </div>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg">
+                    <text x="210" y="22" text-anchor="middle" fill="#e5e7eb" font-size="14" font-weight="700">동축 조명 (Coaxial Illumination)</text>
+
+                    <rect x="185" y="40" width="50" height="30" rx="4" fill="#111827" stroke="#6366f1"/>
+                    <text x="210" y="60" text-anchor="middle" fill="#9ca3af" font-size="10">카메라</text>
+
+                    <line x1="210" y1="70" x2="210" y2="118" stroke="#6366f1" stroke-width="3" stroke-dasharray="4,3"/>
+                    <text x="245" y="98" fill="#6366f1" font-size="10">반사광이 카메라로 복귀</text>
+
+                    <rect x="55" y="108" width="60" height="28" rx="4" fill="#111827" stroke="#374151"/>
+                    <text x="85" y="126" text-anchor="middle" fill="#9ca3af" font-size="10">광원</text>
+                    <line x1="115" y1="122" x2="182" y2="122" stroke="#f59e0b" stroke-width="3"/>
+
+                    <line x1="192" y1="132" x2="228" y2="112" stroke="#9ca3af" stroke-width="2"/>
+                    <text x="245" y="150" fill="#9ca3af" font-size="10">빔 스플리터 (45˚)</text>
+
+                    <line x1="210" y1="128" x2="210" y2="195" stroke="#f59e0b" stroke-width="3"/>
+
+                    <rect x="140" y="200" width="140" height="16" rx="3" fill="#111827" stroke="#374151"/>
+                    <circle cx="210" cy="200" r="7" fill="#374151"/>
+                    <text x="210" y="238" text-anchor="middle" fill="#9ca3af" font-size="10">대상 (반사면)</text>
+                </svg>
+            </div>
+            <div class="note">
+                <strong>개발자 노트</strong> — 동축 조명은 카메라와 완전히 같은 광축으로 빛을 쏘기 때문에, 웨이퍼·PCB·금속처럼 정반사가 심한 표면에서 그림자·핫스팟 없이 균일한 영상을 얻을 수 있습니다. 평탄한 정상면은 밝게, 스크래치·이물·단차가 있는 부분은 반사 경로가 흐트러져 어둡거나 다르게 나타나므로 결함이 도드라집니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>4. 반사 특성 기반 조명 : 암시야 vs 명시야</h2>
+        <div class="card">
+            <ul>
+                <li>암시야 조명 (Dark Field)</li>
+                    <div class="li-desc">광원이 카메라 센서로 직접 들어가지 않도록 낮은 각도로 비스듬히 배치</div>
+                    <div class="li-desc">평평한 면은 어둡게, 스크래치·엣지·요철처럼 표면이 급격히 꺾이는 부분에서만 빛이 산란되어 카메라로 들어오므로 밝게 나타남 → 미세 스크래치·이물 검출에 효과적</div>
+                <li>명시야 조명 (Bright Field)</li>
+                    <div class="li-desc">광원이 카메라 센서로 정반사되어 직접 들어오도록 배치</div>
+                    <div class="li-desc">평평한 정상면은 밝게 나타나고, 결함이 있으면 반사 경로가 흐트러져 어둡거나 다른 값으로 나타남 → 넓은 평면의 결함(오염, 단차) 검출에 효과적</div>
+                <div class="img-box">
+                    <img src="../../images/machinevision/machinevision_illumination_reflection.png" alt="암시야와 명시야 조명">
+                </div>
+            </ul>
+            <div class="note">
+                <strong>개발자 노트</strong> — 암시야와 명시야는 정반대의 명암 논리를 가집니다. "결함을 밝게 띄울 것인가(암시야), 결함을 어둡게 떨어뜨릴 것인가(명시야)"를 검사 대상의 형태에 따라 선택해야 하며, 실제 라인에서는 두 조명을 함께 설치해 알고리즘에서 두 영상을 조합하는 경우도 많습니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>5. 패턴 기반 조명 : 구조화 조명</h2>
+        <div class="card">
+            <ul>
+                <li>구조화된 조명 (Structured Lighting)</li>
+                    <div class="li-desc">점, 격자(그리드), 라인 등 알려진 패턴을 물체에 비스듬히 투사함</div>
+                    <div class="li-desc">평평한 면에서는 패턴이 곧게 유지되지만, 굴곡·단차가 있으면 패턴이 휘거나 어긋나 보임 → 이 변형량을 통해 3차원 형상(높이, 굴곡)을 계산 (삼각측량 원리)</div>
+                    <div class="li-desc">2D 외관 검사로는 찾기 어려운 미세 단차, 휨(Warpage), 범프 높이 등 3D 검사에 활용</div>
             </ul>
         </div>
     </div>
 
     <div class="section">
-        <h2>2. 조명 기술</h2>
+        <h2>6. 색상 스펙트럼 기반 조명 : 보색 대비 활용</h2>
         <div class="card">
-            <h3>① 위치 기반 조명</h3>
             <ul>
-                <li>전면 조명</li>
-                  <div class="li-desc">카메라와 광원이 모두 같은 쪽에서 대상 정명을 향함.</div>
-                <li>백 라이트</li>
-                  <div class="li-desc">카메라와 광원은 대상 장면을 중앙에 두고 서로 마주보게 위치함.</div>
-                 <div class="img-box">
-                    <img src="../../images/machinevision/machinevision_illumination_position.png" alt="조명">
-                </div>
+                <li>RGB(단색) 조명 : 특정 파장 대역(Red, Green, Blue 등)의 좁은 스펙트럼 빛만 사용</li>
+                <li>백색 조명 : 색상 정보를 그대로 담아야 하는 컬러 이미지 촬영에는 백색광이 필요</li>
+                <li>보색(Complementary Color) 원리 : 색상환에서 서로 마주보는 색의 조명을 비추면 해당 색의 대상은 어둡게, 같은 계열의 조명을 비추면 밝게 나타남</li>
             </ul>
-            <h3>② 각도 기반 조명</h3>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="#0b1120" stroke-width="2">
+                        <path d="M160,160 L160,40 A120,120 0 0,1 264,100 Z" fill="#ef4444"/>
+                        <path d="M160,160 L264,100 A120,120 0 0,1 264,220 Z" fill="#eab308"/>
+                        <path d="M160,160 L264,220 A120,120 0 0,1 160,280 Z" fill="#22c55e"/>
+                        <path d="M160,160 L160,280 A120,120 0 0,1 56,220 Z" fill="#06b6d4"/>
+                        <path d="M160,160 L56,220 A120,120 0 0,1 56,100 Z" fill="#3b82f6"/>
+                        <path d="M160,160 L56,100 A120,120 0 0,1 160,40 Z" fill="#d946ef"/>
+                    </g>
+                    <text x="160" y="30" text-anchor="middle" fill="#e5e7eb" font-size="12">Red</text>
+                    <text x="285" y="105" text-anchor="middle" fill="#e5e7eb" font-size="12">Yellow</text>
+                    <text x="285" y="225" text-anchor="middle" fill="#e5e7eb" font-size="12">Green</text>
+                    <text x="160" y="300" text-anchor="middle" fill="#e5e7eb" font-size="12">Cyan</text>
+                    <text x="35" y="225" text-anchor="middle" fill="#e5e7eb" font-size="12">Blue</text>
+                    <text x="35" y="105" text-anchor="middle" fill="#e5e7eb" font-size="12">Magenta</text>
+                </svg>
+                <div style="margin-top:8px; font-size:12px; color:#9ca3af;">※ 원의 정반대편에 위치한 색상끼리 보색 관계</div>
+            </div>
+
+            <table class="compare-table">
+                <tr><th>대상 색상</th><th>같은 계열 조명</th><th>보색 조명</th></tr>
+                <tr><td>빨간색 이물/마킹</td><td>빨간 조명 → 밝게 강조</td><td>초록/청록 조명 → 어둡게 강조</td></tr>
+                <tr><td>초록색 PCB</td><td>초록 조명 → 밝게</td><td>보라/빨강 계열 조명 → 대비 강조</td></tr>
+            </table>
+
+            <div class="note">
+                <strong>개발자 노트</strong> — 대상과 배경의 색상이 비슷해 흑백 카메라로는 대비가 잘 안 나올 때, 배경과 보색 관계인 단색 LED 조명을 사용하면 별도의 알고리즘 튜닝 없이 대비를 크게 끌어올릴 수 있습니다. 반복 재현성이 중요한 검사라면 백색 LED보다 단일 파장 LED가 색 편차에 더 안정적입니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>7. 광 스펙트럼(파장) 기반 조명</h2>
+        <div class="card">
             <ul>
-                <li>직접 조명</li>
-                  <div class="li-desc">매우 좁은 각도로 퍼지는 광선이 대상 장면의 모든 지점을 비춘다.</div>
-                  <div class="li-desc">강한 그림자를 드리우고, 이미지에서 텍스처를 두드러지게 한다.</div>
-                <li>확산 조명</li>
-                  <div class="li-desc">넓은 각도로 퍼지는 광선이 대상 장면의 모든 지점을 비춘다.</div>
-                  <div class="li-desc">그림자가 거의 없으며 음영을 제거하고, 텍스처를 더욱 분명하게 만든다.</div>
-                    <div class="li-desc" style="margin-left:20px;">- 축 확산 조명 : 빔 스플리터는 확산된 빛을 대상에서 아래쪽으로 반사함</div>
-                    <div class="li-desc" style="margin-left:20px;">- 확산 돔 조명 : 반구 모양의 거울은 확산된 빛을 반사하여 대상을 비춤</div>
-                 <div class="img-box">
-                    <img src="../../images/machinevision/machinevision_illumination_angle.png" alt="조명">
-                </div>
+                <li>자외선(UV) : 가시광선보다 짧은 파장의 스펙트럼</li>
+                <li>가시광선(Visible) : 사람 눈에 보이는 파장 대역</li>
+                <li>근적외선(NIR, Near-Infrared) : 가시광선보다 길고 SWIR보다 짧은 파장 대역</li>
+                <li>SWIR(Short-Wave Infrared) : 근적외선보다 더 긴 파장의 적외선 영역</li>
             </ul>
-            <h3>③ 반사 자연 기반 조명</h3>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 640 140" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="20" y="40" width="100" height="40" fill="#7c3aed"/>
+                    <text x="70" y="65" text-anchor="middle" fill="#ffffff" font-size="11">UV</text>
+                    <rect x="120" y="40" width="20" height="40" fill="#8b5cf6"/>
+                    <rect x="140" y="40" width="20" height="40" fill="#3b82f6"/>
+                    <rect x="160" y="40" width="20" height="40" fill="#22c55e"/>
+                    <rect x="180" y="40" width="20" height="40" fill="#eab308"/>
+                    <rect x="200" y="40" width="20" height="40" fill="#f97316"/>
+                    <rect x="220" y="40" width="20" height="40" fill="#ef4444"/>
+                    <rect x="240" y="40" width="180" height="40" fill="#7f1d1d"/>
+                    <text x="330" y="65" text-anchor="middle" fill="#ffffff" font-size="11">NIR</text>
+                    <rect x="420" y="40" width="200" height="40" fill="#450a0a"/>
+                    <text x="520" y="65" text-anchor="middle" fill="#ffffff" font-size="11">SWIR</text>
+
+                    <text x="70" y="30" text-anchor="middle" fill="#9ca3af" font-size="10">200~400nm</text>
+                    <text x="200" y="30" text-anchor="middle" fill="#9ca3af" font-size="10">가시광선 400~780nm</text>
+                    <text x="330" y="30" text-anchor="middle" fill="#9ca3af" font-size="10">780~1400nm</text>
+                    <text x="520" y="30" text-anchor="middle" fill="#9ca3af" font-size="10">900~2500nm</text>
+
+                    <text x="70" y="100" text-anchor="middle" fill="#9ca3af" font-size="10">짧은 파장</text>
+                    <text x="520" y="100" text-anchor="middle" fill="#9ca3af" font-size="10">긴 파장</text>
+                    <line x1="20" y1="115" x2="620" y2="115" stroke="#374151" stroke-width="1"/>
+                    <polygon points="620,110 632,115 620,120" fill="#374151"/>
+                </svg>
+            </div>
+
+            <table class="compare-table">
+                <tr><th>대역</th><th>대표 파장</th><th>주요 용도</th></tr>
+                <tr><td>UV</td><td>약 365~405nm</td><td>형광 반응 유도로 미세 크랙·이물·코팅 상태 검출</td></tr>
+                <tr><td>Visible</td><td>약 450~660nm</td><td>일반 색상 판별, 표면 대비 검사</td></tr>
+                <tr><td>NIR</td><td>약 780~940nm</td><td>표면 코팅·필름을 투과해 내부 확인, 정반사 글레어 감소</td></tr>
+                <tr><td>SWIR</td><td>약 1050~1650nm</td><td>수분 함량, 재질 성분 차이 판별 (가시광선으로는 구분 불가한 소재 구분)</td></tr>
+            </table>
+
+            <div class="note">
+                <strong>개발자 노트</strong> — 카메라 센서(특히 실리콘 CMOS/CCD)는 파장별로 감도(양자 효율)가 다르고, 일반 컬러 카메라는 IR-Cut 필터가 기본 장착되어 있어 NIR/SWIR 조명을 쓰려면 필터를 제거하거나 전용 카메라가 필요합니다. 조명 파장을 정할 때는 반드시 사용할 카메라 센서의 분광 감도 그래프를 함께 확인해야 합니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>8. 조명 - 카메라 트리거 동기화</h2>
+        <div class="card">
             <ul>
-                <li>암시야 조명</li>
-                  <div class="li-desc">광원이 카메라의 센서로 직접 전송되지 않도록 배치</div>
-                <li>명시야 조명</li>
-                  <div class="li-desc">광원이 카메라의 센서로 직접 전송되도록 배치</div>
-                 <div class="img-box">
-                    <img src="../../images/machinevision/machinevision_illumination_reflection.png" alt="조명">
-                </div>
+                <li>고속 라인에서는 상시 점등 조명 대신 <strong>스트로브(Strobe)</strong> 방식으로 카메라 노출 순간에만 강한 펄스광을 쏘는 방식을 사용</li>
+                <li>카메라 트리거 신호에 조명 컨트롤러를 동기화해, 짧은 노출 시간에도 충분한 광량을 확보하면서 모션 블러를 최소화</li>
+                <li>상시 점등 대비 LED 수명 연장, 발열 감소 효과도 있음</li>
             </ul>
-            <h3>④ 패턴 기반 조명</h3>
+            <div class="note">
+                <strong>개발자 노트</strong> — 카메라 페이지의 "노출(Exposure)" 절에서 다룬 모션 블러 공식과 함께 고려하면, 스트로브 펄스 폭이 사실상의 실효 노출 시간이 되므로 카메라의 전자 셔터 노출 시간보다 스트로브 펄스 폭을 더 짧게 맞추는 것이 일반적인 실무 설계입니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>9. 머신비전 개발자를 위한 조명 선정 체크리스트</h2>
+        <div class="card">
             <ul>
-                <li>구조화된 조명</li>
-                  <div class="li-desc">점, 격자 또는 보다 복잡한 모양과 같은 조명 패턴이 물체에 비스듬히 투사 됨</div>
-            </ul>
-            <h3>⑤ 색상 스펙트럼 기반 조명</h3>
-            <ul>
-                <li>RGB 조명</li>
-                  <div class="li-desc">단색 이미지의 경우 빛은 일반적으로 Red, Green, Blue의 좁은 파장 대역</div>
-                <li>백색 조명</li>
-                  <div class="li-desc">컬러 이미지를 위해서 백색광이 필요</div>
-            </ul>
-            <h3>⑥ 광 스펙트럼 기반 조명</h3>
-            <ul>
-                <li>자외선 조명</li>
-                  <div class="li-desc">자외선(UV)은 가시광선(200nm~400nm)보다 짧은 파장(400nm~780nm)의 스펙트럼</div>
-                <li>SWIR 조명</li>
-                  <div class="li-desc">SWIR(Short-Wave Infrared) 스펙트럼(900nm ~ 2,500nm)은 가시광선에 가장 가까운 적외선(780nm 및 1mm) 영역</div>
-                <li>근적외선 조명</li>
-                  <div class="li-desc">근적외선(NIR) 파장은 780-1400nm 범위</div>
+                <li>검사 목적 — 표면 결함 검출(전면/명시야/암시야) vs 외곽 치수 측정(백라이트) vs 3D 형상(구조화 조명) 중 무엇이 목적인지 먼저 정의</li>
+                <li>대상 표면 특성 — 정반사(금속, 유리) 여부에 따라 동축/돔 확산 조명 검토, 난반사 표면은 일반 확산 조명으로 충분</li>
+                <li>색상 대비 — 대상과 배경 색이 비슷하면 보색 관계의 단색 조명으로 대비 확보</li>
+                <li>파장 대역 — 표면 아래 확인, 형광 반응, 재질 판별 등 특수 목적이 있다면 UV/NIR/SWIR 검토 (카메라 센서 감도·필터와 함께 확인)</li>
+                <li>속도 대응 — 라인 속도가 빠르면 스트로브 조명 + 트리거 동기화 설계</li>
+                <li>조도 균일성 &amp; 수명 — 광량 저하(LED 노후화)를 감안한 밝기 피드백/보정 절차 마련</li>
             </ul>
         </div>
     </div>
+
+    <div class="section">
+        <h2>10. 관련 학습</h2>
+        <div class="card nav-row">
+            <a href="./machinevision_lens.html" class="detail-btn"><span class="arrow">←</span> 이전 : 렌즈 (Lens)</a>
+            <a href="./machinevision_cable.html" class="detail-btn">다음 : 케이블 연결 (Cable) <span class="arrow">→</span></a>
+        </div>
+    </div>
+
 </section>
 
 <footer>

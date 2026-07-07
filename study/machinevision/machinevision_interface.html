@@ -44,6 +44,12 @@
             padding: 20px;
         }
 
+        nav p {
+            color: var(--sub);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
         section {
             max-width: 1100px;
             margin: auto;
@@ -129,6 +135,30 @@
             border-bottom: none;
         }
 
+        .note {
+            background: rgba(99, 102, 241, 0.08);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .note strong {
+            color: var(--primary);
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
         footer {
             text-align: center;
             padding: 40px 20px;
@@ -155,6 +185,7 @@
           align-items: center;
           gap: 6px;
           margin-top: 10px;
+          margin-right: 8px;
           padding: 6px 12px;
           font-size: 13px;
           color: var(--primary);
@@ -177,6 +208,13 @@
           transform: translateX(3px);
         }
 
+        .nav-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
     </style>
 </head>
 
@@ -196,10 +234,8 @@
     </div>
 
     <nav>
-        <h3>인터페이스 주변기기 (Interface)</h3>
-        <!--<ul>
-            <li><a href="#projects">네이게이션추가</a></li>
-        </ul>-->
+        <h3>인터페이스 주변기기 (Interface) - 심화</h3>
+        <p>머신비전 개발자를 위한 인터페이스 · 드라이버 심화 학습</p>
     </nav>
 </header>
 
@@ -209,9 +245,12 @@
         <div class="card">
             <ul>
                 <li>인터페이스 주변기기는 카메라와 컴퓨팅 플랫폼 사이에서 이미지 데이터를 전달하는 역할을 담당</li>
-                <li>사용하는 케이블 규격(Ethernet, USB, CoaXPress, Camera Link)에 따라 필요한 주변기기가 달라짐</li>
+                <li>사용하는 케이블 규격(Ethernet, USB, CoaXPress, Camera Link)에 따라 필요한 주변기기가 달라짐 (케이블/커넥터 자체의 물리 스펙은 케이블 페이지 참고)</li>
                 <li>인터페이스 주변기기의 선택은 전송 속도, 케이블 길이, 다중 카메라 구성 여부 등을 고려하여 결정</li>
             </ul>
+            <div class="note">
+                <strong>개발자 노트</strong> — 이 페이지는 "PC/컴퓨팅 플랫폼 쪽에서 카메라 데이터를 받기 위해 무엇을 꽂아야 하는가"에 초점을 둡니다. 케이블 자체의 대역폭·길이·전원 스펙은 <a href="./machinevision_cable.html" style="color:var(--primary)">케이블 연결 페이지</a>를 함께 참고하세요.
+            </div>
         </div>
     </div>
 
@@ -227,6 +266,12 @@
                     <img src="../../images/machinevision/machinevision_interface_nic.png" alt="NIC(네트워크 인터페이스 카드)">
                 </div>
             </ul>
+            <div class="note">
+                <strong>개발자 노트</strong> — GigE Vision 카메라 성능이 이론치보다 낮게 나온다면 NIC 설정을 먼저 점검하세요.<br>
+                · <strong>점보 프레임(Jumbo Frame)</strong> : 표준 이더넷 MTU(1500바이트) 대신 최대 9000바이트로 설정하면 큰 이미지 전송 시 패킷 수와 오버헤드가 줄어 처리율이 향상됨<br>
+                · <strong>수신 버퍼(Receive Descriptor) 크기</strong> : NIC 드라이버 설정에서 수신 버퍼 개수를 최대치로 늘리면 프레임 드랍을 줄일 수 있음 (단, 시스템 메모리 사용량 증가)<br>
+                · 여러 대의 GigE 카메라를 동시에 쓸 경우, 카메라마다 별도의 NIC 포트를 할당하는 것이 대역폭 경합을 피하는 가장 확실한 방법
+            </div>
             <h3>② 스위치 (Switch)</h3>
             <ul>
                 <li>동일한 LAN(Local Area Network) 내에서 이더넷 장치를 연결하는 장비</li>
@@ -234,11 +279,14 @@
                 <li>머신 비전에서 스위치가 필요한 경우</li>
                     <div class="li-desc">멀티플렉싱 : 고속 멀티 카메라 시스템에서 여러 이더넷 포트의 픽셀 데이터를 통합하여 단일 포트로 출력</div>
                     <div class="li-desc">멀티캐스팅 : 카메라 데이터를 여러 호스트 PC로 전송</div>
-                    <div class="li-desc">PTP(Precision Time Protocol) : 여러 카메라의 타임스탬프를 단일 장치 시계와 동기화</div>
+                    <div class="li-desc">PTP(Precision Time Protocol, IEEE 1588) : 여러 카메라의 타임스탬프를 단일 장치 시계와 마이크로초 단위로 동기화 (GigE Vision 2.0 표준 포함)</div>
                 <div class="img-box">
                     <img src="../../images/machinevision/machinevision_interface_switch.jpg" alt="네트워크 스위치">
                 </div>
             </ul>
+            <div class="note">
+                <strong>개발자 노트</strong> — 여러 카메라를 "동시에 찍은 것처럼" 다뤄야 하는 스테레오/멀티뷰 검사 시스템에서는 PTP를 지원하는 관리형(Managed) 스위치를 선택하고, 카메라·스위치 모두에서 PTP를 활성화해야 타임스탬프 기반 동기화가 실제로 동작합니다.
+            </div>
             <h3>③ 이더넷 허브 (Ethernet Hub)</h3>
             <ul>
                 <li>여러 장치를 연결할 수 있으나, 스위치와 달리 연결된 모든 장치로 패킷을 브로드캐스트</li>
@@ -281,6 +329,9 @@
             <ul>
                 <li>요즘 대부분의 마더보드에는 USB 3.0 포트가 내장되어 있으며, 일부는 USB 2.0과 USB 3.0을 함께 지원</li>
             </ul>
+            <div class="note">
+                <strong>개발자 노트</strong> — USB는 컨트롤러 칩셋에 따라 대역폭을 여러 포트가 나눠 쓰는 경우가 많습니다. 멀티 카메라 USB3 시스템을 구성할 때는 포트별로 독립된 컨트롤러(별도 PCIe 카드의 개별 컨트롤러)를 쓰는지 확인해야 실제 대역폭 경합을 피할 수 있습니다.
+            </div>
         </div>
     </div>
 
@@ -298,6 +349,9 @@
                     <img src="../../images/machinevision/machinevision_interface_cxp.png" alt="CoaXPress 프레임 그래버">
                 </div>
             </ul>
+            <div class="note">
+                <strong>개발자 노트</strong> — 프레임 그래버는 PCIe 슬롯의 레인 수(x4, x8 등)만큼 대역폭이 제한됩니다. 여러 장의 프레임 그래버를 한 시스템에 꽂을 경우, 메인보드의 PCIe 슬롯이 CPU에 직결된 레인인지, 칩셋을 경유해 대역폭을 나눠 쓰는 슬롯인지 반드시 확인해야 합니다.
+            </div>
         </div>
     </div>
 
@@ -316,6 +370,59 @@
                     <img src="../../images/machinevision/machinevision_interface_clhs.jpg" alt="Camera Link 프레임 그래버">
                 </div>
             </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>6. 표준 드라이버 계층 : GenICam / GenTL</h2>
+        <div class="card">
+            <ul>
+                <li>GenICam(Generic Interface for Cameras) : GigE Vision, USB3 Vision, CoaXPress, Camera Link 등 서로 다른 인터페이스 기술을 하나의 공통 API로 다룰 수 있게 해주는 표준 (EMVA 관리)</li>
+                <li>GenTL(Generic Transport Layer) : 카메라 검색, 이미지 스트리밍, 이벤트 처리 등 하드웨어 종속적인 부분을 담당하는 전송 계층. 카메라·프레임그래버 제조사가 <code>.cti</code> 파일(GenTL Producer)로 제공</li>
+                <li>GenApi / SFNC : 노출, 게인 같은 카메라 기능의 이름과 동작 방식을 표준화해, 제조사가 달라도 동일한 방식으로 파라미터에 접근 가능</li>
+            </ul>
+            <div class="note">
+                <strong>개발자 노트</strong> — 애플리케이션을 GenICam/GenTL 표준 위에서 개발하면, 특정 제조사의 전용 SDK에 종속되지 않고 카메라 모델을 교체해도(GigE ↔ USB3 ↔ CXP 포함) 애플리케이션 코드를 거의 그대로 재사용할 수 있습니다. 신규 시스템을 설계할 때는 제조사 전용 SDK보다 GenICam/GenTL 호환 여부를 먼저 확인하는 것을 권장합니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>7. 멀티 카메라 동기화 &amp; 성능 튜닝</h2>
+        <div class="card">
+            <table>
+                <tr><th>튜닝 항목</th><th>내용</th></tr>
+                <tr><td>점보 프레임(Jumbo Frame)</td><td>MTU를 1500 → 최대 9000바이트로 설정, 패킷 수·오버헤드 감소</td></tr>
+                <tr><td>NIC 수신 버퍼</td><td>수신 디스크립터 개수를 최대로 늘려 프레임 드랍 방지</td></tr>
+                <tr><td>PTP(IEEE 1588)</td><td>여러 카메라의 타임스탬프를 마이크로초 단위로 동기화</td></tr>
+                <tr><td>CPU/IRQ 친화도</td><td>고속 스트리밍 카메라의 인터럽트를 특정 CPU 코어에 고정해, 다른 프로세스와의 자원 경합을 줄임</td></tr>
+                <tr><td>PCIe 대역폭 확인</td><td>프레임그래버·NIC가 CPU 직결 레인인지, 칩셋 공유 레인인지 확인</td></tr>
+            </table>
+            <div class="note">
+                <strong>개발자 노트</strong> — 단일 카메라에서는 문제없던 시스템이 카메라 대수를 늘리면 프레임 드랍이 생기는 경우, 대부분 원인은 알고리즘이 아니라 위 표의 네트워크/PCIe 튜닝 항목에 있습니다. 카메라를 추가하기 전에 총 필요 대역폭(카메라 페이지의 대역폭 계산식 참고)과 시스템의 실제 여유 대역폭을 먼저 비교해보는 것이 좋습니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>8. 머신비전 개발자를 위한 인터페이스 선정 체크리스트</h2>
+        <div class="card">
+            <ul>
+                <li>총 필요 대역폭 — 전체 카메라 수 × 카메라별 필요 대역폭이 NIC/프레임그래버 총 처리량 이내인지 확인</li>
+                <li>동기화 요구사항 — 여러 카메라를 시간적으로 맞춰야 한다면 PTP 지원 스위치·카메라 선택</li>
+                <li>표준 준수 — GenICam/GenTL 호환 여부로 향후 카메라 교체·유지보수 유연성 확보</li>
+                <li>PCIe 슬롯 구성 — 프레임그래버·다중 NIC를 꽂을 메인보드의 PCIe 레인 배분 확인</li>
+                <li>드라이버/OS 지원 — Windows/Linux 등 실제 운영 환경에서 제조사 드라이버·SDK 지원 여부</li>
+                <li>확장성 — 향후 카메라 대수 증가를 감안한 여유 포트·슬롯 확보</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>9. 관련 학습</h2>
+        <div class="card nav-row">
+            <a href="./machinevision_cable.html" class="detail-btn"><span class="arrow">←</span> 이전 : 케이블 연결 (Cable)</a>
+            <a href="./machinevision_computing.html" class="detail-btn">다음 : 컴퓨팅 플랫폼 (Computing) <span class="arrow">→</span></a>
         </div>
     </div>
 </section>

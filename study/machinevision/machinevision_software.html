@@ -44,6 +44,12 @@
             padding: 20px;
         }
 
+        nav p {
+            color: var(--sub);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
         section {
             max-width: 1100px;
             margin: auto;
@@ -104,6 +110,81 @@
             border: 1px solid #1f2937;
         }
 
+        .svg-box {
+            margin: 16px 0;
+            text-align: center;
+        }
+
+        .svg-box svg {
+            width: 100%;
+            max-width: 640px;
+            height: auto;
+            background: #0b1120;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 14px;
+        }
+
+        .compare-table th,
+        .compare-table td {
+            border: 1px solid #1f2937;
+            padding: 10px 12px;
+            text-align: left;
+            color: var(--sub);
+        }
+
+        .compare-table th {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .note {
+            background: rgba(99, 102, 241, 0.08);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .note strong {
+            color: var(--primary);
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        pre.code {
+            background: #0b1120;
+            border: 1px solid #1f2937;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 12px 0;
+            overflow-x: auto;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #e5e7eb;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre.code .cm { color: #6b7280; }
+        pre.code .kw { color: #a78bfa; }
+        pre.code .fn { color: #6366f1; }
+
         footer {
             text-align: center;
             padding: 40px 20px;
@@ -130,6 +211,7 @@
           align-items: center;
           gap: 6px;
           margin-top: 10px;
+          margin-right: 8px;
           padding: 6px 12px;
           font-size: 13px;
           color: var(--primary);
@@ -152,6 +234,13 @@
           transform: translateX(3px);
         }
 
+        .nav-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
     </style>
 </head>
 
@@ -171,10 +260,8 @@
     </div>
 
     <nav>
-        <h3>소프트웨어 (Software)</h3>
-        <!--<ul>
-            <li><a href="#projects">네이게이션추가</a></li>
-        </ul>-->
+        <h3>소프트웨어 (Software) - 심화</h3>
+        <p>머신비전 개발자를 위한 소프트웨어 아키텍처 · 개발 심화 학습</p>
     </nav>
 </header>
 
@@ -191,6 +278,9 @@
                     <div class="li-desc">이미지 결과를 이용한 의사결정 수행</div>
                     <div class="li-desc">다른 연결된 장치 또는 기계와 통신</div>
             </ul>
+            <div class="note">
+                <strong>개발자 노트</strong> — 이 페이지의 모든 소프트웨어 계층은 결국 인터페이스 페이지에서 다룬 <strong>GenICam/GenTL 표준</strong> 위에서 동작합니다. 카메라 뷰어, 포괄적 소프트웨어, SDK 모두 내부적으로는 같은 GenTL Producer(.cti)를 거쳐 카메라와 통신하며, 차이는 "그 위에 어떤 사용자 경험과 개발 자유도를 제공하는가"에 있습니다.
+            </div>
         </div>
     </div>
 
@@ -209,6 +299,9 @@
                     <img src="../../images/machinevision/machinevision_software_viewer.png" alt="카메라 뷰어(eCapture)">
                 </div>
             </ul>
+            <div class="note">
+                <strong>개발자 노트</strong> — 코드를 한 줄도 쓰기 전에, 카메라 뷰어로 먼저 노출·게인·트리거가 원하는 대로 동작하는지 확인하는 것이 정석입니다. 뷰어에서 재현 안 되는 문제는 십중팔구 소프트웨어 로직이 아니라 카메라·조명·설치 쪽 문제입니다.
+            </div>
         </div>
         <div class="card">
             <h3>② 포괄적인 소프트웨어 (Comprehensive Software)</h3>
@@ -241,6 +334,120 @@
                     <img src="../../images/machinevision/machinevision_software_sdk.png" alt="SDK(eSDK)">
                 </div>
             </ul>
+            <div class="note">
+                <strong>개발자 노트</strong> — 제조사 전용 SDK는 성능·기능이 풍부하지만 특정 카메라에 종속됩니다. 여러 제조사 카메라를 함께 다루거나 장기적으로 카메라 교체 가능성이 있다면, 3절에서 다루는 GenICam/GenTL 표준 기반 오픈소스 라이브러리(예: Harvester) 위에 애플리케이션을 구성하는 것도 좋은 대안입니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>3. 표준 이미지 획득 파이프라인</h2>
+        <div class="card">
+            <ul>
+                <li>제조사·인터페이스(GigE/USB3/CXP)가 달라도, GenICam 기반 애플리케이션의 이미지 획득 흐름은 대부분 아래와 같은 공통 단계를 따름</li>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg">
+                    <g font-size="11" fill="#e5e7eb">
+                        <rect x="10" y="20" width="120" height="40" rx="6" fill="#111827" stroke="#374151"/>
+                        <text x="70" y="44" text-anchor="middle">① 장치 열거</text>
+
+                        <rect x="150" y="20" width="120" height="40" rx="6" fill="#111827" stroke="#374151"/>
+                        <text x="210" y="44" text-anchor="middle">② 장치 연결(Open)</text>
+
+                        <rect x="290" y="20" width="140" height="40" rx="6" fill="#111827" stroke="#374151"/>
+                        <text x="360" y="38" text-anchor="middle">③ 노드맵 설정</text>
+                        <text x="360" y="52" text-anchor="middle" font-size="9" fill="#9ca3af">(Exposure/Gain/Trigger)</text>
+
+                        <rect x="450" y="20" width="150" height="40" rx="6" fill="#111827" stroke="#374151"/>
+                        <text x="525" y="44" text-anchor="middle">④ 스트리밍 시작</text>
+
+                        <rect x="450" y="100" width="150" height="40" rx="6" fill="#111827" stroke="#6366f1"/>
+                        <text x="525" y="124" text-anchor="middle">⑤ 버퍼 Fetch (이미지 획득)</text>
+
+                        <rect x="290" y="100" width="140" height="40" rx="6" fill="#111827" stroke="#374151"/>
+                        <text x="360" y="124" text-anchor="middle">⑥ 픽셀 포맷 변환</text>
+
+                        <rect x="150" y="100" width="120" height="40" rx="6" fill="#111827" stroke="#374151"/>
+                        <text x="210" y="124" text-anchor="middle">⑦ 검사 알고리즘</text>
+
+                        <rect x="10" y="100" width="120" height="40" rx="6" fill="#111827" stroke="#374151"/>
+                        <text x="70" y="124" text-anchor="middle">⑧ 버퍼 반환(Queue)</text>
+
+                        <rect x="220" y="180" width="200" height="40" rx="6" fill="#111827" stroke="#374151"/>
+                        <text x="320" y="204" text-anchor="middle">⑨ 스트리밍 종료 / 장치 해제</text>
+                    </g>
+
+                    <path d="M130,40 H150" stroke="#6366f1" stroke-width="2"/>
+                    <path d="M270,40 H290" stroke="#6366f1" stroke-width="2"/>
+                    <path d="M430,40 H450" stroke="#6366f1" stroke-width="2"/>
+                    <path d="M525,60 V100" stroke="#6366f1" stroke-width="2"/>
+                    <path d="M450,120 H430" stroke="#6366f1" stroke-width="2"/>
+                    <path d="M290,120 H270" stroke="#6366f1" stroke-width="2"/>
+                    <path d="M150,120 H130" stroke="#6366f1" stroke-width="2"/>
+                    <path d="M70,140 V160 H320 V180" stroke="#f59e0b" stroke-width="2" fill="none"/>
+                    <text x="180" y="155" fill="#f59e0b" font-size="9">⑤~⑧ 프레임마다 반복</text>
+                </svg>
+            </div>
+
+            <div class="note">
+                <strong>개발자 노트</strong> — ⑤~⑧ 구간(버퍼 획득 → 처리 → 반환)이 카메라의 프레임 레이트 안에 끝나지 않으면 내부 버퍼가 가득 차 프레임 드랍이 발생합니다. 검사 알고리즘이 무거워질 것에 대비해, 획득(⑤)과 처리(⑥~⑦)를 서로 다른 스레드로 분리하는 설계를 기본으로 가져가는 것이 안전합니다 (4절 참고).
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>4. 버퍼 관리와 멀티스레드 아키텍처</h2>
+        <div class="card">
+            <ul>
+                <li>폴링(Polling) 방식 : 애플리케이션이 주기적으로 "새 이미지가 있는지" 확인하며 가져오는 방식. 구현이 단순하지만 폴링 주기에 따라 지연이 생길 수 있음</li>
+                <li>콜백(Callback/Event) 방식 : 새 이미지가 도착하면 드라이버가 등록된 콜백 함수를 즉시 호출. 지연이 적어 고속 스트리밍에 유리하지만 콜백 함수 내부 처리 시간 관리가 중요</li>
+                <li>일반적인 실무 아키텍처 : <strong>획득 스레드</strong>(카메라에서 버퍼를 최대한 빨리 fetch해 큐에 적재)와 <strong>처리 스레드</strong>(큐에서 이미지를 꺼내 검사 알고리즘 수행)를 분리</li>
+                    <div class="li-desc">획득 스레드가 처리 지연에 영향받지 않도록 하여 프레임 드랍을 최소화</div>
+                    <div class="li-desc">처리 속도가 획득 속도를 따라가지 못하면 큐에 이미지가 쌓이므로, 큐 최대 길이를 정해 오래된 프레임을 버리는 정책(Drop Oldest)도 함께 설계</div>
+            </ul>
+            <div class="note">
+                <strong>개발자 노트</strong> — 카메라 연결이 순간적으로 끊기거나 재연결되는 상황(케이블 접촉 불량, 스위치 재부팅 등)에 대한 예외 처리와 자동 재연결 로직은 초기 설계에서 빠뜨리기 쉽지만, 실제 생산 라인에서 24시간 가동할 때 안정성을 좌우하는 핵심 요소입니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>5. 이미지 처리 라이브러리 생태계</h2>
+        <div class="card">
+            <table class="compare-table">
+                <tr><th>라이브러리</th><th>특징</th><th>주 용도</th></tr>
+                <tr><td>OpenCV</td><td>오픈소스 무료, 방대한 커뮤니티, 범용 컴퓨터비전 알고리즘</td><td>커스텀 알고리즘 개발, 예산 제약이 있는 프로젝트</td></tr>
+                <tr><td>MVTec HALCON</td><td>2500개 이상의 연산자, GPU 가속, 3D 비전, 다양한 임베디드 플랫폼 지원</td><td>고성능 산업 검사, 로봇 가이던스</td></tr>
+                <tr><td>Cognex VisionPro</td><td>드래그앤드롭 GUI, 룰 기반+딥러닝 툴 결합</td><td>빠른 애플리케이션 구성, EtherNet/IP 연동</td></tr>
+                <tr><td>Euresys Open eVision</td><td>패턴 매칭·정렬·측정 등 모듈형 라이브러리</td><td>프레임그래버 연동 검사 시스템</td></tr>
+            </table>
+            <div class="note">
+                <strong>개발자 노트</strong> — 딥러닝 기반 검사가 필요하면 컴퓨팅 페이지에서 다룬 TensorRT/ONNX Runtime 같은 추론 엔진과 위 라이브러리를 조합하는 경우가 많습니다(예: HALCON의 내장 딥러닝 툴, 또는 OpenCV로 전처리 후 별도 추론 엔진 호출). 상용 라이브러리는 런타임 라이선스 비용이 카메라 대수만큼 발생하는 경우가 많으니, 초기 견적 단계에서부터 라이선스 정책을 확인해야 합니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>6. 머신비전 개발자를 위한 소프트웨어 스택 체크리스트</h2>
+        <div class="card">
+            <ul>
+                <li>표준 준수 — GenICam/GenTL 호환 여부로 카메라 교체·멀티벤더 대응 유연성 확보</li>
+                <li>획득 아키텍처 — 획득 스레드와 처리 스레드 분리, 버퍼 큐 정책(오래된 프레임 처리 방식) 설계</li>
+                <li>예외 처리 — 카메라 연결 끊김, 타임아웃, 재연결 시나리오에 대한 복구 로직</li>
+                <li>이미지 처리 라이브러리 — 예산·성능·GUI 필요 여부에 따라 OpenCV vs 상용 라이브러리(HALCON/VisionPro 등) 선택</li>
+                <li>딥러닝 통합 — 추론 엔진(TensorRT/ONNX Runtime)과 기존 파이프라인의 연동 방식</li>
+                <li>라이선스 비용 — 상용 SDK/라이브러리의 카메라 대수·PC 대수 기준 라이선스 정책 사전 확인</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>7. 관련 학습</h2>
+        <div class="card nav-row">
+            <a href="./machinevision_computing.html" class="detail-btn"><span class="arrow">←</span> 이전 : 컴퓨팅 플랫폼 (Computing)</a>
+            <a href="./machinevision_introduction.html" class="detail-btn">처음으로 : 머신 비전 개요 <span class="arrow">→</span></a>
         </div>
     </div>
 </section>

@@ -44,17 +44,23 @@
             padding: 20px;
         }
 
+        nav p {
+            color: var(--sub);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
         section {
             max-width: 1100px;
             margin: auto;
             padding: 60px 20px;
         }
 
-        .section h2 { 
-            font-size: 22px; 
-            margin-bottom: 15px; 
-            border-left: 4px solid var(--primary); 
-            padding-left: 10px; 
+        .section h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
         }
 
         .card {
@@ -104,6 +110,75 @@
             border: 1px solid #1f2937;
         }
 
+        .svg-box {
+            margin: 16px 0;
+            text-align: center;
+        }
+
+        .svg-box svg {
+            width: 100%;
+            max-width: 640px;
+            height: auto;
+            background: #0b1120;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 14px;
+        }
+
+        .compare-table th,
+        .compare-table td {
+            border: 1px solid #1f2937;
+            padding: 10px 12px;
+            text-align: left;
+            color: var(--sub);
+        }
+
+        .compare-table th {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .note {
+            background: rgba(99, 102, 241, 0.08);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .note strong {
+            color: var(--primary);
+        }
+
+        .formula {
+            background: #0b1120;
+            border: 1px solid #1f2937;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 10px 0;
+            font-size: 14px;
+            color: var(--text);
+            font-family: 'Courier New', monospace;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
         footer {
             text-align: center;
             padding: 40px 20px;
@@ -130,6 +205,7 @@
           align-items: center;
           gap: 6px;
           margin-top: 10px;
+          margin-right: 8px;
           padding: 6px 12px;
           font-size: 13px;
           color: var(--primary);
@@ -138,18 +214,25 @@
           text-decoration: none;
           transition: 0.2s;
         }
-        
+
         .detail-btn:hover {
           background: var(--primary);
           color: white;
         }
-        
+
         .arrow {
           transition: transform 0.2s;
         }
-        
+
         .detail-btn:hover .arrow {
           transform: translateX(3px);
+        }
+
+        .nav-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
     </style>
@@ -171,51 +254,52 @@
     </div>
 
     <nav>
-        <h3>렌즈 (Lens)</h3>
-        <!--<ul>
-            <li><a href="#projects">네이게이션추가</a></li>
-        </ul>-->
+        <h3>렌즈 (Lens) - 심화</h3>
+        <p>머신비전 개발자를 위한 렌즈 선정 · 광학 계산 심화 학습</p>
     </nav>
 </header>
 
 <section>
+
     <div class="section">
         <h2>1. 개요</h2>
         <div class="card">
-            <ul>　
-                <li>들어오는 빛의 초점을 모아 장면을 확대하는 장치</li>
-                <li>렌즈는 카메라가 외부 세계를 선명하게 볼 수 있게 해줌</li>
-                <!-- 이미지 추가 -->
-                <!--
-                <div class="img-box">
-                    <img src="../../images/deposition_structure.png" alt="증착구조">
-                </div>
-              -->
+            <ul>
+                <li>들어오는 빛의 초점을 모아 장면을 확대·축소해 이미지 센서에 상을 맺히게 하는 광학 장치</li>
+                <li>렌즈는 카메라가 검사 대상을 얼마나 선명하고 정확한 크기·형상으로 "볼 수 있는가"를 결정함</li>
+                <li>머신비전 시스템 설계는 "센서 - 렌즈 - 조명"을 하나의 광학계로 함께 설계하는 작업이며, 렌즈만 따로 떼어 고르면 원하는 해상도나 시야를 확보하지 못하는 경우가 많음</li>
             </ul>
+            <div class="note">
+                <strong>개발자 노트</strong> — 렌즈 선정은 감(感)이 아니라 계산으로 접근해야 합니다. 검사 대상의 크기, 검출해야 할 최소 결함 크기, 카메라 설치 가능 거리(작동 거리)가 정해지면 필요한 초점 거리는 공식으로 역산할 수 있습니다 (3절 참고).
+            </div>
         </div>
     </div>
 
     <div class="section">
-        <h2>2. 렌즈 관련 용어</h2>
+        <h2>2. 렌즈 관련 핵심 용어</h2>
         <div class="card">
             <ul>
-                <li>화각 (AoV)</li>
-                    <div class="li-desc">　렌즈를 통해 볼 수 있는 영역의 각도 범위(도 단위)를 나타냄</div>
-                    <div class="li-desc">　AoV는 호환되는 센서 크기를 사용하면서, 렌즈를 무한대로 초점을 맞춰서 파생되는 모든 렌즈의 사양</div>
-                    <div class="li-desc">　주어진 렌즈와 센서 크기에 대해 AoV는 일정</div>
-                <li>시야 (FoV)</li>
-                    <div class="li-desc">　Field of View는 렌즈를 통해 볼 수 있는 영역의 직사각형 범위를 말함</div>
-                    <div class="li-desc">　FoV는 초점 거리와 물체 거리에 따라 달라짐</div>
-                    <div class="li-desc">　FoV는 AoV의 경우 렌즈를 무한대로 초점을 맞추는 것과는 반대로 특정 초점 거리에서 캡처되는 것을 설명</div>
-                <li>물체 거리</li>
-                    <div class="li-desc">　물체 거리는 렌즈와 대상 물체 사이의 작동 거리 (Working Distance)</div>
-                <li>초점 거리</li>
-                    <div class="li-desc">　초점 거리는 렌즈와 초점 사이의 거리 (Focal Length)</div>
-                    <div class="li-desc">　초점이 센서에 있으면 이미지에 초점이 맞춰짐</div>
-                <li>조리개 및 F-Stop</li>
-                    <div class="li-desc">　조리개는 센서에 도달하는 빛의 양을 제어하는 렌즈의 개구부</div>
-                    <div class="li-desc">　조리개의 크기는 F-Stop 값으로 측정</div>
-                    <div class="li-desc">　F-Stop 값이 작을 수록 조리개가 더 많이 개방되는 것을 의미함</div>
+                <li>화각 (AoV, Angle of View)</li>
+                    <div class="li-desc">렌즈를 통해 볼 수 있는 영역의 각도 범위(도 단위)</div>
+                    <div class="li-desc">동일한 센서 크기 기준, 렌즈를 무한대 초점으로 맞췄을 때 정해지는 렌즈 고유 사양 (렌즈-센서 조합마다 일정)</div>
+                <li>시야 (FoV, Field of View)</li>
+                    <div class="li-desc">렌즈를 통해 실제로 촬영되는 대상 영역의 실측 크기(가로×세로, mm 단위)</div>
+                    <div class="li-desc">동일한 렌즈라도 초점을 맞추는 작동 거리에 따라 FoV 크기가 달라짐</div>
+                <li>작동 거리 (WD, Working Distance)</li>
+                    <div class="li-desc">렌즈 앞단과 초점이 맞는 대상 물체 사이의 거리</div>
+                <li>초점 거리 (Focal Length, f)</li>
+                    <div class="li-desc">렌즈의 주점(광학 중심)과 초점이 맺히는 위치 사이의 거리이며, 렌즈 사양에 "f=12mm"처럼 표기됨</div>
+                    <div class="li-desc">초점 거리가 짧을수록 화각이 넓어지고(광각), 길수록 화각이 좁아짐(망원)</div>
+                <li>조리개 및 F-Stop (F-Number)</li>
+                    <div class="li-desc">조리개는 센서에 도달하는 빛의 양을 제어하는 렌즈 내부의 개구부</div>
+                    <div class="li-desc">개구부 크기는 F-Stop 값(F/1.4, F/2.8, F/8 ...)으로 표기하며, 초점거리를 유효 조리개 지름으로 나눈 값</div>
+                    <div class="li-desc">F-Stop 값이 작을수록 조리개가 더 많이 개방되어 밝고 심도가 얕아지며, 값이 클수록 어둡고 심도가 깊어짐</div>
+                <li>심도 (DOF, Depth of Field)</li>
+                    <div class="li-desc">초점이 맞는 것으로 허용되는 거리 범위. F-Stop을 높이면(조리개를 좁히면) DOF가 깊어짐</div>
+                    <div class="li-desc">단, 지나치게 F-Stop을 높이면 빛이 부족해지고, 회절(Diffraction) 현상으로 오히려 해상력이 떨어질 수 있어 보통 F8~F11 부근을 실용적 상한으로 봄</div>
+                <li>왜곡 (Distortion)</li>
+                    <div class="li-desc">직선이 곡선으로 휘어 보이는 광학 오차. 화면 중심 대비 가장자리가 볼록해지는 배럴(Barrel) 왜곡, 오목해지는 핀쿠션(Pincushion) 왜곡이 대표적</div>
+                    <div class="li-desc">치수 측정용 애플리케이션에서는 왜곡률(%)이 낮은 렌즈를 선택하거나 소프트웨어 보정(Calibration)이 필요</div>
 
                  <div class="img-box">
                     <img src="../../images/machinevision/machinevision_lens_composition.png" alt="렌즈구성">
@@ -225,31 +309,193 @@
     </div>
 
     <div class="section">
-        <h2>3. 렌즈의 종류</h2>
+        <h2>3. FoV · 배율 · 해상도 계산 (실무 산정)</h2>
+        <div class="card">
+            <ul>
+                <li>배율 (Magnification, M) = 센서 크기(h) ÷ FoV 크기(H)</li>
+                <li>근사식 (작동거리가 초점거리보다 훨씬 큰 일반적인 경우) : <strong>M ≈ f ÷ WD</strong></li>
+                <li>따라서 목표 FoV를 확보하기 위한 초점 거리는 : <strong>f ≈ h × WD ÷ H</strong></li>
+                <li>GSD(픽셀당 실제 크기, Ground Sample Distance) = FoV(H) ÷ 해상도(가로 픽셀 수)</li>
+            </ul>
+
+            <div class="formula">
+GSD (mm/px) = FoV 가로길이(mm) ÷ 카메라 가로 해상도(px)
+검출 최소 결함 크기(mm) ≥ GSD × 2~3 (나이퀴스트 샘플링 기준)
+            </div>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 620 220" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="60" y1="40" x2="60" y2="180" stroke="#6366f1" stroke-width="3"/>
+                    <text x="60" y="30" text-anchor="middle" fill="#e5e7eb" font-size="12">대상 (FoV = H)</text>
+
+                    <line x1="300" y1="45" x2="300" y2="175" stroke="#9ca3af" stroke-width="2"/>
+                    <circle cx="300" cy="110" r="4" fill="#9ca3af"/>
+                    <text x="300" y="30" text-anchor="middle" fill="#e5e7eb" font-size="12">렌즈</text>
+
+                    <line x1="470" y1="85" x2="470" y2="135" stroke="#f59e0b" stroke-width="3"/>
+                    <text x="470" y="30" text-anchor="middle" fill="#e5e7eb" font-size="12">센서 (h)</text>
+
+                    <line x1="60" y1="40" x2="470" y2="135" stroke="#374151" stroke-width="1"/>
+                    <line x1="60" y1="180" x2="470" y2="85" stroke="#374151" stroke-width="1"/>
+
+                    <line x1="60" y1="200" x2="300" y2="200" stroke="#6b7280" stroke-width="1"/>
+                    <text x="180" y="215" text-anchor="middle" fill="#9ca3af" font-size="11">작동거리 (WD)</text>
+
+                    <line x1="300" y1="200" x2="470" y2="200" stroke="#6b7280" stroke-width="1"/>
+                    <text x="385" y="215" text-anchor="middle" fill="#9ca3af" font-size="11">초점거리 (f)</text>
+                </svg>
+            </div>
+
+            <div class="note">
+                <strong>예시 계산</strong> — 센서 가로 크기 h = 8mm(2/3인치급), 목표 FoV 가로 H = 200mm, 작동 거리 WD = 300mm로 설계하고 싶다면<br>
+                f ≈ h × WD ÷ H = 8 × 300 ÷ 200 = <strong>12mm</strong> → 12mm 초점거리 렌즈 선정<br>
+                이때 카메라 가로 해상도가 2000px이라면 GSD = 200mm ÷ 2000px = 0.1mm/px → 0.2~0.3mm 크기의 결함까지 검출 가능
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>4. 렌즈의 종류</h2>
         <div class="card">
             <h3>① 엔토센트릭 렌즈 (Entocentric Lens)</h3>
             <ul>
-                <li>이 렌즈는 초점 거리가 고정되어 있으며, 머신 비전 카메라에 사용되는 가장 일반적인 렌즈</li>
+                <li>초점 거리가 고정되어 있으며, 머신비전 카메라에 사용되는 가장 일반적이고 저렴한 렌즈</li>
+                <li>사람 눈처럼 원근에 따라 광선이 원뿔형으로 모이므로(각도 화각), 가까운 물체가 크게, 먼 물체가 작게 보이는 원근 왜곡(Perspective Error)이 발생함</li>
                 <div class="img-box">
                     <img src="../../images/machinevision/machinevision_lens_entocentric.png" alt="엔토센트릭렌즈">
                 </div>
             </ul>
             <h3>② 매크로 렌즈 (Macro Lens)</h3>
             <ul>
-                <li>매크로 렌즈는 고배율을 달성하도록 설계되었으며, 일반적으로 0.5x ~ 10x의 배율 범위에서 작동</li>
+                <li>고배율(일반적으로 0.5x ~ 10x)을 달성하도록 설계되어 미세한 대상을 크게 확대해서 봄</li>
+                <li>작동 거리가 매우 짧고 심도(DOF)가 얕아, 정밀한 위치 고정과 조명 설계가 함께 필요</li>
                 <div class="img-box">
                     <img src="../../images/machinevision/machinevision_lens_macro.png" alt="매크로렌즈">
                 </div>
             </ul>
             <h3>③ 텔레센트릭 렌즈 (Telecentric Lens)</h3>
             <ul>
-                <li>텔레센트릭 렌즈는 이미징 각도가 없으며, 수직 뷰를 생성</li>
+                <li>조리개(Aperture Stop)를 렌즈의 초점면에 배치해, 물체에서 나오는 주광선(Chief Ray)이 광축과 평행하게 들어오도록 설계 → 원근 왜곡이 없는 정사영(Orthographic) 상을 만듦</li>
+                <li>작동 거리가 다소 바뀌어도 배율이 거의 일정해, 치수·형상 측정(Metrology)에 필수적으로 사용됨</li>
+                <li>단점 : 렌즈의 유효 지름이 최소 FoV 크기 이상이어야 하므로 렌즈가 크고 무겁고 고가이며, 작동 거리 변경 폭이 좁음</li>
                 <div class="img-box">
                     <img src="../../images/machinevision/machinevision_lens_telecentric.png" alt="텔레센트릭렌즈">
                 </div>
             </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 620 200" xmlns="http://www.w3.org/2000/svg">
+                    <text x="150" y="20" text-anchor="middle" fill="#e5e7eb" font-size="14" font-weight="700">엔토센트릭 (원근 왜곡 O)</text>
+                    <line x1="60" y1="40" x2="60" y2="70" stroke="#6366f1" stroke-width="3"/>
+                    <line x1="120" y1="55" x2="120" y2="75" stroke="#6366f1" stroke-width="3"/>
+                    <circle cx="230" cy="100" r="5" fill="#9ca3af"/>
+                    <line x1="60" y1="40" x2="230" y2="100" stroke="#374151"/>
+                    <line x1="60" y1="70" x2="230" y2="100" stroke="#374151"/>
+                    <line x1="120" y1="55" x2="230" y2="100" stroke="#374151"/>
+                    <line x1="120" y1="75" x2="230" y2="100" stroke="#374151"/>
+                    <line x1="230" y1="100" x2="290" y2="80" stroke="#f59e0b" stroke-width="3"/>
+                    <line x1="230" y1="100" x2="290" y2="120" stroke="#f59e0b" stroke-width="3"/>
+                    <text x="175" y="150" text-anchor="middle" fill="#9ca3af" font-size="11">거리가 다른 대상 → 상 크기가</text>
+                    <text x="175" y="165" text-anchor="middle" fill="#9ca3af" font-size="11">거리에 따라 다르게 맺힘</text>
+
+                    <text x="470" y="20" text-anchor="middle" fill="#e5e7eb" font-size="14" font-weight="700">텔레센트릭 (원근 왜곡 X)</text>
+                    <line x1="390" y1="45" x2="390" y2="70" stroke="#6366f1" stroke-width="3"/>
+                    <line x1="440" y1="55" x2="440" y2="75" stroke="#6366f1" stroke-width="3"/>
+                    <rect x="540" y="40" width="16" height="80" fill="none" stroke="#9ca3af"/>
+                    <line x1="390" y1="45" x2="540" y2="45" stroke="#374151"/>
+                    <line x1="390" y1="70" x2="540" y2="70" stroke="#374151"/>
+                    <line x1="440" y1="55" x2="540" y2="55" stroke="#374151"/>
+                    <line x1="440" y1="75" x2="540" y2="75" stroke="#374151"/>
+                    <line x1="556" y1="55" x2="590" y2="55" stroke="#f59e0b" stroke-width="3"/>
+                    <line x1="556" y1="75" x2="590" y2="75" stroke="#f59e0b" stroke-width="3"/>
+                    <text x="470" y="150" text-anchor="middle" fill="#9ca3af" font-size="11">주광선이 항상 평행 → 거리와</text>
+                    <text x="470" y="165" text-anchor="middle" fill="#9ca3af" font-size="11">무관하게 동일한 배율 유지</text>
+                </svg>
+            </div>
+
+            <table class="compare-table">
+                <tr><th>구분</th><th>엔토센트릭</th><th>매크로</th><th>텔레센트릭</th></tr>
+                <tr><td>원근 왜곡</td><td>있음</td><td>있음(고배율에서 더 민감)</td><td>없음(정사영)</td></tr>
+                <tr><td>배율 안정성</td><td>거리 변화에 민감</td><td>매우 민감(얕은 DOF)</td><td>거리 변화에 매우 둔감</td></tr>
+                <tr><td>주 용도</td><td>일반 검사, 인식</td><td>미세 패턴/부품 확대 검사</td><td>정밀 치수·형상 측정</td></tr>
+                <tr><td>비용/크기</td><td>저렴, 소형</td><td>중간</td><td>고가, 대형</td></tr>
+            </table>
+
+            <div class="note">
+                <strong>개발자 노트 (선택 가이드)</strong><br>
+                · 단순 유무 판별, 문자/바코드 인식, 표면 결함 검출 → <strong>엔토센트릭</strong>으로 충분한 경우가 대부분<br>
+                · 부품의 실제 치수(길이, 지름, 각도 등)를 수치로 측정해야 하는 애플리케이션 → <strong>텔레센트릭</strong>이 사실상 필수 (대상이 살짝 앞뒤로 움직여도 측정값이 흔들리지 않음)<br>
+                · 참고 : Edmund Optics, Opto Engineering, Vision-Doctor 등 광학 벤더 기술 자료 기준
+            </div>
         </div>
     </div>
+
+    <div class="section">
+        <h2>5. 렌즈 마운트 &amp; 센서 포맷 호환성</h2>
+        <div class="card">
+            <ul>
+                <li>렌즈 마운트는 렌즈와 카메라 바디를 물리적으로 결합하는 규격이며, 카메라와 렌즈의 마운트가 일치해야 함</li>
+                <li>대표 마운트 : C-mount, CS-mount, F-mount, S-mount(M12)</li>
+                <li>C-mount와 CS-mount는 나사산 규격은 동일하지만 <strong>플랜지 초점 거리(Flange Focal Distance)</strong>가 다름 (C-mount 17.526mm, CS-mount 12.526mm, 5mm 차이)</li>
+                <div class="li-desc">C-mount 렌즈는 5mm 어댑터를 끼우면 CS-mount 카메라에도 장착 가능</div>
+                <div class="li-desc">반대로 CS-mount 렌즈를 C-mount 카메라에 장착하면 후방초점거리가 부족해 초점이 맞지 않음 (물리적으로 결합은 되지만 사용 불가)</div>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 620 190" xmlns="http://www.w3.org/2000/svg">
+                    <text x="150" y="20" text-anchor="middle" fill="#e5e7eb" font-size="14" font-weight="700">C-mount</text>
+                    <rect x="60" y="50" width="60" height="60" fill="#111827" stroke="#374151"/>
+                    <text x="90" y="85" text-anchor="middle" fill="#9ca3af" font-size="11">렌즈</text>
+                    <rect x="215" y="65" width="12" height="30" fill="#111827" stroke="#374151"/>
+                    <line x1="120" y1="130" x2="215" y2="130" stroke="#6366f1" stroke-width="2"/>
+                    <text x="167" y="122" text-anchor="middle" fill="#e5e7eb" font-size="11">17.526mm</text>
+                    <text x="167" y="150" text-anchor="middle" fill="#9ca3af" font-size="10">플랜지 초점거리</text>
+
+                    <text x="470" y="20" text-anchor="middle" fill="#e5e7eb" font-size="14" font-weight="700">CS-mount</text>
+                    <rect x="380" y="50" width="60" height="60" fill="#111827" stroke="#374151"/>
+                    <text x="410" y="85" text-anchor="middle" fill="#9ca3af" font-size="11">렌즈</text>
+                    <rect x="510" y="65" width="12" height="30" fill="#111827" stroke="#374151"/>
+                    <line x1="440" y1="130" x2="510" y2="130" stroke="#f59e0b" stroke-width="2"/>
+                    <text x="475" y="122" text-anchor="middle" fill="#e5e7eb" font-size="11">12.526mm</text>
+                    <text x="475" y="150" text-anchor="middle" fill="#9ca3af" font-size="10">플랜지 초점거리 (5mm 짧음)</text>
+                </svg>
+            </div>
+
+            <ul>
+                <li>이미지 서클(Image Circle) : 렌즈가 만드는 상이 선명하게 맺히는 원형 영역의 지름</li>
+                <div class="li-desc">렌즈의 이미지 서클이 사용하는 센서의 대각선 길이보다 작으면 화면 가장자리가 어두워지는 비네팅(Vignetting) 또는 해상력 저하가 발생함</div>
+                <div class="li-desc">대형 센서(1인치 이상)로 업그레이드할 때 기존에 쓰던 렌즈의 이미지 서클이 새 센서를 충분히 커버하는지 반드시 확인 필요</div>
+            </ul>
+
+            <div class="note">
+                <strong>개발자 노트</strong> — 카메라·렌즈 스펙 문서에서 확인할 3가지: <strong>① 마운트 타입 일치 여부, ② 렌즈 이미지 서클 ≥ 센서 대각선, ③ 목표 FoV·WD에서 산출한 초점거리와 렌즈 사양 일치</strong>. 이 세 가지만 맞아도 대부분의 렌즈 선정 실수를 예방할 수 있습니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>6. 머신비전 개발자를 위한 렌즈 선정 체크리스트</h2>
+        <div class="card">
+            <ul>
+                <li>목표 FoV &amp; 작동 거리 — 설치 공간 제약상 확보 가능한 WD 내에서 필요한 FoV를 커버하는 초점거리 계산</li>
+                <li>필요 GSD(해상도) — 검출할 최소 결함 크기 대비 2~3픽셀 이상 확보되는지 확인</li>
+                <li>원근 왜곡 허용 여부 — 치수/형상 측정이 목적이라면 텔레센트릭 렌즈 검토</li>
+                <li>심도(DOF) — 검사 대상의 높이 편차, 컨베이어 진동 등을 감안한 초점 여유 확보</li>
+                <li>마운트 호환성 — 카메라 바디 마운트(C/CS/F/S)와 렌즈 마운트 일치, 필요 시 어댑터 사용 가능 여부</li>
+                <li>이미지 서클 — 렌즈 이미지 서클이 센서 포맷(대각선 길이) 이상인지 확인 (비네팅 방지)</li>
+                <li>조명과의 정합성 — 렌즈 조리개(F-Stop)에서 충분한 광량을 확보할 수 있는 조명 세기인지 함께 검토</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>7. 관련 학습</h2>
+        <div class="card nav-row">
+            <a href="./machinevision_camera.html" class="detail-btn"><span class="arrow">←</span> 이전 : 카메라 (Camera)</a>
+            <a href="./machinevision_illumination.html" class="detail-btn">다음 : 조명 (Illumination) <span class="arrow">→</span></a>
+        </div>
+    </div>
+
 </section>
 
 <footer>

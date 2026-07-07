@@ -237,11 +237,60 @@
           border-radius: 10px;
           border: 1px solid #1f2937;
         }
-        
+
         .img-caption {
           margin-top: 6px;
           font-size: 13px;
           color: var(--sub);
+        }
+
+        .svg-box {
+            margin: 16px 0;
+            text-align: center;
+        }
+
+        .svg-box svg {
+            width: 100%;
+            max-width: 1040px;
+            height: auto;
+            background: #0b1120;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 14px;
+        }
+
+        .compare-table th,
+        .compare-table td {
+            border: 1px solid #1f2937;
+            padding: 10px 12px;
+            text-align: left;
+            color: var(--sub);
+        }
+
+        .compare-table th {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .note {
+            background: rgba(99, 102, 241, 0.08);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .note strong {
+            color: var(--primary);
+        }
     </style>
 </head>
 <body>
@@ -283,15 +332,168 @@
                 <li>자동화된 장비가 물체를 찾고 식별하며 재질, 상태, 방향 및 기타 세부 정보에 대한 정보를 저장하여 나중에 분석도 가능함</li>
                 <li>이러한 데이터는 효율성 향상을 추구하는 공장에 매우 중요한 역할을 함</li>
 
-                 <div class="img-box">
-                     <img src="../../images/machinevision/machinevision_introduction.png" alt="machinevision">
+                <div class="svg-box">
+                    <svg viewBox="0 0 1000 220" xmlns="http://www.w3.org/2000/svg">
+                        <!-- ① 검사 대상 -->
+                        <rect x="10" y="50" width="220" height="80" rx="8" fill="#111827" stroke="#374151" stroke-width="2"/>
+                        <g transform="translate(120,80)">
+                            <line x1="-70" y1="20" x2="70" y2="20" stroke="#374151" stroke-width="4"/>
+                            <circle cx="-60" cy="24" r="4" fill="#374151"/>
+                            <circle cx="60" cy="24" r="4" fill="#374151"/>
+                            <rect x="-12" y="-4" width="24" height="16" rx="2" fill="none" stroke="#9ca3af" stroke-width="2"/>
+                            <circle cx="0" cy="4" r="2.5" fill="#9ca3af"/>
+                        </g>
+                        <text x="120" y="107" text-anchor="middle" fill="#e5e7eb" font-size="14">① 검사 대상</text>
+                        <text x="120" y="123" text-anchor="middle" fill="#9ca3af" font-size="10">카메라 앞을 지나가는 부품</text>
+
+                        <!-- ② 카메라로 촬영 -->
+                        <rect x="260" y="50" width="220" height="80" rx="8" fill="#111827" stroke="#374151" stroke-width="2"/>
+                        <g transform="translate(370,72)">
+                            <rect x="-14" y="-8" width="28" height="18" rx="3" fill="none" stroke="#9ca3af" stroke-width="2"/>
+                            <rect x="-5" y="-13" width="10" height="5" rx="1" fill="none" stroke="#9ca3af" stroke-width="2"/>
+                            <circle cx="0" cy="1" r="6" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                            <circle cx="0" cy="1" r="2" fill="#f59e0b"/>
+                        </g>
+                        <text x="370" y="105" text-anchor="middle" fill="#e5e7eb" font-size="14">② 카메라로 촬영</text>
+                        <text x="370" y="121" text-anchor="middle" fill="#9ca3af" font-size="10">빛을 전기 신호로 변환</text>
+
+                        <!-- ③ 이미지 처리·분석 -->
+                        <rect x="510" y="50" width="240" height="80" rx="8" fill="#111827" stroke="#374151" stroke-width="2"/>
+                        <g transform="translate(630,72)">
+                            <rect x="-14" y="-11" width="24" height="18" rx="2" fill="none" stroke="#9ca3af" stroke-width="2"/>
+                            <circle cx="8" cy="7" r="6" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                            <line x1="12.5" y1="11.5" x2="18" y2="17" stroke="#f59e0b" stroke-width="2"/>
+                        </g>
+                        <text x="630" y="105" text-anchor="middle" fill="#e5e7eb" font-size="14">③ 이미지 처리 · 분석</text>
+                        <text x="630" y="121" text-anchor="middle" fill="#9ca3af" font-size="10">알고리즘으로 특징 추출</text>
+
+                        <!-- ④ 판정 결과 -->
+                        <rect x="780" y="50" width="210" height="80" rx="8" fill="#111827" stroke="#374151" stroke-width="2"/>
+                        <g transform="translate(885,72)">
+                            <circle cx="-35" cy="0" r="14" fill="none" stroke="#22c55e" stroke-width="2"/>
+                            <path d="M-42,0 L-37,5 L-28,-6" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+                            <circle cx="35" cy="0" r="14" fill="none" stroke="#ef4444" stroke-width="2"/>
+                            <line x1="29" y1="-6" x2="41" y2="6" stroke="#ef4444" stroke-width="2.5"/>
+                            <line x1="41" y1="-6" x2="29" y2="6" stroke="#ef4444" stroke-width="2.5"/>
+                        </g>
+                        <text x="885" y="105" text-anchor="middle" fill="#e5e7eb" font-size="14">④ 판정 결과</text>
+                        <text x="885" y="121" text-anchor="middle" fill="#9ca3af" font-size="10">양품 / 불량 자동 분류</text>
+
+                        <path d="M230,90 H260" stroke="#374151" stroke-width="2.5"/>
+                        <polygon points="260,90 251,85 251,95" fill="#374151"/>
+                        <path d="M480,90 H510" stroke="#374151" stroke-width="2.5"/>
+                        <polygon points="510,90 501,85 501,95" fill="#374151"/>
+                        <path d="M750,90 H780" stroke="#374151" stroke-width="2.5"/>
+                        <polygon points="780,90 771,85 771,95" fill="#374151"/>
+
+                        <text x="500" y="170" text-anchor="middle" fill="#9ca3af" font-size="13">머신 비전은 이 네 단계를 사람 대신 빠르고 일관되게 반복 수행함</text>
+                    </svg>
                 </div>
                 </ul>
             </div>
         </div>
         <div class="section">
-            <h2>2. 머신 비전 시스템의 구성</h2>
+            <h2>2. 머신 비전 vs 컴퓨터 비전 vs 딥러닝 기반 비전</h2>
             <div class="card">
+                <ul>
+                    <li>컴퓨터 비전 (Computer Vision)</li>
+                        <li-desc>이미지·영상에서 정보를 추출하는 포괄적인 학문·기술 분야. 자율주행, 얼굴 인식, 의료 영상 분석 등 산업 자동화 외의 영역까지 아우르는 상위 개념</li-desc>
+                    <li>머신 비전 (Machine Vision)</li>
+                        <li-desc>컴퓨터 비전 기술을 산업 자동화·제조 현장에 특화하여 적용한 응용 분야</li-desc>
+                        <li-desc>통제된 조명·카메라 환경, 실시간 처리, 반복 정밀도, 높은 신뢰성이 핵심 요구사항이라는 점에서 일반 컴퓨터 비전과 구분됨</li-desc>
+                    <li>딥러닝 기반 비전 (Deep Learning / AI Vision)</li>
+                        <li-desc>신경망 학습 방식을 사용하는 컴퓨터 비전의 하위 분야로, 규칙을 직접 코딩하는 기존의 룰 기반(Rule-based) 머신비전과 대비되는 접근법</li-desc>
+                        <li-desc>최근에는 두 방식을 함께 사용하는 경우가 많음 (예: 룰 기반으로 대상 위치를 찾고, 딥러닝으로 결함 여부를 판정)</li-desc>
+                </ul>
+
+                <table class="compare-table">
+                    <tr><th>구분</th><th>범위</th><th>핵심 목표</th><th>대표 기법</th></tr>
+                    <tr><td>컴퓨터 비전</td><td>가장 넓음 (학문 분야)</td><td>이미지에서 의미 있는 정보 추출</td><td>영상처리 전반, 인식·추적·복원 등</td></tr>
+                    <tr><td>머신 비전</td><td>산업 자동화 응용 분야</td><td>실시간·고신뢰 검사/측정/판별</td><td>통제된 광학계 + 알고리즘</td></tr>
+                    <tr><td>딥러닝 기반 비전</td><td>컴퓨터 비전의 한 방법론</td><td>학습 데이터 기반 패턴 인식</td><td>CNN 등 신경망 모델</td></tr>
+                </table>
+
+                <div class="note">
+                    <strong>개발자 노트</strong> — "머신비전 = 딥러닝"으로 오해하기 쉽지만, 머신비전은 딥러닝을 쓰든 안 쓰든 산업 현장에 적용되는 비전 시스템 전체를 가리키는 말입니다. 실무에서는 여전히 단순하고 예측 가능한 룰 기반 알고리즘(이진화, 엣지 검출 등)만으로 충분한 검사가 많고, 룰만으로 구분이 어려운 복잡한 패턴에 한해 딥러닝을 선택적으로 도입하는 것이 합리적인 접근입니다.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. 머신 비전 시스템 구성과 개발 프로세스</h2>
+            <div class="card">
+                <ul>
+                    <li>머신비전 시스템 개발은 아래와 같이 "요구사항 → 광학계 → 연결/컴퓨팅 → 소프트웨어" 순서로 진행하는 것이 일반적인 흐름</li>
+                </ul>
+
+                <div class="svg-box">
+                    <svg viewBox="0 0 1000 220" xmlns="http://www.w3.org/2000/svg">
+                        <!-- ① 요구사항 (클립보드 아이콘) -->
+                        <rect x="10" y="50" width="175" height="80" rx="8" fill="#111827" stroke="#374151" stroke-width="2"/>
+                        <g transform="translate(97,72)">
+                            <rect x="-10" y="-11" width="20" height="24" rx="2" fill="none" stroke="#6366f1" stroke-width="2"/>
+                            <rect x="-4" y="-14" width="8" height="5" rx="1" fill="#6366f1"/>
+                            <line x1="-6" y1="-1" x2="6" y2="-1" stroke="#9ca3af" stroke-width="1.5"/>
+                            <line x1="-6" y1="4" x2="6" y2="4" stroke="#9ca3af" stroke-width="1.5"/>
+                            <line x1="-6" y1="9" x2="2" y2="9" stroke="#9ca3af" stroke-width="1.5"/>
+                        </g>
+                        <text x="97" y="105" text-anchor="middle" fill="#e5e7eb" font-size="14">① 요구사항</text>
+                        <text x="97" y="121" text-anchor="middle" fill="#9ca3af" font-size="10">검출 대상·사이클타임</text>
+
+                        <!-- ② 광학계 선정 (카메라 아이콘) -->
+                        <rect x="215" y="50" width="205" height="80" rx="8" fill="#111827" stroke="#374151" stroke-width="2"/>
+                        <g transform="translate(317,72)">
+                            <rect x="-14" y="-8" width="28" height="18" rx="3" fill="none" stroke="#9ca3af" stroke-width="2"/>
+                            <rect x="-5" y="-13" width="10" height="5" rx="1" fill="none" stroke="#9ca3af" stroke-width="2"/>
+                            <circle cx="0" cy="1" r="6" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                            <circle cx="0" cy="1" r="2" fill="#f59e0b"/>
+                        </g>
+                        <text x="317" y="105" text-anchor="middle" fill="#e5e7eb" font-size="14">② 광학계 선정</text>
+                        <text x="317" y="121" text-anchor="middle" fill="#9ca3af" font-size="10">카메라 · 렌즈 · 조명</text>
+
+                        <!-- ③ 연결계 선정 (케이블/커넥터 아이콘) -->
+                        <rect x="450" y="50" width="205" height="80" rx="8" fill="#111827" stroke="#374151" stroke-width="2"/>
+                        <g transform="translate(552,72)">
+                            <rect x="-17" y="-5" width="10" height="10" rx="2" fill="none" stroke="#9ca3af" stroke-width="2"/>
+                            <line x1="-7" y1="0" x2="7" y2="0" stroke="#f59e0b" stroke-width="2.5"/>
+                            <rect x="7" y="-5" width="10" height="10" rx="2" fill="none" stroke="#9ca3af" stroke-width="2"/>
+                        </g>
+                        <text x="552" y="105" text-anchor="middle" fill="#e5e7eb" font-size="14">③ 연결계 선정</text>
+                        <text x="552" y="121" text-anchor="middle" fill="#9ca3af" font-size="10">케이블 · 인터페이스</text>
+
+                        <!-- ④ 컴퓨팅 (칩 아이콘) -->
+                        <rect x="685" y="50" width="175" height="80" rx="8" fill="#111827" stroke="#374151" stroke-width="2"/>
+                        <g transform="translate(772,72)">
+                            <rect x="-10" y="-10" width="20" height="20" rx="2" fill="none" stroke="#9ca3af" stroke-width="2"/>
+                            <rect x="-4" y="-4" width="8" height="8" fill="#6366f1"/>
+                            <line x1="-14" y1="-5" x2="-10" y2="-5" stroke="#9ca3af" stroke-width="2"/>
+                            <line x1="-14" y1="5" x2="-10" y2="5" stroke="#9ca3af" stroke-width="2"/>
+                            <line x1="10" y1="-5" x2="14" y2="-5" stroke="#9ca3af" stroke-width="2"/>
+                            <line x1="10" y1="5" x2="14" y2="5" stroke="#9ca3af" stroke-width="2"/>
+                        </g>
+                        <text x="772" y="105" text-anchor="middle" fill="#e5e7eb" font-size="14">④ 컴퓨팅</text>
+                        <text x="772" y="121" text-anchor="middle" fill="#9ca3af" font-size="10">처리 플랫폼 선정</text>
+
+                        <!-- ⑤ SW (코드 아이콘) -->
+                        <rect x="890" y="50" width="100" height="80" rx="8" fill="#111827" stroke="#374151" stroke-width="2"/>
+                        <text x="940" y="78" text-anchor="middle" fill="#6366f1" font-size="18" font-family="Courier New, monospace" font-weight="700">&lt;/&gt;</text>
+                        <text x="940" y="105" text-anchor="middle" fill="#e5e7eb" font-size="14">⑤ SW</text>
+                        <text x="940" y="121" text-anchor="middle" fill="#9ca3af" font-size="10">개발 · 검증</text>
+
+                        <path d="M185,90 H215" stroke="#6366f1" stroke-width="2.5"/>
+                        <polygon points="215,90 206,85 206,95" fill="#6366f1"/>
+                        <path d="M420,90 H450" stroke="#6366f1" stroke-width="2.5"/>
+                        <polygon points="450,90 441,85 441,95" fill="#6366f1"/>
+                        <path d="M655,90 H685" stroke="#6366f1" stroke-width="2.5"/>
+                        <polygon points="685,90 676,85 676,95" fill="#6366f1"/>
+                        <path d="M860,90 H890" stroke="#6366f1" stroke-width="2.5"/>
+                        <polygon points="890,90 881,85 881,95" fill="#6366f1"/>
+
+                        <text x="500" y="165" text-anchor="middle" fill="#9ca3af" font-size="13">앞 단계의 결정이 뒤 단계의 선택지를 좁히는 구조</text>
+                        <text x="500" y="185" text-anchor="middle" fill="#6b7280" font-size="12">(예 : 카메라 해상도 · 프레임레이트 → 필요 인터페이스 대역폭 결정)</text>
+                    </svg>
+                </div>
+
                 <ul>
                 <h3 class="sub-title-h3"><a href="./machinevision_camera.html" class="detail-btn">1. 카메라</a></h3>
                 <h3 class="sub-title-h3"><a href="./machinevision_lens.html" class="detail-btn">2. 렌즈</a></h3>
@@ -301,11 +503,59 @@
                 <h3 class="sub-title-h3"><a href="./machinevision_computing.html" class="detail-btn">6. 컴퓨팅 플랫폼</a></h3>
                 <h3 class="sub-title-h3"><a href="./machinevision_software.html" class="detail-btn">7. 소프트웨어</a></h3>
                 </ul>
+
+                <div class="note">
+                    <strong>개발자 노트</strong> — 실무에서 가장 흔한 실패 패턴은 소프트웨어부터 개발을 시작했다가, 나중에 카메라·렌즈 스펙이 알고리즘 요구사항(해상도, 프레임레이트)을 만족하지 못해 하드웨어를 재선정하는 경우입니다. ①요구사항 정의를 가장 먼저, 가장 꼼꼼하게 하는 것이 전체 개발 기간을 줄이는 지름길입니다.
+                </div>
             </div>
         </div>
-            
+
         <div class="section">
-            <h2>3. 머신 비전의 이점</h2>
+            <h2>4. 머신비전 애플리케이션 유형</h2>
+            <div class="card">
+                <ul>
+                    <li>결함 검출 (Defect Detection)</li>
+                        <li-desc>스크래치, 이물, 크랙, 오염 등 표면·형상 결함의 유무를 판별. 가장 널리 쓰이는 머신비전 응용</li-desc>
+                    <li>치수 측정 (Dimensional Measurement / Metrology)</li>
+                        <li-desc>길이, 각도, 두께, 형상 등을 수치로 정밀하게 측정. 텔레센트릭 렌즈·백라이트 조합이 자주 사용됨(렌즈 페이지 참고)</li-desc>
+                    <li>위치 인식 · 가이던스 (Location / Guidance)</li>
+                        <li-desc>로봇이 부품을 집거나 조립하기 위해 대상의 위치·자세(각도)를 파악</li-desc>
+                    <li>코드 · 문자 판독 (ID Reading / OCR)</li>
+                        <li-desc>바코드, QR코드, 각인된 문자(로트번호, 유통기한 등)를 인식해 추적 정보를 확보</li-desc>
+                    <li>카운팅 (Counting)</li>
+                        <li-desc>정해진 영역 내 대상의 개수를 셈 (예: 부품 수량 확인, 포장 내 내용물 개수 확인)</li-desc>
+                    <li>분류 (Classification / Sorting)</li>
+                        <li-desc>색상, 모양, 등급 등의 기준에 따라 대상을 여러 카테고리로 나눔</li-desc>
+                </ul>
+                <div class="note">
+                    <strong>개발자 노트</strong> — 애플리케이션 유형에 따라 요구되는 하드웨어 조합이 달라집니다. 예를 들어 치수 측정은 텔레센트릭 렌즈+백라이트+Global Shutter 조합이 정석에 가깝고, 결함 검출은 동축/암시야 조명과 고해상도 센서가 중요한 반면, 코드 판독은 상대적으로 낮은 해상도로도 충분한 경우가 많습니다. 프로젝트 초기에 "이 시스템은 위 6가지 중 어디에 속하는가"를 먼저 정의하면 하드웨어 선정이 훨씬 수월해집니다.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. 성능 지표 · 품질 용어</h2>
+            <div class="card">
+                <ul>
+                    <li>검출률 (Detection Rate)</li>
+                        <li-desc>실제 불량품 중 시스템이 정확히 불량으로 판정한 비율. 예: 검출률 99%는 불량 100개 중 99개를 정확히 걸러낸다는 의미</li-desc>
+                    <li>미검출률 / Escape Rate (False Negative)</li>
+                        <li-desc>불량품을 놓치고 양품으로 잘못 통과시키는 비율. 고객 클레임·품질사고로 직결되는 가장 치명적인 오류 유형</li-desc>
+                    <li>오검출률 / Overkill Rate, False Call Rate (False Positive)</li>
+                        <li-desc>양품을 불량으로 잘못 판정해 폐기·재검사하는 비율. 직접적인 품질 사고는 아니지만 생산성과 비용에 영향</li-desc>
+                    <li>검출률-오검출률 트레이드오프</li>
+                        <li-desc>판정 임계값(Threshold)을 엄격하게 잡으면 미검출은 줄지만 오검출이 늘고, 반대로 완화하면 오검출은 줄지만 미검출이 늘어남. 제품 특성과 불량의 심각도에 따라 균형점을 결정</li-desc>
+                    <li>공정능력지수 (Cpk) · Gage R&amp;R</li>
+                        <li-desc>정밀 치수 측정 시스템의 경우, 측정값이 규격 한계 내에서 얼마나 안정적인지(Cpk)와 반복·재현 정밀도(Gage R&amp;R)를 통계적으로 검증하기도 함</li-desc>
+                </ul>
+                <div class="note">
+                    <strong>개발자 노트</strong> — 알고리즘 튜닝 시 "검출률을 100%로 만들었다"는 결과만 보고하면 위험한 경우가 많습니다. 미검출을 0으로 만들려고 임계값을 지나치게 엄격히 잡으면 오검출이 급증해 라인이 멈추는 부작용이 흔하기 때문에, 두 지표를 항상 함께 보고하고 목표치를 사전에 합의해두는 것이 중요합니다.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>6. 머신 비전의 이점</h2>
             <div class="card">
                 <ul>
                    <li>제품 품질 개선</li>
@@ -336,7 +586,7 @@
         </div>
 
         <div class="section">
-            <h2>4. 머신 비전의 사용</h2>
+            <h2>7. 머신 비전의 사용</h2>
             <div class="card">
                 <h3 class="sub-title-h3">제조 시설 및 공장과 물류 공급업체 및 창고</h3>
                 <ul>

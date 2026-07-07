@@ -104,6 +104,54 @@
             border: 1px solid #1f2937;
         }
 
+        .svg-box {
+            margin: 16px 0;
+            text-align: center;
+        }
+
+        .svg-box svg {
+            width: 100%;
+            max-width: 640px;
+            height: auto;
+            background: #0b1120;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 14px;
+        }
+
+        .compare-table th,
+        .compare-table td {
+            border: 1px solid #1f2937;
+            padding: 10px 12px;
+            text-align: left;
+            color: var(--sub);
+        }
+
+        .compare-table th {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .note {
+            background: rgba(99, 102, 241, 0.08);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .note strong {
+            color: var(--primary);
+        }
+
         footer {
             text-align: center;
             padding: 40px 20px;
@@ -152,6 +200,13 @@
           transform: translateX(3px);
         }
 
+        .nav-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
     </style>
 </head>
 
@@ -171,10 +226,8 @@
     </div>
 
     <nav>
-        <h3>케이블 연결(Connect Cable)</h3>
-        <!--<ul>
-            <li><a href="#projects">네이게이션추가</a></li>
-        </ul>-->
+        <h3>케이블 연결(Connect Cable) - 심화</h3>
+        <p style="color: var(--sub); font-size: 13px; margin-top: 4px;">머신비전 개발자를 위한 케이블링 실무 심화 학습</p>
     </nav>
 </header>
 
@@ -265,6 +318,106 @@
             <div class="img-box">
                 <img src="https://emergentvisiontec.com/wp-content/uploads/2022/12/CL.png" alt="Camera Link 커넥터">
             </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>3. 인터페이스 종합 비교</h2>
+        <div class="card">
+            <table class="compare-table">
+                <tr><th>인터페이스</th><th>최대 대역폭</th><th>최대 케이블 길이</th><th>전원 통합</th><th>특징</th></tr>
+                <tr><td>GigE (1000BASE-T)</td><td>1Gbps</td><td>100m (구리)</td><td>PoE 지원</td><td>범용 스위치/케이블 사용 가능, 가장 저렴하고 배선 자유도 높음</td></tr>
+                <tr><td>10G/25G Ethernet (BASE-R)</td><td>10~100Gbps</td><td>SFP+ 광케이블 최대 80km</td><td>미지원(일반적)</td><td>초고속·장거리, 광통신 인프라 필요</td></tr>
+                <tr><td>USB3 Vision</td><td>5~20Gbps</td><td>5~7m (표준), 액티브 케이블로 확장</td><td>버스 파워(케이블 내 전원선)</td><td>플러그 앤 플레이, 짧은 거리에서 저지연·고대역폭</td></tr>
+                <tr><td>CoaXPress (CXP-12)</td><td>12.5Gbps/케이블</td><td>최대 40m (동축)</td><td>PoCXP 지원</td><td>고속+장거리+전원까지 한 케이블로 해결, 프레임그래버 필수</td></tr>
+                <tr><td>Camera Link</td><td>최대 6.8Gbps (Deca)</td><td>10m</td><td>미지원</td><td>병렬 방식, 레거시 시스템에서 여전히 널리 사용, 프레임그래버 필수</td></tr>
+            </table>
+            <div class="note">
+                <strong>개발자 노트</strong> — 짧은 거리·저비용이면 USB3, 배선 유연성과 표준 네트워크 장비 재사용이 중요하면 GigE(+PoE), 매우 빠른 라인 속도와 긴 케이블이 동시에 필요하면 CoaXPress가 유력합니다. Camera Link는 신규 설계보다는 기존 설비 유지보수 관점에서 접하는 경우가 많습니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>4. 전원 통합 케이블링 : PoE &amp; PoCXP</h2>
+        <div class="card">
+            <ul>
+                <li>PoE (Power over Ethernet) : IEEE 802.3af/at/bt 표준에 따라 하나의 이더넷 케이블로 데이터와 전원을 동시에 전달</li>
+                    <div class="li-desc">일반적인 산업용 GigE 카메라는 802.3af로 충분하나, 온보드 AI 처리·히터 등 소비전력이 큰 카메라는 802.3at 이상이 필요할 수 있음</div>
+                    <div class="li-desc">별도 전원선이 없어 배선이 단순해지고, 카메라 설치·교체가 쉬워짐</div>
+                <li>PoCXP (Power over CoaXPress) : 동축 케이블 1선으로 데이터·제어 신호·전원까지 함께 전달</li>
+                    <div class="li-desc">프레임그래버의 CXP 포트가 카메라에 전원을 직접 공급하므로 별도 전원 공급 장치 없이 카메라 연결 가능</div>
+                <li>USB3 Vision : 케이블 내 전원선을 통한 버스 파워로 소형 카메라 구동 가능(단, 소비전력이 큰 카메라는 외부 전원 필요)</li>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 560 160" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="20" y="60" width="90" height="40" rx="6" fill="#111827" stroke="#374151"/>
+                    <text x="65" y="85" text-anchor="middle" fill="#9ca3af" font-size="11">PoE 스위치/인젝터</text>
+                    <line x1="110" y1="80" x2="440" y2="80" stroke="#6366f1" stroke-width="4"/>
+                    <text x="275" y="65" text-anchor="middle" fill="#e5e7eb" font-size="11">이더넷 케이블 1선 (데이터 + 전원)</text>
+                    <rect x="440" y="55" width="100" height="50" rx="6" fill="#111827" stroke="#374151"/>
+                    <text x="490" y="85" text-anchor="middle" fill="#9ca3af" font-size="11">GigE 카메라</text>
+                    <text x="275" y="130" text-anchor="middle" fill="#9ca3af" font-size="10">별도 전원 케이블 없이 데이터선 1개로 전원까지 공급</text>
+                </svg>
+            </div>
+
+            <div class="note">
+                <strong>개발자 노트</strong> — 전원 통합 케이블은 배선을 단순화하지만, PoE 인젝터/스위치 또는 PoCXP 지원 프레임그래버가 있어야 동작합니다. 카메라 스펙에서 "PoE 지원"만 보고 아무 스위치나 연결하면 전원이 공급되지 않을 수 있으니, 스위치·프레임그래버 쪽의 PoE/PoCXP 지원 여부도 함께 확인해야 합니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>5. 커넥터 잠금 방식과 산업 현장 신뢰성</h2>
+        <div class="card">
+            <ul>
+                <li>일반 사무 환경용 커넥터(RJ45, USB-A 등)는 단순 삽입식이라 진동·충격이 있는 생산 라인에서 헐거워지거나 빠질 위험이 있음</li>
+                <li>산업용 케이블은 나사식·잠금식 커넥터를 사용해 이 문제를 방지함</li>
+                    <div class="li-desc">M12 커넥터 : 산업용 이더넷/GigE에서 널리 사용되는 원형 나사 잠금 커넥터, 방진·방수(IP67) 등급 지원</div>
+                    <div class="li-desc">CoaXPress : DIN 1.0/2.3 또는 나사 고정형 동축 커넥터로 진동에 강함</div>
+                    <div class="li-desc">Camera Link : SDR/MDR 커넥터에 잠금용 나사(Thumbscrew)가 기본 포함</div>
+                    <div class="li-desc">산업용 USB3 : 일반 USB 커넥터에 스크류 락(Screw-Lock) 구조를 추가한 커넥터 사용</div>
+            </ul>
+            <div class="note">
+                <strong>개발자 노트</strong> — 데스크탑 환경에서 문제없던 케이블이 실제 생산 라인(진동, 로봇 이동, 컨베이어)에서는 접촉 불량으로 간헐적 프레임 드랍을 일으키는 경우가 흔합니다. 설치 환경이 고정된 검사대인지, 로봇 암처럼 반복적으로 움직이는 구간인지에 따라 커넥터 잠금 방식과 케이블 등급을 다르게 선택해야 합니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>6. 신호 무결성 &amp; 노이즈 대책</h2>
+        <div class="card">
+            <ul>
+                <li>차폐(Shielding) : 모터, 서보 드라이버, 용접기 등 전자 노이즈가 많은 공장 환경에서는 90% 이상 편조 차폐(Braided Shielding)가 적용된 케이블을 권장</li>
+                <li>액티브 케이블 : USB3 Vision은 표준 케이블 길이가 5~7m로 제한되지만, 신호를 중계·증폭하는 액티브 케이블을 사용하면 20m 이상까지 확장 가능. 다만 더 먼 거리가 필요하면 GigE/CoaXPress 전환을 고려하는 것이 일반적</li>
+                <li>드래그체인(Drag Chain) 케이블 : 로봇 암, 갠트리처럼 반복적으로 구부러지는 구간에는 수백만 회 굴곡 시험을 통과한 드래그체인 전용 케이블 사용 필요 (일반 케이블은 반복 굴곡에 단선되기 쉬움)</li>
+            </ul>
+            <div class="note">
+                <strong>개발자 노트</strong> — 원인을 알 수 없는 간헐적 통신 오류나 이미지 노이즈가 발생하면, 소프트웨어보다 케이블 차폐·접지·굴곡 피로부터 의심해보는 것이 실무적으로 효율적입니다. 특히 인버터/서보 모터 근처를 지나는 케이블은 반드시 별도 배선 경로와 차폐를 확보해야 합니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>7. 머신비전 개발자를 위한 케이블 선정 체크리스트</h2>
+        <div class="card">
+            <ul>
+                <li>필요 대역폭 — 해상도×비트심도×프레임레이트로 계산한 필요 대역폭이 인터페이스 한계 내에 있는지 확인 (카메라 페이지 4-⑤ 참고)</li>
+                <li>설치 거리 — 카메라와 PC/프레임그래버 간 실제 배선 거리가 표준 케이블 한계 내인지, 초과 시 액티브 케이블·인터페이스 변경 필요 여부</li>
+                <li>전원 공급 방식 — PoE/PoCXP로 단순화할지, 별도 전원 공급 장치를 둘지 결정</li>
+                <li>설치 환경 — 진동/이동 여부에 따른 커넥터 잠금 방식과 드래그체인 케이블 필요 여부</li>
+                <li>전자 노이즈 환경 — 모터·인버터 근접 여부에 따른 차폐 등급 및 배선 경로 계획</li>
+                <li>다중 카메라 구성 — 여러 대의 카메라를 동시에 운용할 경우 스위치/프레임그래버의 포트 수와 총 대역폭 여유 확인</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>8. 관련 학습</h2>
+        <div class="card nav-row">
+            <a href="./machinevision_illumination.html" class="detail-btn"><span class="arrow">←</span> 이전 : 조명 (Illumination)</a>
+            <a href="./machinevision_interface.html" class="detail-btn">다음 : 인터페이스 (Interface) <span class="arrow">→</span></a>
         </div>
     </div>
 </section>
