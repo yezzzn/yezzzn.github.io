@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>핵심 소재</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #6366f1;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+        }
+
+        nav { max-width: 1100px; margin: auto; padding: 20px; }
+        nav p { color: var(--sub); font-size: 13px; margin-top: 4px; }
+
+        section { max-width: 1100px; margin: auto; padding: 60px 20px; }
+
+        .section h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--primary);
+        }
+
+        .card h3 { margin: 15px 0 10px; }
+        .card ul { padding-left: 18px; list-style: disc; }
+        .card li { margin-bottom: 10px; color: var(--sub); }
+
+        .li-desc {
+            margin-top: 4px;
+            padding-left: 14px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .svg-box { margin: 16px 0; text-align: center; }
+
+        .svg-box svg {
+            width: 100%;
+            max-width: 760px;
+            height: auto;
+            background: #0b1120;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 14px;
+        }
+
+        .compare-table th,
+        .compare-table td {
+            border: 1px solid #1f2937;
+            padding: 10px 12px;
+            text-align: left;
+            color: var(--sub);
+        }
+
+        .compare-table th {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .note {
+            background: rgba(99, 102, 241, 0.08);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .note strong { color: var(--primary); }
+
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2937;
+            color: var(--sub);
+        }
+
+        .breadcrumb a { color: #9ca3af; text-decoration: none; }
+        .breadcrumb a:hover { color: #e5e7eb; }
+        .breadcrumb span { margin: 0 6px; font-size: 12px; }
+
+        .detail-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          margin-right: 8px;
+          padding: 6px 12px;
+          font-size: 13px;
+          color: var(--primary);
+          border: 1px solid var(--primary);
+          border-radius: 999px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+
+        .detail-btn:hover { background: var(--primary); color: white; }
+        .arrow { transition: transform 0.2s; }
+        .detail-btn:hover .arrow { transform: translateX(3px); }
+
+        .nav-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span>&#8250;</span>
+            <a href="../study.html">Study Archive</a>
+            <span>&#8250;</span>
+            <a href="./battery_introduction.html">2차전지 공정의 이해</a>
+            <span>&#8250;</span>
+            <span>핵심 소재</span>
+        </div>
+    </div>
+
+    <nav>
+        <h3>핵심 소재 - 심화</h3>
+        <p>양극재 &#183; 음극재 &#183; 전해질 &#183; 분리막 &#183; 부자재의 특성과 소재 선택 기준</p>
+    </nav>
+</header>
+
+<section>
+
+    <div class="section">
+        <h2>1. 개요</h2>
+        <div class="card">
+            <ul>
+                <li>배터리의 성능(용량·출력)·수명·안전성·가격은 결국 각 소재를 무엇으로, 어떤 비율로 조합하느냐에서 결정됨</li>
+                <li>4대 구성요소(양극재·음극재·전해질·분리막)에 더해, 이들을 전극으로 만들어 주는 부자재(바인더·도전재·집전체)가 함께 작동함</li>
+                <li>이 장에서는 각 소재가 "어떤 역할을 하고, 왜 그 소재를 쓰며, 무엇을 트레이드오프하는가"에 집중함</li>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 양극 -->
+                    <rect x="40" y="60" width="130" height="90" rx="8" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="2"/>
+                    <text x="105" y="95" text-anchor="middle" fill="#ef4444" font-size="14" font-weight="700">양극재</text>
+                    <text x="105" y="115" text-anchor="middle" fill="#9ca3af" font-size="10">용량 · 전압</text>
+
+                    <!-- 전해질 -->
+                    <rect x="185" y="60" width="90" height="90" rx="8" fill="#111827" stroke="#f59e0b" stroke-width="2"/>
+                    <text x="230" y="95" text-anchor="middle" fill="#f59e0b" font-size="13" font-weight="700">전해질</text>
+                    <text x="230" y="115" text-anchor="middle" fill="#9ca3af" font-size="10">이온 이동</text>
+
+                    <!-- 분리막 -->
+                    <rect x="290" y="60" width="70" height="90" rx="8" fill="#0b1120" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4,4"/>
+                    <text x="325" y="95" text-anchor="middle" fill="#9ca3af" font-size="12" font-weight="700">분리막</text>
+                    <text x="325" y="115" text-anchor="middle" fill="#6b7280" font-size="10">안전</text>
+
+                    <!-- 음극 -->
+                    <rect x="375" y="60" width="130" height="90" rx="8" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="440" y="95" text-anchor="middle" fill="#3b82f6" font-size="14" font-weight="700">음극재</text>
+                    <text x="440" y="115" text-anchor="middle" fill="#9ca3af" font-size="10">저장 · 수명</text>
+
+                    <!-- 부자재 -->
+                    <rect x="530" y="60" width="190" height="90" rx="8" fill="#111827" stroke="#374151" stroke-width="2"/>
+                    <text x="625" y="90" text-anchor="middle" fill="#e5e7eb" font-size="13" font-weight="700">부자재</text>
+                    <text x="625" y="110" text-anchor="middle" fill="#9ca3af" font-size="10">바인더 · 도전재 · 집전체</text>
+                    <text x="625" y="128" text-anchor="middle" fill="#6b7280" font-size="9">전극을 구성하는 조력자</text>
+
+                    <text x="380" y="185" text-anchor="middle" fill="#6b7280" font-size="12">각 소재의 역할 : 용량(양극) &#183; 저장(음극) &#183; 이동(전해질) &#183; 안전(분리막) &#183; 결합(부자재)</text>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. 양극재 (Cathode Material)</h2>
+        <div class="card">
+            <span class="tag">용량 &#183; 전압 &#183; 가격을 결정</span>
+            <ul>
+                <li>양극재는 배터리 용량과 전압을 결정할 뿐 아니라 안정성과 가격에도 가장 큰 영향을 미치는 핵심 소재 (원가 비중이 가장 큼)</li>
+                <li>리튬코발트산화물(LCO)을 기본으로, 여기에 니켈(Ni)·코발트(Co)·망가니즈(Mn)·알루미늄(Al) 등 금속 원소를 조합해 특성을 조절함</li>
+                <li>조합하는 원소의 종류와 비율에 따라 삼원계(NCM, NCA), 사원계(NCMA), LFP 등으로 나뉨</li>
+            </ul>
+
+            <h3>&#9679; 구성 원소의 역할</h3>
+            <table class="compare-table">
+                <tr><th>원소</th><th>기호</th><th>주요 역할</th></tr>
+                <tr><td>니켈</td><td>Ni</td><td>에너지밀도 &#8593; (주행거리) — 비중이 커질수록 고용량</td></tr>
+                <tr><td>코발트</td><td>Co</td><td>구조 안정 · 부식 방지 — 비싸고 수급 불안정</td></tr>
+                <tr><td>망가니즈</td><td>Mn</td><td>안정성 &#8593; — 저렴</td></tr>
+                <tr><td>알루미늄</td><td>Al</td><td>출력 · 안정성 &#8593; — Mn 대체용</td></tr>
+            </table>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg">
+                    <text x="380" y="30" text-anchor="middle" fill="#e5e7eb" font-size="14" font-weight="700">삼원계 양극재 : LCO에 금속 원소를 더해 특성 조절</text>
+
+                    <!-- LCO base -->
+                    <circle cx="120" cy="110" r="42" fill="#111827" stroke="#6366f1" stroke-width="2"/>
+                    <text x="120" y="106" text-anchor="middle" fill="#e5e7eb" font-size="14" font-weight="700">LCO</text>
+                    <text x="120" y="124" text-anchor="middle" fill="#9ca3af" font-size="9">리튬코발트산화물</text>
+
+                    <text x="210" y="116" text-anchor="middle" fill="#6366f1" font-size="24">+</text>
+
+                    <!-- Ni -->
+                    <circle cx="290" cy="110" r="34" fill="rgba(34,197,94,0.15)" stroke="#22c55e" stroke-width="2"/>
+                    <text x="290" y="108" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="700">Ni</text>
+                    <text x="290" y="124" text-anchor="middle" fill="#9ca3af" font-size="8">에너지밀도</text>
+
+                    <text x="350" y="116" text-anchor="middle" fill="#6366f1" font-size="20">+</text>
+
+                    <!-- Co -->
+                    <circle cx="410" cy="110" r="34" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="410" y="108" text-anchor="middle" fill="#3b82f6" font-size="13" font-weight="700">Co</text>
+                    <text x="410" y="124" text-anchor="middle" fill="#9ca3af" font-size="8">안정 · 부식방지</text>
+
+                    <text x="470" y="116" text-anchor="middle" fill="#6366f1" font-size="20">+</text>
+
+                    <!-- Mn / Al -->
+                    <circle cx="540" cy="110" r="34" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="2"/>
+                    <text x="540" y="108" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="700">Mn/Al</text>
+                    <text x="540" y="124" text-anchor="middle" fill="#9ca3af" font-size="8">안정성 · 출력</text>
+
+                    <text x="610" y="116" text-anchor="middle" fill="#6366f1" font-size="20">=</text>
+
+                    <circle cx="690" cy="110" r="40" fill="rgba(99,102,241,0.15)" stroke="#6366f1" stroke-width="2"/>
+                    <text x="690" y="107" text-anchor="middle" fill="#e5e7eb" font-size="12" font-weight="700">NCM</text>
+                    <text x="690" y="123" text-anchor="middle" fill="#9ca3af" font-size="8">NCA / NCMA</text>
+                </svg>
+            </div>
+
+            <h3>&#9679; 양극재 종류 비교</h3>
+            <table class="compare-table">
+                <tr><th>종류</th><th>구성</th><th>특징</th><th>주요 용도</th></tr>
+                <tr><td>NCM</td><td>Ni · Co · Mn</td><td>균형형 삼원계, 전기차 주력</td><td>전기차</td></tr>
+                <tr><td>NCA</td><td>Ni · Co · Al</td><td>Mn 대신 Al, 고에너지밀도·출력, 값비싼 Co 함량 낮춤</td><td>원통형·전동공구</td></tr>
+                <tr><td>NCMA</td><td>Ni · Co · Mn · Al</td><td>사원계, NCM 고밀도 + NCA 안정성 결합, Co 절감</td><td>고성능 전기차</td></tr>
+                <tr><td>LFP</td><td>리튬인산철</td><td>Co·Ni 없이 저렴·안전, 에너지밀도는 낮음</td><td>보급형 전기차·ESS</td></tr>
+            </table>
+
+            <div class="note">
+                <strong>학습 노트</strong> — 양극재 개발의 큰 흐름은 "값비싸고 수급이 불안정한 코발트를 줄이고 니켈을 늘리는 것(하이니켈, Ni 60% 이상)"입니다. 니켈을 늘리면 에너지밀도는 올라가지만 안정성이 떨어지므로, 이를 보완하려 Al을 추가한 것이 NCMA입니다. "고용량 vs 안정성 vs 가격"의 삼각 트레이드오프를 이해하면 양극재 선택 논리가 보입니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>3. 음극재 (Anode Material)</h2>
+        <div class="card">
+            <span class="tag">수명 &#183; 충전 속도를 결정</span>
+            <ul>
+                <li>음극재는 충전 시 리튬이온이 저장되는 공간으로, 배터리의 수명과 충전 속도를 좌우함</li>
+                <li>리튬이온이 반복적으로 삽입·방출될 수 있어야 하고, 그 과정에서 구조 변화가 적어야 수명이 길어짐</li>
+                <li>대표 소재는 <strong>흑연(Graphite)</strong>이며, 용량을 크게 늘릴 수 있는 <strong>실리콘(Silicon)</strong>이 차세대로 주목받음</li>
+            </ul>
+
+            <h3>&#9679; 흑연 : 천연 vs 인조</h3>
+            <table class="compare-table">
+                <tr><th>구분</th><th>천연 흑연</th><th>인조 흑연</th></tr>
+                <tr><td>용량</td><td>크다</td><td>상대적으로 작다</td></tr>
+                <tr><td>생산 비용</td><td>저렴</td><td>고온 공정 필요 → 비쌈</td></tr>
+                <tr><td>구조 안정성</td><td>충·방전 시 팽창·수명 저하 가능</td><td>구조 안정, 수명 우수</td></tr>
+                <tr><td>급속충전</td><td>—</td><td>이동통로 많아 유리</td></tr>
+            </table>
+
+            <h3>&#9679; 실리콘 음극재</h3>
+            <ul>
+                <li>흑연 대비 이론 용량이 약 10배(g당 실사용 용량 4배 이상) 높아, 에너지밀도와 급속충전에 크게 유리</li>
+                <li>단, 충·방전 시 부피 팽창이 커서 전극이 손상되기 쉬움 → 팽창을 억제하는 기술이 상용화의 관건</li>
+                <li>흑연에 소량 섞어 쓰는 방식으로 적용되며, 함량을 높이는 연구가 진행 중 (순수 실리콘 지향)</li>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 760 170" xmlns="http://www.w3.org/2000/svg">
+                    <text x="380" y="30" text-anchor="middle" fill="#e5e7eb" font-size="14" font-weight="700">흑연 vs 실리콘 : 용량과 팽창의 트레이드오프</text>
+
+                    <!-- 흑연 용량 바 -->
+                    <text x="80" y="75" fill="#9ca3af" font-size="12">흑연</text>
+                    <rect x="140" y="63" width="120" height="18" rx="3" fill="#3b82f6"/>
+                    <text x="275" y="77" fill="#6b7280" font-size="10">용량 기준 1x</text>
+
+                    <!-- 실리콘 용량 바 -->
+                    <text x="80" y="115" fill="#9ca3af" font-size="12">실리콘</text>
+                    <rect x="140" y="103" width="480" height="18" rx="3" fill="#22c55e"/>
+                    <text x="630" y="117" fill="#6b7280" font-size="10">g당 4x+</text>
+
+                    <text x="380" y="150" text-anchor="middle" fill="#f59e0b" font-size="11">&#9888; 실리콘은 용량이 크지만 충·방전 시 부피 팽창이 커서 억제 기술이 필요</text>
+                </svg>
+            </div>
+
+            <div class="note">
+                <strong>학습 노트</strong> — 음극재의 핵심 딜레마는 "용량을 키우면(실리콘) 부피 팽창으로 수명이 준다"는 점입니다. 그래서 실무에서는 흑연에 실리콘을 소량 섞어 용량과 수명의 균형을 맞춥니다. 실리콘 음극재를 쓸 때 바인더 기술이 특히 중요해지는 이유도 이 팽창을 잡기 위해서입니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>4. 전해질 (Electrolyte)</h2>
+        <div class="card">
+            <span class="tag">리튬이온의 이동 통로</span>
+            <ul>
+                <li>전해질은 리튬이온이 양극과 음극 사이를 오갈 수 있게 하는 매개체(전용 도로)</li>
+                <li>좋은 전해질의 3가지 조건 : 이온전도도가 높을 것 · 화학적으로 안정할 것(부반응 X) · 넓은 온도 범위에서 작동할 것(낮은 어는점, 높은 발화점)</li>
+                <li>리튬염 + 유기용매 + 첨가제로 구성됨</li>
+            </ul>
+
+            <h3>&#9679; 전해질의 3대 구성 요소</h3>
+            <table class="compare-table">
+                <tr><th>구성</th><th>역할</th><th>비고</th></tr>
+                <tr><td>리튬염 (Lithium Salt)</td><td>리튬이온을 전달하는 실제 이온원</td><td>LiPF&#8326;가 가장 범용</td></tr>
+                <tr><td>유기용매 (Organic Solvent)</td><td>리튬염을 녹여 이온이 이동하게 함</td><td>이온전도도 좌우</td></tr>
+                <tr><td>첨가제 (Additives)</td><td>SEI 형성·가스 억제 등 기능 부여</td><td>보통 5% 이하 소량</td></tr>
+            </table>
+
+            <h3>&#9679; 차세대 : 고체 전해질 (전고체)</h3>
+            <ul>
+                <li>액체 전해질을 고체로 바꾼 것으로, 분리막이 필요 없고 누액·화재 위험이 낮아 안전성이 높음</li>
+                <li>고밀도 배터리 구현이 가능하나, 이온전도도 확보와 제조 난이도가 과제</li>
+                <li>종류 : 황화물계(이온전도도 높음), 산화물계(안정성 우수), 폴리머계(기존 공정과 유사)</li>
+            </ul>
+
+            <div class="note">
+                <strong>학습 노트</strong> — 첨가제는 양이 5% 이하로 적지만 배터리 수명·안전을 좌우하는 "숨은 조미료"입니다. 특히 SEI 막(음극 보호막)의 품질을 결정하는 데 크게 기여하는데, 이 SEI는 다음 챕터의 활성화 공정에서 다시 핵심으로 등장합니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>5. 분리막 (Separator)</h2>
+        <div class="card">
+            <span class="tag">배터리 안전의 최후 방어선</span>
+            <ul>
+                <li>양극과 음극이 직접 닿아 단락(쇼트)되는 것을 막는 절연막. 화재로 이어질 수 있어 안전에 직결됨</li>
+                <li>미세한 기공을 통해 리튬이온만 통과시키고, 얇으면서도 튼튼하며 기공이 균일해야 함</li>
+                <li>고온에서 형태를 유지하는 내열성도 중요 (PE·PP 소재 + 세라믹 코팅으로 보강)</li>
+            </ul>
+
+            <h3>&#9679; 건식 분리막 vs 습식 분리막</h3>
+            <table class="compare-table">
+                <tr><th>구분</th><th>건식 분리막</th><th>습식 분리막</th></tr>
+                <tr><td>공정</td><td>필름을 한 방향으로 당겨 늘림 (단순)</td><td>오일을 섞어 압출 후 추출 (복잡)</td></tr>
+                <tr><td>기공 균일도</td><td>상대적으로 낮음</td><td>균일함</td></tr>
+                <tr><td>두께·에너지밀도</td><td>얇은 막 어려움</td><td>얇고 균일 → 고에너지밀도</td></tr>
+                <tr><td>주 용도</td><td>ESS, 시내버스 등</td><td>스마트폰·노트북·전기차</td></tr>
+            </table>
+
+            <div class="note">
+                <strong>학습 노트</strong> — 분리막은 "얇을수록 좋다(에너지밀도)"와 "튼튼할수록 좋다(안전)"가 충돌하는 소재입니다. 세라믹 코팅 분리막(예: SRS)은 표면에 세라믹을 입혀 200&#176;C 고온에서도 형태를 유지하도록 내열성을 강화한 기술로, 이 딜레마를 완화합니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>6. 부자재 (바인더 &#183; 도전재 &#183; 집전체)</h2>
+        <div class="card">
+            <ul>
+                <li>4대 소재만으로는 전극이 되지 않음. 활물질을 붙이고(바인더), 전자 이동을 돕고(도전재), 전류를 모으는(집전체) 부자재가 함께 필요함</li>
+            </ul>
+
+            <h3>&#9679; 바인더 (Binder)</h3>
+            <ul>
+                <li>활물질과 도전재를 서로, 그리고 집전체에 붙여 주는 접착제 역할</li>
+                <li>양극 : PVDF (용매 NMP에 녹여 사용) / 음극 : SBR + CMC (물과 함께 사용, 친환경)</li>
+            </ul>
+
+            <h3>&#9679; 도전재 (Conductive Additive)</h3>
+            <ul>
+                <li>활물질 사이의 빈틈을 메워 전자가 잘 이동하도록 돕는 전도성 물질 (카본블랙, CNT 등)</li>
+                <li>도전재가 부족하면 저항이 커지거나 용량이 감소함</li>
+            </ul>
+
+            <h3>&#9679; 집전체 (Current Collector)</h3>
+            <ul>
+                <li>전극의 뼈대이자 전자가 드나드는 통로 (포일 형태)</li>
+                <li>양극 : 알루미늄 포일 / 음극 : 구리 포일 (전위 안정성에 따라 소재가 다름)</li>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg">
+                    <text x="380" y="30" text-anchor="middle" fill="#e5e7eb" font-size="14" font-weight="700">전극의 구성 : 집전체 위에 활물질 + 도전재 + 바인더</text>
+
+                    <!-- 집전체 (포일) -->
+                    <rect x="120" y="150" width="520" height="14" rx="2" fill="#9ca3af"/>
+                    <text x="380" y="185" text-anchor="middle" fill="#6b7280" font-size="11">집전체 (알루미늄/구리 포일) — 전자 통로</text>
+
+                    <!-- 활물질 (큰 원) -->
+                    <circle cx="220" cy="110" r="26" fill="rgba(34,197,94,0.25)" stroke="#22c55e" stroke-width="2"/>
+                    <circle cx="330" cy="110" r="26" fill="rgba(34,197,94,0.25)" stroke="#22c55e" stroke-width="2"/>
+                    <circle cx="440" cy="110" r="26" fill="rgba(34,197,94,0.25)" stroke="#22c55e" stroke-width="2"/>
+                    <circle cx="550" cy="110" r="26" fill="rgba(34,197,94,0.25)" stroke="#22c55e" stroke-width="2"/>
+                    <text x="220" y="114" text-anchor="middle" fill="#22c55e" font-size="9">활물질</text>
+
+                    <!-- 도전재 (작은 점) -->
+                    <g fill="#f59e0b">
+                        <circle cx="275" cy="120" r="4"/><circle cx="385" cy="120" r="4"/>
+                        <circle cx="495" cy="120" r="4"/><circle cx="270" cy="95" r="4"/>
+                        <circle cx="490" cy="95" r="4"/>
+                    </g>
+                    <text x="660" y="100" fill="#f59e0b" font-size="10">&#9679; 도전재</text>
+                    <text x="660" y="118" fill="#22c55e" font-size="10">&#9679; 활물질</text>
+                    <text x="660" y="136" fill="#9ca3af" font-size="10">&#8213; 바인더(접착)</text>
+
+                    <!-- 바인더 연결선 -->
+                    <g stroke="#6b7280" stroke-width="1.5">
+                        <line x1="246" y1="110" x2="304" y2="110"/>
+                        <line x1="356" y1="110" x2="414" y2="110"/>
+                        <line x1="466" y1="110" x2="524" y2="110"/>
+                    </g>
+                </svg>
+            </div>
+
+            <table class="compare-table">
+                <tr><th>부자재</th><th>역할</th><th>양극</th><th>음극</th></tr>
+                <tr><td>바인더</td><td>활물질·집전체 접착</td><td>PVDF (용매 NMP)</td><td>SBR + CMC (물)</td></tr>
+                <tr><td>도전재</td><td>전자 이동 보조</td><td colspan="2">카본블랙, CNT</td></tr>
+                <tr><td>집전체</td><td>전자 통로(뼈대)</td><td>알루미늄 포일</td><td>구리 포일</td></tr>
+            </table>
+
+            <div class="note">
+                <strong>학습 노트</strong> — 부자재는 배터리에 에너지를 저장하지 않지만 성능·수명에 직접 영향을 줍니다. 특히 이 부자재들을 활물질과 함께 균일하게 섞는 작업이 다음 챕터의 첫 공정인 "믹싱"입니다. 소재를 알았다면, 이제 이 소재들이 어떻게 전극·셀·팩이 되는지(제조 공정)로 이어집니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>7. 관련 학습</h2>
+        <div class="card nav-row">
+            <a href="./battery_principle.html" class="detail-btn"><span class="arrow">&#8592;</span> 이전 : 2차전지의 원리</a>
+            <a href="./battery_process.html" class="detail-btn">다음 : 제조 공정 (4단계) <span class="arrow">&#8594;</span></a>
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 NDoubleuK Portfolio</p>
+</footer>
+
+</body>
+</html>

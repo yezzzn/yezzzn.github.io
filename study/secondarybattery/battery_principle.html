@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2차전지의 원리</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #6366f1;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        nav p {
+            color: var(--sub);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .section h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin: 15px 0 10px;
+        }
+
+        .card ul {
+            padding-left: 18px;
+            list-style: disc;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--sub);
+        }
+
+        .li-desc {
+            margin-top: 4px;
+            padding-left: 14px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .img-box {
+            margin: 12px 0;
+            text-align: center;
+        }
+
+        .img-box img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+        }
+
+        .img-caption {
+            margin-top: 6px;
+            font-size: 12px;
+            color: var(--sub);
+        }
+
+        .svg-box {
+            margin: 16px 0;
+            text-align: center;
+        }
+
+        .svg-box svg {
+            width: 100%;
+            max-width: 760px;
+            height: auto;
+            background: #0b1120;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 14px;
+        }
+
+        .compare-table th,
+        .compare-table td {
+            border: 1px solid #1f2937;
+            padding: 10px 12px;
+            text-align: left;
+            color: var(--sub);
+        }
+
+        .compare-table th {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .note {
+            background: rgba(99, 102, 241, 0.08);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .note strong {
+            color: var(--primary);
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2937;
+            color: var(--sub);
+        }
+
+        .breadcrumb a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+            .breadcrumb a:hover {
+                color: #e5e7eb;
+            }
+
+        .breadcrumb span {
+            margin: 0 6px;
+            font-size: 12px;
+        }
+
+        .detail-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          margin-right: 8px;
+          padding: 6px 12px;
+          font-size: 13px;
+          color: var(--primary);
+          border: 1px solid var(--primary);
+          border-radius: 999px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+
+        .detail-btn:hover {
+          background: var(--primary);
+          color: white;
+        }
+
+        .arrow {
+          transition: transform 0.2s;
+        }
+
+        .detail-btn:hover .arrow {
+          transform: translateX(3px);
+        }
+
+        .nav-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span>&#8250;</span>
+            <a href="../study.html">Study Archive</a>
+            <span>&#8250;</span>
+            <a href="./battery_introduction.html">2차전지 공정의 이해</a>
+            <span>&#8250;</span>
+            <span>2차전지의 원리</span>
+        </div>
+    </div>
+
+    <nav>
+        <h3>2차전지의 원리 - 기초</h3>
+        <p>주니어 엔지니어를 위한 리튬이온배터리 작동 원리 · 구성요소 기초 학습</p>
+    </nav>
+</header>
+
+<section>
+
+    <div class="section">
+        <h2>1. 개요</h2>
+        <div class="card">
+            <ul>
+                <li>2차전지(Secondary Battery)는 충전과 방전을 반복해 여러 번 사용할 수 있는 전지로, 화학에너지와 전기에너지를 가역적으로 변환하는 에너지 저장 장치</li>
+                <li>한 번 쓰고 버리는 1차전지와 달리, 외부 전력으로 화학반응을 되돌려 재사용하므로 장기적으로 경제적이고 친환경적</li>
+                <li>현재 주류인 리튬이온배터리는 가볍고 고용량·고전압이며 자기방전이 적어, 스마트폰·노트북부터 전기차·ESS까지 폭넓게 사용됨</li>
+                <li>이 장에서는 배터리를 이해하는 출발점으로 (1) 1차/2차 전지의 차이, (2) 충·방전의 작동 원리, (3) 4대 구성요소를 다룸</li>
+            </ul>
+            <div class="note">
+                <strong>학습 노트</strong> — 이후에 나오는 소재·공정·용어는 모두 "충전이 가능한 전지(2차전지)"를 전제로 설계됩니다. 원리를 먼저 이해하면 "왜 이 소재를 쓰는가", "왜 이 공정이 필요한가"가 자연스럽게 연결됩니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. 1차전지 vs 2차전지</h2>
+        <div class="card">
+            <ul>
+                <li><strong>1차전지 (Primary Battery)</strong> : 한 번 방전하면 재충전이 불가능한 일회용 전지</li>
+                <div class="li-desc">알칼리 건전지, 리튬 코인셀 등. 구조가 단순하고 초기 비용이 낮아 리모컨·시계 같은 저전력 기기에 사용</div>
+                <li><strong>2차전지 (Secondary / Rechargeable Battery)</strong> : 충전·방전을 반복해 재사용할 수 있는 전지</li>
+                <div class="li-desc">납축전지 → 니켈카드뮴 → 니켈수소 → 리튬이온 순으로 발전. 현재는 에너지밀도가 높은 리튬이온이 주류</div>
+            </ul>
+
+            <table class="compare-table">
+                <tr><th>구분</th><th>1차전지</th><th>2차전지</th></tr>
+                <tr><td>재사용</td><td>불가 (일회용)</td><td>가능 (충·방전 반복)</td></tr>
+                <tr><td>대표 예</td><td>알칼리 건전지, 리튬 코인셀</td><td>리튬이온, 니켈수소, 납축전지</td></tr>
+                <tr><td>초기 비용</td><td>낮음</td><td>상대적으로 높음</td></tr>
+                <tr><td>주요 용도</td><td>리모컨, 시계 등 저전력 기기</td><td>전기차, 스마트폰, ESS 등</td></tr>
+            </table>
+
+            <div class="note">
+                <strong>학습 노트</strong> — "배터리를 충전할 수 있는가"가 1차/2차를 가르는 핵심 기준입니다. 이 자료에서 다루는 리튬이온배터리는 전부 2차전지에 해당합니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>3. 2차전지의 발전 (세대별 진화)</h2>
+        <div class="card">
+            <ul>
+                <li>2차전지는 "더 가볍고, 더 작고, 더 오래" 사용할 수 있도록 끊임없이 진화해 옴</li>
+                <li>납축전지(Pb-acid)는 구조가 간단하고 대량생산이 쉬워 자동차 시동·비상전원용으로 보급됐지만, 무겁고 부피가 크며 수명이 짧은 한계가 있음</li>
+                <li>니켈카드뮴(Ni-Cd)은 고출력이 가능했으나 카드뮴의 환경 유해성과 메모리 효과(완전 방전하지 않고 충전하면 성능이 저하되는 현상)가 단점</li>
+                <li>니켈수소(Ni-MH)는 카드뮴을 수소로 대체해 친환경적이고 용량을 키웠으나, 더 높은 성능·긴 수명을 향한 수요가 리튬이온으로 이어짐</li>
+                <li>리튬이온(Li-ion)은 니켈계 대비 전압이 약 3배 높고 고용량·고출력이며 자기방전이 적어 현재 가장 광범위하게 활용됨</li>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 720 170" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="20" y="55" width="150" height="55" rx="10" fill="#111827" stroke="#6366f1" stroke-width="2"/>
+                    <text x="95" y="80" text-anchor="middle" fill="#e5e7eb" font-size="15" font-weight="700">Pb-acid</text>
+                    <text x="95" y="99" text-anchor="middle" fill="#9ca3af" font-size="11">1859 · 납축전지</text>
+
+                    <rect x="200" y="55" width="150" height="55" rx="10" fill="#111827" stroke="#374151" stroke-width="2"/>
+                    <text x="275" y="80" text-anchor="middle" fill="#e5e7eb" font-size="15" font-weight="700">Ni-Cd</text>
+                    <text x="275" y="99" text-anchor="middle" fill="#9ca3af" font-size="11">1899 · 니켈카드뮴</text>
+
+                    <rect x="380" y="55" width="150" height="55" rx="10" fill="#111827" stroke="#374151" stroke-width="2"/>
+                    <text x="455" y="80" text-anchor="middle" fill="#e5e7eb" font-size="15" font-weight="700">Ni-MH</text>
+                    <text x="455" y="99" text-anchor="middle" fill="#9ca3af" font-size="11">1990 · 니켈수소</text>
+
+                    <rect x="560" y="55" width="150" height="55" rx="10" fill="rgba(99,102,241,0.15)" stroke="#6366f1" stroke-width="2"/>
+                    <text x="635" y="80" text-anchor="middle" fill="#e5e7eb" font-size="15" font-weight="700">Li-ion</text>
+                    <text x="635" y="99" text-anchor="middle" fill="#9ca3af" font-size="11">1991 · 리튬이온</text>
+
+                    <path d="M170,82 H200" stroke="#6366f1" stroke-width="2"/><polygon points="200,82 191,77 191,87" fill="#6366f1"/>
+                    <path d="M350,82 H380" stroke="#6366f1" stroke-width="2"/><polygon points="380,82 371,77 371,87" fill="#6366f1"/>
+                    <path d="M530,82 H560" stroke="#6366f1" stroke-width="2"/><polygon points="560,82 551,77 551,87" fill="#6366f1"/>
+
+                    <text x="365" y="145" text-anchor="middle" fill="#6b7280" font-size="12">더 가볍고 · 더 작고 · 더 오래 — 2차전지의 진화 방향</text>
+                </svg>
+            </div>
+
+            <table class="compare-table">
+                <tr><th>종류</th><th>장점</th><th>단점</th></tr>
+                <tr><td>납축전지 (Pb-acid)</td><td>단순 구조, 대량생산 용이, 저가</td><td>무겁고 부피 큼, 짧은 수명</td></tr>
+                <tr><td>니켈카드뮴 (Ni-Cd)</td><td>고출력, 개발 초기 만능전지</td><td>카드뮴 환경 유해, 메모리 효과</td></tr>
+                <tr><td>니켈수소 (Ni-MH)</td><td>친환경, 용량 증대</td><td>리튬이온 대비 낮은 에너지밀도</td></tr>
+                <tr><td>리튬이온 (Li-ion)</td><td>고용량·고출력, 고전압, 낮은 자기방전</td><td>상대적 고가, 안전 설계 필요</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>4. 리튬이온배터리의 작동 원리</h2>
+        <div class="card">
+            <ul>
+                <li>리튬이온배터리는 리튬이온(Li&#8314;)이 양극과 음극 사이를 오가는 화학반응으로 전기를 만들어 냄</li>
+                <li><strong>충전</strong> : 외부 전력을 가하면 리튬이온이 양극에서 빠져나와 음극으로 이동·저장됨 (에너지 저장)</li>
+                <li><strong>방전</strong> : 리튬이온이 음극에서 양극으로 되돌아가며 에너지를 방출함 (에너지 사용)</li>
+                <li>이때 리튬이온(Li&#8314;)은 배터리 내부(전해질·분리막)를 통해, 전자(e&#8315;)는 외부 도선을 통해 이동함 — 이 이원 경로가 전류를 만드는 핵심 원리</li>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M150,70 V30 H610 V70" fill="none" stroke="#6366f1" stroke-width="2"/>
+                    <polygon points="610,70 605,58 615,58" fill="#6366f1"/>
+                    <rect x="355" y="16" width="50" height="28" rx="4" fill="#111827" stroke="#6366f1" stroke-width="2"/>
+                    <text x="380" y="34" text-anchor="middle" fill="#6366f1" font-size="11">전원</text>
+                    <text x="250" y="24" fill="#9ca3af" font-size="11">e&#8315; &#8594;</text>
+                    <text x="470" y="24" fill="#9ca3af" font-size="11">&#8594; e&#8315;</text>
+
+                    <rect x="90" y="80" width="120" height="150" rx="6" fill="rgba(239,68,68,0.12)" stroke="#ef4444" stroke-width="2"/>
+                    <text x="150" y="70" text-anchor="middle" fill="#ef4444" font-size="14" font-weight="700">양극 (+)</text>
+                    <text x="150" y="255" text-anchor="middle" fill="#9ca3af" font-size="11">Cathode</text>
+                    <text x="150" y="270" text-anchor="middle" fill="#6b7280" font-size="10">알루미늄 집전체</text>
+
+                    <rect x="360" y="80" width="40" height="150" rx="4" fill="#0b1120" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4,4"/>
+                    <text x="380" y="70" text-anchor="middle" fill="#9ca3af" font-size="12">분리막</text>
+                    <text x="380" y="255" text-anchor="middle" fill="#9ca3af" font-size="11">Separator</text>
+
+                    <rect x="550" y="80" width="120" height="150" rx="6" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="610" y="70" text-anchor="middle" fill="#3b82f6" font-size="14" font-weight="700">음극 (-)</text>
+                    <text x="610" y="255" text-anchor="middle" fill="#9ca3af" font-size="11">Anode</text>
+                    <text x="610" y="270" text-anchor="middle" fill="#6b7280" font-size="10">구리 집전체 · 흑연</text>
+
+                    <text x="280" y="150" text-anchor="middle" fill="#6b7280" font-size="10">전해질</text>
+                    <text x="480" y="150" text-anchor="middle" fill="#6b7280" font-size="10">전해질</text>
+
+                    <g fill="#f59e0b">
+                        <circle cx="250" cy="130" r="8"/><circle cx="320" cy="130" r="8"/>
+                        <circle cx="440" cy="130" r="8"/><circle cx="510" cy="130" r="8"/>
+                    </g>
+                    <text x="250" y="118" text-anchor="middle" fill="#f59e0b" font-size="9">Li&#8314;</text>
+                    <path d="M215,175 H545" stroke="#f59e0b" stroke-width="2" stroke-dasharray="6,5"/>
+                    <polygon points="545,175 535,170 535,180" fill="#f59e0b"/>
+                    <text x="380" y="197" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="700">충전 : 리튬이온 이동 (양극 &#8594; 음극)</text>
+
+                    <path d="M545,215 H215" stroke="#22c55e" stroke-width="2" stroke-dasharray="6,5"/>
+                    <polygon points="215,215 225,210 225,220" fill="#22c55e"/>
+                    <text x="380" y="230" text-anchor="middle" fill="#22c55e" font-size="11">방전 : 리튬이온 이동 (음극 &#8594; 양극)</text>
+                </svg>
+            </div>
+
+            <div class="note">
+                <strong>학습 노트</strong> — 리튬이온의 이동을 "집(양극)과 사무실(음극)을 오가는 출퇴근"에 비유하면 직관적입니다. 충전은 사무실(음극)에 리튬이온을 채워 넣는 것, 방전은 다시 집(양극)으로 돌려보내며 그 과정에서 전기를 얻는 것입니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>5. 4대 구성요소</h2>
+
+        <div class="card">
+            <span class="tag">Cathode</span>
+            <h3>① 양극재 (Cathode)</h3>
+            <ul>
+                <li>배터리의 용량과 전압을 결정하는 리튬이온의 공급원. 리튬이 들어갈 수 있는 "집"에 해당</li>
+                <li>어떤 금속 원소를 조합하느냐에 따라 성능·안정성·가격이 크게 달라짐 (NCM, NCA, NCMA, LFP 등)</li>
+                <li>4대 구성요소 중 가격 비중이 가장 크고, 배터리 성능을 좌우하는 핵심 소재</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <span class="tag">Anode</span>
+            <h3>② 음극재 (Anode)</h3>
+            <ul>
+                <li>충전 시 리튬이온을 저장하는 공간. 배터리의 수명과 충전 속도를 좌우함</li>
+                <li>리튬이온을 많이·오래 안정적으로 저장하려면 음극재 소재의 구조가 안정적이어야 함</li>
+                <li>대표 소재는 흑연(Graphite)이며, 용량을 크게 늘릴 수 있는 실리콘(Silicon)이 차세대로 주목받음</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <span class="tag">Electrolyte</span>
+            <h3>③ 전해질 (Electrolyte)</h3>
+            <ul>
+                <li>리튬이온이 양극과 음극 사이를 오갈 수 있게 하는 이동 통로(매개체)</li>
+                <li>이온전도도가 높고, 화학적으로 안정하며, 넓은 온도 범위에서 작동해야 함</li>
+                <li>리튬염 + 유기용매 + 첨가제로 구성되며, 차세대로 고체 전해질(전고체) 연구가 진행 중</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <span class="tag">Separator</span>
+            <h3>④ 분리막 (Separator)</h3>
+            <ul>
+                <li>양극과 음극이 직접 닿아 단락(쇼트)되는 것을 막는 절연막. 배터리 안전의 핵심</li>
+                <li>미세한 기공을 통해 리튬이온은 통과시키되, 전자와 전극은 차단함</li>
+                <li>얇고 튼튼하며 기공이 균일해야 하고, 고온에서 견디는 내열성도 중요 (PE·PP + 세라믹 코팅)</li>
+            </ul>
+
+            <table class="compare-table">
+                <tr><th>구성요소</th><th>핵심 역할</th><th>주요 소재</th></tr>
+                <tr><td>양극재</td><td>용량·전압 결정, 리튬 공급원</td><td>NCM, NCA, NCMA, LFP</td></tr>
+                <tr><td>음극재</td><td>리튬이온 저장, 수명·충전속도</td><td>흑연, 실리콘</td></tr>
+                <tr><td>전해질</td><td>리튬이온 이동 통로</td><td>리튬염 + 유기용매 + 첨가제</td></tr>
+                <tr><td>분리막</td><td>양극·음극 차단(쇼트 방지)</td><td>PE, PP (+세라믹)</td></tr>
+            </table>
+
+            <div class="note">
+                <strong>학습 노트</strong> — 4대 구성요소는 각각 "용량(양극)·저장(음극)·이동(전해질)·안전(분리막)"을 담당한다고 외우면 편합니다. 각 소재의 상세 특성은 다음 장(Chapter 02 · 핵심 소재)에서 이어집니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>6. 관련 학습</h2>
+        <div class="card nav-row">
+            <a href="./battery_introduction.html" class="detail-btn"><span class="arrow">&#8592;</span> 목차 : 2차전지 공정의 이해</a>
+            <a href="./battery_material.html" class="detail-btn">다음 : 핵심 소재 <span class="arrow">&#8594;</span></a>
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 NDoubleuK Portfolio</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>필수 용어 · 지표</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root { --bg:#0f172a; --card:#111827; --primary:#6366f1; --text:#e5e7eb; --sub:#9ca3af; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Pretendard',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+        header { position:sticky; top:0; background:rgba(15,23,42,0.8); backdrop-filter:blur(10px); border-bottom:1px solid #1f2937; z-index:100; }
+        nav { max-width:1100px; margin:auto; padding:20px; }
+        nav p { color:var(--sub); font-size:13px; margin-top:4px; }
+        section { max-width:1100px; margin:auto; padding:60px 20px; }
+        .section h2 { font-size:22px; margin-bottom:15px; border-left:4px solid var(--primary); padding-left:10px; }
+        .card { background:var(--card); padding:25px; border-radius:16px; border:1px solid #1f2937; margin-bottom:20px; transition:0.3s; }
+        .card:hover { transform:translateY(-6px) scale(1.01); border-color:var(--primary); }
+        .card h3 { margin:15px 0 10px; }
+        .card ul { padding-left:18px; list-style:disc; }
+        .card li { margin-bottom:10px; color:var(--sub); }
+        .li-desc { margin-top:4px; padding-left:14px; font-size:13px; color:#6b7280; }
+        .svg-box { margin:16px 0; text-align:center; }
+        .svg-box svg { width:100%; max-width:760px; height:auto; background:#0b1120; border:1px solid #1f2937; border-radius:10px; }
+        .compare-table { width:100%; border-collapse:collapse; margin:14px 0; font-size:14px; }
+        .compare-table th, .compare-table td { border:1px solid #1f2937; padding:10px 12px; text-align:left; color:var(--sub); }
+        .compare-table th { color:var(--text); background:rgba(99,102,241,0.1); }
+        .note { background:rgba(99,102,241,0.08); border-left:4px solid var(--primary); border-radius:8px; padding:14px 16px; margin:16px 0; font-size:14px; color:var(--text); }
+        .note strong { color:var(--primary); }
+        .tag { display:inline-block; font-size:11px; padding:3px 10px; border-radius:999px; border:1px solid var(--primary); color:var(--primary); margin-bottom:10px; }
+        .abbr { font-size:13px; color:#6b7280; font-weight:400; }
+        footer { text-align:center; padding:40px 20px; border-top:1px solid #1f2937; color:var(--sub); }
+        .breadcrumb a { color:#9ca3af; text-decoration:none; }
+        .breadcrumb a:hover { color:#e5e7eb; }
+        .breadcrumb span { margin:0 6px; font-size:12px; }
+        .detail-btn { display:inline-flex; align-items:center; gap:6px; margin-top:10px; margin-right:8px; padding:6px 12px; font-size:13px; color:var(--primary); border:1px solid var(--primary); border-radius:999px; text-decoration:none; transition:0.2s; }
+        .detail-btn:hover { background:var(--primary); color:white; }
+        .arrow { transition:transform 0.2s; }
+        .detail-btn:hover .arrow { transform:translateX(3px); }
+        .nav-row { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span>&#8250;</span>
+            <a href="../study.html">Study Archive</a>
+            <span>&#8250;</span>
+            <a href="./battery_introduction.html">2차전지 공정의 이해</a>
+            <span>&#8250;</span>
+            <span>필수 용어 &#183; 지표</span>
+        </div>
+    </div>
+    <nav>
+        <h3>필수 용어 &#183; 지표 - 레퍼런스</h3>
+        <p>SoC &#183; SoH &#183; DoD &#183; C-rate 등 핵심 지표와 SEI &#183; 덴드라이트 &#183; 셀 밸런싱</p>
+    </nav>
+</header>
+
+<section>
+
+    <div class="section">
+        <h2>1. 개요</h2>
+        <div class="card">
+            <ul>
+                <li>배터리 데이터시트·현장 문서에서 반복적으로 등장하는 필수 용어를 두 갈래로 정리함</li>
+                <li><strong>상태 지표</strong> : 배터리의 현재 상태·성능을 수치로 나타내는 값 (SoC, SoH, DoD, C-rate)</li>
+                <li><strong>구조·현상 용어</strong> : 배터리 내부에서 일어나는 현상·구조에 관한 개념 (SEI, 덴드라이트, 셀 밸런싱)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. 상태 지표</h2>
+
+        <div class="card">
+            <span class="tag">SoC <span class="abbr">State of Charge</span></span>
+            <h3>충전 상태</h3>
+            <ul>
+                <li>현재 충전량을 전체 용량 대비 백분율(%)로 나타낸 값 — 스마트폰의 배터리 잔량 표시가 대표적</li>
+                <li>SoC 100% = 완전 충전, SoC 0% = 완전 방전</li>
+                <li>측정법 : 전압 측정법, 전류 적산법(쿨롱 카운팅), 화학 측정법 등</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <span class="tag">SoH <span class="abbr">State of Health</span></span>
+            <h3>수명 상태 (건강 상태)</h3>
+            <ul>
+                <li>배터리의 잔존 수명·현재 성능 상태를 나타내는 지표 — 초기(신품) 성능 대비 현재 성능 수준(%)</li>
+                <li>SoH 100% = 신품 상태, 값이 낮아질수록 노화(열화)가 진행된 것</li>
+                <li>사용 습관·온도 등 외부 환경에 크게 영향받으며, 중고 거래 시 배터리 건강 상태 확인에 활용됨</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <span class="tag">DoD <span class="abbr">Depth of Discharge</span></span>
+            <h3>방전 깊이</h3>
+            <ul>
+                <li>배터리를 얼마나 깊이 방전했는지를 나타내는 값 — SoC와 상보 관계 (DoD 100% = SoC 0%)</li>
+                <li>DoD 30% = 30%만 사용, 70%가 남은 상태</li>
+                <li><strong>DoD가 낮을수록(얕게 쓸수록) 충·방전 사이클 수명이 길어짐</strong> — 매번 0%까지 완전 방전하기보다 얕게 쓰고 자주 충전하는 것이 수명에 유리</li>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 760 180" xmlns="http://www.w3.org/2000/svg">
+                    <text x="380" y="28" text-anchor="middle" fill="#e5e7eb" font-size="13" font-weight="700">DoD와 사이클 수명의 관계</text>
+                    <!-- 축 -->
+                    <line x1="90" y1="150" x2="700" y2="150" stroke="#374151" stroke-width="1.5"/>
+                    <line x1="90" y1="50" x2="90" y2="150" stroke="#374151" stroke-width="1.5"/>
+                    <text x="380" y="172" text-anchor="middle" fill="#9ca3af" font-size="11">DoD (%) — 방전 깊이</text>
+                    <text x="60" y="100" text-anchor="middle" fill="#9ca3af" font-size="10" transform="rotate(-90 60 100)">사이클 수명</text>
+                    <!-- 곡선 (낮은 DoD = 긴 수명) -->
+                    <path d="M110,60 Q200,80 320,120 T680,148" fill="none" stroke="#6366f1" stroke-width="2.5"/>
+                    <text x="150" y="70" fill="#22c55e" font-size="10">얕게 쓰면 수명 &#8593;</text>
+                    <text x="560" y="140" fill="#ef4444" font-size="10">깊게 쓰면 수명 &#8595;</text>
+                </svg>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="tag">C-rate <span class="abbr">Current Rate</span></span>
+            <h3>충·방전 속도</h3>
+            <ul>
+                <li>배터리를 충전·방전하는 속도를 나타내는 값 — <strong>충·방전 전류(A) &#247; 정격용량(Ah)</strong></li>
+                <li>1C = 1시간에 완전 충전/방전, 2C = 30분, 0.5C = 2시간이 걸림</li>
+                <li>C-rate가 높을수록(급속충전) 빠르지만 발열·수명 저하 부담이 커짐</li>
+                <li>활성화 공정에서 SEI를 만들 때 낮은 C-rate로 천천히 충전하는 이유도 여기에 있음</li>
+            </ul>
+
+            <table class="compare-table">
+                <tr><th>C-rate</th><th>소요 시간</th><th>의미</th></tr>
+                <tr><td>0.5C</td><td>2시간</td><td>저속 충·방전</td></tr>
+                <tr><td>1C</td><td>1시간</td><td>기준(표준)</td></tr>
+                <tr><td>2C</td><td>30분</td><td>고속</td></tr>
+                <tr><td>10C</td><td>6분</td><td>초고속(급속충전)</td></tr>
+            </table>
+
+            <div class="note">
+                <strong>학습 노트</strong> — 네 지표의 관계를 한 문장으로 : "SoC(지금 얼마나 찼나) / DoD(얼마나 깊이 썼나) / SoH(전체적으로 얼마나 건강한가) / C-rate(얼마나 빨리 넣고 빼나)". SoC와 DoD는 순간 상태, SoH는 누적 노화, C-rate는 속도라는 축으로 구분하면 헷갈리지 않습니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>3. 구조 &#183; 현상 용어</h2>
+
+        <div class="card">
+            <span class="tag">SEI <span class="abbr">Solid Electrolyte Interphase</span></span>
+            <h3>음극 표면 보호막</h3>
+            <ul>
+                <li>첫 충전 시 음극과 전해질 사이에 형성되는 얇은 고체막</li>
+                <li>전자는 막고 리튬이온만 통과시키는 "또 하나의 분리막" 역할 — 전해질의 추가 분해를 막아 수명·안전을 좌우</li>
+                <li>양질의 SEI 형성이 배터리 수명의 출발점 (활성화 공정의 핵심)</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <span class="tag">Dendrite</span>
+            <h3>덴드라이트 (수지상 결정)</h3>
+            <ul>
+                <li>충전 과정에서 음극 표면에 리튬이 나뭇가지 모양으로 자라나는 결정체</li>
+                <li>계속 자라면 분리막을 뚫고 양극에 닿아 내부 단락(쇼트)·화재를 유발 — 차세대 배터리(특히 리튬금속)의 최대 난제</li>
+                <li>에너지 효율을 떨어뜨리고 수명을 저하시키므로, 이를 억제하는 전해질·분리막·음극 설계가 활발히 연구됨</li>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 760 170" xmlns="http://www.w3.org/2000/svg">
+                    <text x="380" y="28" text-anchor="middle" fill="#e5e7eb" font-size="13" font-weight="700">덴드라이트 : 음극 표면에서 자라 분리막을 위협</text>
+                    <!-- 음극 -->
+                    <rect x="120" y="110" width="520" height="30" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="380" y="130" text-anchor="middle" fill="#3b82f6" font-size="11">음극</text>
+                    <!-- 분리막 라인 -->
+                    <line x1="120" y1="55" x2="640" y2="55" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5,4"/>
+                    <text x="670" y="59" fill="#9ca3af" font-size="10">분리막</text>
+                    <!-- 덴드라이트 가지 -->
+                    <g stroke="#ef4444" stroke-width="2" fill="none">
+                        <path d="M250,110 L250,70 M250,90 L235,78 M250,80 L262,68"/>
+                        <path d="M420,110 L420,58 M420,88 L406,76 M420,72 L433,60"/>
+                        <path d="M540,110 L540,82 M540,95 L528,86"/>
+                    </g>
+                    <text x="420" y="50" text-anchor="middle" fill="#ef4444" font-size="10">&#9888; 분리막 관통 위험</text>
+                </svg>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="tag">Cell Balancing</span>
+            <h3>셀 밸런싱</h3>
+            <ul>
+                <li>직렬로 연결된 여러 셀 간의 전압 편차를 맞추는 작업</li>
+                <li>직렬 셀 중 하나만 전압이 어긋나도 과충전·과방전으로 이어져 화재 위험 → 반드시 필요</li>
+                <li>수동형(Passive) : 전압이 높은 셀의 에너지를 저항으로 방전시켜 낮춤 (단순·저렴, 에너지 손실)</li>
+                <li>능동형(Active) : 전압이 높은 셀의 에너지를 낮은 셀로 재분배 (효율 높음, 회로 복잡·고비용)</li>
+                <li>BMS(배터리 관리 시스템)가 이 작업을 수행함 (팩 공정에서 적용)</li>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 760 150" xmlns="http://www.w3.org/2000/svg">
+                    <text x="200" y="28" text-anchor="middle" fill="#e5e7eb" font-size="12" font-weight="700">불균형 상태</text>
+                    <rect x="110" y="45" width="50" height="70" rx="4" fill="#111827" stroke="#3b82f6" stroke-width="2"/>
+                    <rect x="114" y="75" width="42" height="36" fill="#3b82f6" opacity="0.5"/>
+                    <text x="135" y="132" text-anchor="middle" fill="#9ca3af" font-size="10">4.0V</text>
+                    <rect x="200" y="45" width="50" height="70" rx="4" fill="#111827" stroke="#ef4444" stroke-width="2"/>
+                    <rect x="204" y="55" width="42" height="56" fill="#ef4444" opacity="0.5"/>
+                    <text x="225" y="132" text-anchor="middle" fill="#9ca3af" font-size="10">4.2V</text>
+
+                    <path d="M290,80 H360" stroke="#22c55e" stroke-width="2"/><polygon points="360,80 351,75 351,85" fill="#22c55e"/>
+                    <text x="325" y="72" text-anchor="middle" fill="#22c55e" font-size="10">밸런싱</text>
+
+                    <text x="560" y="28" text-anchor="middle" fill="#e5e7eb" font-size="12" font-weight="700">균형 상태</text>
+                    <rect x="470" y="45" width="50" height="70" rx="4" fill="#111827" stroke="#22c55e" stroke-width="2"/>
+                    <rect x="474" y="65" width="42" height="46" fill="#22c55e" opacity="0.5"/>
+                    <text x="495" y="132" text-anchor="middle" fill="#9ca3af" font-size="10">4.1V</text>
+                    <rect x="560" y="45" width="50" height="70" rx="4" fill="#111827" stroke="#22c55e" stroke-width="2"/>
+                    <rect x="564" y="65" width="42" height="46" fill="#22c55e" opacity="0.5"/>
+                    <text x="585" y="132" text-anchor="middle" fill="#9ca3af" font-size="10">4.1V</text>
+                </svg>
+            </div>
+
+            <div class="note">
+                <strong>학습 노트</strong> — 셀 밸런싱은 "물통 여러 개를 같은 높이로 맞추는 것"에 비유됩니다. 직렬 배터리는 가장 약한 셀이 전체 성능·안전을 제한하므로(물통 효과), BMS가 셀 간 전압을 지속적으로 맞춰 줘야 팩 전체가 안전하고 오래갑니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>관련 학습</h2>
+        <div class="card nav-row">
+            <a href="./battery_formfactor.html" class="detail-btn"><span class="arrow">&#8592;</span> 이전 : 배터리 폼팩터</a>
+            <a href="./battery_application.html" class="detail-btn">다음 : 응용 &#183; 산업 동향 <span class="arrow">&#8594;</span></a>
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 NDoubleuK Portfolio</p>
+</footer>
+
+</body>
+</html>

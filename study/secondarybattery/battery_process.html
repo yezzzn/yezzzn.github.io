@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>제조 공정 (4단계)</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --primary: #6366f1;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 100;
+        }
+
+        nav { max-width: 1100px; margin: auto; padding: 20px; }
+        nav p { color: var(--sub); font-size: 13px; margin-top: 4px; }
+
+        section { max-width: 1100px; margin: auto; padding: 60px 20px; }
+
+        .section h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        .step-badge {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--primary);
+        }
+
+        .card h3 { margin: 15px 0 10px; }
+        .card h4 { margin: 14px 0 6px; color: var(--text); font-size: 15px; }
+        .card ul { padding-left: 18px; list-style: disc; }
+        .card li { margin-bottom: 10px; color: var(--sub); }
+
+        .li-desc {
+            margin-top: 4px;
+            padding-left: 14px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .svg-box { margin: 16px 0; text-align: center; }
+
+        .svg-box svg {
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            background: #0b1120;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 14px;
+        }
+
+        .compare-table th,
+        .compare-table td {
+            border: 1px solid #1f2937;
+            padding: 10px 12px;
+            text-align: left;
+            color: var(--sub);
+        }
+
+        .compare-table th {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .note {
+            background: rgba(99, 102, 241, 0.08);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .note strong { color: var(--primary); }
+
+        .lg-note {
+            background: rgba(34, 197, 94, 0.07);
+            border-left: 4px solid #22c55e;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .lg-note strong { color: #22c55e; }
+
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #1f2937;
+            color: var(--sub);
+        }
+
+        .breadcrumb a { color: #9ca3af; text-decoration: none; }
+        .breadcrumb a:hover { color: #e5e7eb; }
+        .breadcrumb span { margin: 0 6px; font-size: 12px; }
+
+        .detail-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 10px;
+          margin-right: 8px;
+          padding: 6px 12px;
+          font-size: 13px;
+          color: var(--primary);
+          border: 1px solid var(--primary);
+          border-radius: 999px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+
+        .detail-btn:hover { background: var(--primary); color: white; }
+        .arrow { transition: transform 0.2s; }
+        .detail-btn:hover .arrow { transform: translateX(3px); }
+
+        .nav-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .toc-inline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .toc-inline a {
+            font-size: 13px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            background: #0b1120;
+            border: 1px solid #1f2937;
+            color: var(--sub);
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .toc-inline a:hover { border-color: var(--primary); color: var(--text); }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span>&#8250;</span>
+            <a href="../study.html">Study Archive</a>
+            <span>&#8250;</span>
+            <a href="./battery_introduction.html">2차전지 공정의 이해</a>
+            <span>&#8250;</span>
+            <span>제조 공정 (4단계)</span>
+        </div>
+    </div>
+
+    <nav>
+        <h3>리튬이온배터리 제조 공정 - 핵심</h3>
+        <p>전극 공정 &#8594; 조립 공정 &#8594; 활성화 공정 &#8594; 팩 공정의 전 과정 상세 정리</p>
+    </nav>
+</header>
+
+<section>
+
+    <div class="section">
+        <h2>1. 개요 : 제조 공정 4단계</h2>
+        <div class="card">
+            <ul>
+                <li>리튬이온배터리 제조는 크게 <strong>전극 &#8594; 조립 &#8594; 활성화 &#8594; 팩</strong>의 4개 STEP으로 이루어짐</li>
+                <li><strong>전극 공정</strong> : 양극과 음극을 만드는 단계 (배터리의 심장)</li>
+                <li><strong>조립 공정</strong> : 전극·분리막·전해질을 합쳐 배터리 형태(셀)를 만드는 단계</li>
+                <li><strong>활성화 공정</strong> : 충·방전으로 전기적 특성을 부여하고 안정화·검사하는 단계</li>
+                <li><strong>팩 공정</strong> : 완성된 셀을 모듈·팩으로 묶어 최종 제품 형태로 만드는 단계</li>
+            </ul>
+
+            <div class="toc-inline">
+                <a href="#step1">STEP 1 · 전극 공정</a>
+                <a href="#step2">STEP 2 · 조립 공정</a>
+                <a href="#step3">STEP 3 · 활성화 공정</a>
+                <a href="#step4">STEP 4 · 팩 공정</a>
+            </div>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 900 180" xmlns="http://www.w3.org/2000/svg">
+                    <!-- STEP1 -->
+                    <rect x="20" y="55" width="190" height="70" rx="10" fill="rgba(99,102,241,0.12)" stroke="#6366f1" stroke-width="2"/>
+                    <text x="115" y="80" text-anchor="middle" fill="#e5e7eb" font-size="14" font-weight="700">STEP 1 · 전극</text>
+                    <text x="115" y="100" text-anchor="middle" fill="#9ca3af" font-size="10">믹싱·코팅·프레싱·노칭</text>
+
+                    <rect x="235" y="55" width="190" height="70" rx="10" fill="#111827" stroke="#374151" stroke-width="2"/>
+                    <text x="330" y="80" text-anchor="middle" fill="#e5e7eb" font-size="14" font-weight="700">STEP 2 · 조립</text>
+                    <text x="330" y="100" text-anchor="middle" fill="#9ca3af" font-size="10">와인딩 / 스태킹</text>
+
+                    <rect x="450" y="55" width="190" height="70" rx="10" fill="#111827" stroke="#374151" stroke-width="2"/>
+                    <text x="545" y="80" text-anchor="middle" fill="#e5e7eb" font-size="14" font-weight="700">STEP 3 · 활성화</text>
+                    <text x="545" y="100" text-anchor="middle" fill="#9ca3af" font-size="10">충·방전·에이징·검사</text>
+
+                    <rect x="665" y="55" width="190" height="70" rx="10" fill="#111827" stroke="#374151" stroke-width="2"/>
+                    <text x="760" y="80" text-anchor="middle" fill="#e5e7eb" font-size="14" font-weight="700">STEP 4 · 팩</text>
+                    <text x="760" y="100" text-anchor="middle" fill="#9ca3af" font-size="10">셀&#8594;모듈&#8594;팩·BMS</text>
+
+                    <path d="M210,90 H235" stroke="#6366f1" stroke-width="2.5"/><polygon points="235,90 226,85 226,95" fill="#6366f1"/>
+                    <path d="M425,90 H450" stroke="#6366f1" stroke-width="2.5"/><polygon points="450,90 441,85 441,95" fill="#6366f1"/>
+                    <path d="M640,90 H665" stroke="#6366f1" stroke-width="2.5"/><polygon points="665,90 656,85 656,95" fill="#6366f1"/>
+
+                    <text x="437" y="155" text-anchor="middle" fill="#6b7280" font-size="12">소재 &#8594; 전극 &#8594; 셀 &#8594; 활성화된 셀 &#8594; 팩(완제품)</text>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ STEP 1 ============ -->
+    <div class="section" id="step1">
+        <span class="step-badge">STEP 1</span>
+        <h2>전극 공정 — 양극·음극 만들기</h2>
+        <div class="card">
+            <ul>
+                <li>전기화학 반응을 일으키는 양극과 음극을 만드는 가장 기본이자 핵심 과정</li>
+                <li>진행 순서 : <strong>믹싱 &#8594; 코팅 &#8594; 롤 프레싱 &#8594; 슬리팅 &amp; 노칭</strong></li>
+                <li>양극과 음극은 소재만 다를 뿐 공정 순서는 동일하며, 각각 별도 라인에서 진행됨</li>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 900 130" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="20" y="45" width="150" height="55" rx="8" fill="rgba(99,102,241,0.12)" stroke="#6366f1" stroke-width="2"/>
+                    <text x="95" y="70" text-anchor="middle" fill="#e5e7eb" font-size="13" font-weight="700">① 믹싱</text>
+                    <text x="95" y="88" text-anchor="middle" fill="#9ca3af" font-size="9">슬러리 만들기</text>
+
+                    <rect x="205" y="45" width="150" height="55" rx="8" fill="#111827" stroke="#374151" stroke-width="2"/>
+                    <text x="280" y="70" text-anchor="middle" fill="#e5e7eb" font-size="13" font-weight="700">② 코팅</text>
+                    <text x="280" y="88" text-anchor="middle" fill="#9ca3af" font-size="9">집전체에 도포·건조</text>
+
+                    <rect x="390" y="45" width="150" height="55" rx="8" fill="#111827" stroke="#374151" stroke-width="2"/>
+                    <text x="465" y="70" text-anchor="middle" fill="#e5e7eb" font-size="13" font-weight="700">③ 롤 프레싱</text>
+                    <text x="465" y="88" text-anchor="middle" fill="#9ca3af" font-size="9">눌러서 밀도 &#8593;</text>
+
+                    <rect x="575" y="45" width="180" height="55" rx="8" fill="#111827" stroke="#374151" stroke-width="2"/>
+                    <text x="665" y="70" text-anchor="middle" fill="#e5e7eb" font-size="13" font-weight="700">④ 슬리팅&amp;노칭</text>
+                    <text x="665" y="88" text-anchor="middle" fill="#9ca3af" font-size="9">규격 절단·탭 성형</text>
+
+                    <path d="M170,72 H205" stroke="#6366f1" stroke-width="2"/><polygon points="205,72 196,67 196,77" fill="#6366f1"/>
+                    <path d="M355,72 H390" stroke="#6366f1" stroke-width="2"/><polygon points="390,72 381,67 381,77" fill="#6366f1"/>
+                    <path d="M540,72 H575" stroke="#6366f1" stroke-width="2"/><polygon points="575,72 566,67 566,77" fill="#6366f1"/>
+
+                    <rect x="790" y="45" width="90" height="55" rx="8" fill="rgba(34,197,94,0.1)" stroke="#22c55e" stroke-width="2"/>
+                    <text x="835" y="70" text-anchor="middle" fill="#22c55e" font-size="12" font-weight="700">전극</text>
+                    <text x="835" y="88" text-anchor="middle" fill="#9ca3af" font-size="9">완성</text>
+                    <path d="M755,72 H790" stroke="#22c55e" stroke-width="2"/><polygon points="790,72 781,67 781,77" fill="#22c55e"/>
+                </svg>
+            </div>
+
+            <h3>① 믹싱 (Mixing)</h3>
+            <ul>
+                <li>활물질 · 도전재 · 바인더 · 용매를 정해진 비율로 섞어 중간재인 <strong>슬러리(Slurry)</strong>를 만드는 과정</li>
+                <li>양극 : PVDF 바인더를 NMP 용매에 녹여 사용 / 음극 : CMC·SBR 바인더를 물과 함께 사용</li>
+                <li>핵심은 <strong>균일한 분산(Dispersion)</strong> — 재료가 뭉치지 않고 고르게 퍼져야 전지 성능·품질이 일정해짐</li>
+            </ul>
+            <h4>실무 관리 포인트</h4>
+            <ul>
+                <li>도전재(카본블랙)를 소량 용매에 먼저 예비 분산시킨 뒤 활물질을 투입하는 단계적 투입이 일반적</li>
+                <li><strong>고형분(Solid Content)</strong>과 <strong>점도(Viscosity)</strong>를 목표값으로 조절 — 점도가 너무 높으면 분산이 어렵고, 너무 묽으면 코팅 두께가 불균일해짐</li>
+                <li>슬러리는 전단담화(shear-thinning) 특성이 있어, 정지 상태에서 입자가 가라앉지 않도록 저장 안정성도 관리해야 함</li>
+                <li>교반 중 발생하는 열·기포 관리, 이물질 혼입 방지가 품질 직결 요소</li>
+            </ul>
+            <div class="lg-note">
+                <strong>LG엔솔 기술</strong> — 2021년 업계 최초로 3,500리터급 대형 믹싱 장비를 양산에 적용해, 한 번에 더 많은 슬러리를 균일하게 분산시키는 생산 역량을 확보했습니다.
+            </div>
+
+            <h3>② 코팅 (Coating)</h3>
+            <ul>
+                <li>믹싱된 슬러리를 집전체(양극=알루미늄 포일, 음극=구리 포일)에 얇고 균일하게 도포한 뒤 100&#176;C 이상 오븐에서 건조</li>
+                <li>배터리 전체 공정 중 약 18% 비중을 차지하며, 전지 설계 변수의 대부분을 결정하는 중요한 공정</li>
+                <li>주로 <strong>슬롯 다이(Slot Die)</strong> 방식 — 금형(다이)의 좁은 슬릿으로 슬러리를 밀어내 일정한 패턴·두께로 코팅</li>
+            </ul>
+            <h4>실무 관리 포인트</h4>
+            <ul>
+                <li>가장 중요한 관리 항목은 <strong>로딩량(mass loading)과 두께의 균일성</strong> — 두께 산포(±수 &#181;m 수준 관리)가 셀 용량·수명 품질에 직결</li>
+                <li>롤투롤(Roll-to-Roll)로 고속 주행하며, 장력(tension)과 속도 제어가 어긋나면 포일 찢김·주름(wrinkle) 발생</li>
+                <li>대표 결함 : 줄무늬(stripe)·가장자리 처짐(edge depression)·스크래치·건조 중 크랙 — 인라인 비전 검사로 실시간 검출</li>
+                <li>건조가 너무 빠르면 바인더가 표면으로 쏠리는 <strong>바인더 마이그레이션</strong>이 생겨 접착력·성능 저하</li>
+            </ul>
+            <div class="lg-note">
+                <strong>LG엔솔 기술 — 더블 레이어 코팅 (DLD)</strong><br>
+                2018년 세계 최초로 도입한 기술로, 두 종류의 전극 슬러리를 집전체에 <strong>동시에 상·하 2층으로 코팅</strong>합니다. 상층·하층에 서로 다른 기능을 부여해 바인더 효율을 높이고, 전극 내부 저항을 낮춰 <strong>급속충전 성능과 생산성</strong>을 동시에 향상시킵니다.
+            </div>
+
+            <h3>③ 롤 프레싱 (Roll Pressing)</h3>
+            <ul>
+                <li>코팅·건조된 전극을 두 개의 압연 롤 사이로 통과시켜 눌러 <strong>전극 밀도(g/cc)</strong>를 높이고 표면을 편평하게 펴는 공정 (압연/캘린더링)</li>
+                <li>밀도가 높아지면 활물질 간 접촉이 좋아져 리튬이온 이동이 원활해지고, 출력·에너지밀도가 향상됨</li>
+                <li>롤 구조 : 압력을 가하는 동작 롤(Working Roll) + 이를 지지하는 지원 롤(Back-up Roll)</li>
+            </ul>
+            <h4>실무 관리 포인트</h4>
+            <ul>
+                <li>목표 지표는 <strong>압연 밀도</strong> — 너무 낮으면 에너지밀도 손해, 너무 높으면 기공이 막혀 이온 이동·수명 저하 (적정 기공도 유지가 관건)</li>
+                <li>Ni·Co·Mn계 양극은 흑연 음극보다 더 높은 압연 하중이 필요함</li>
+                <li>과도한 압력은 활물질 입자 파괴·집전체 손상을 유발하므로 하중·롤 간격 정밀 제어 필요</li>
+            </ul>
+
+            <h3>④ 슬리팅 (Slitting) &amp; 노칭 (Notching)</h3>
+            <ul>
+                <li><strong>슬리팅</strong> : 넓게 코팅된 전극을 세로 방향으로 배터리 규격 폭에 맞게 잘라내는 공정</li>
+                <li><strong>노칭</strong> : 활물질이 코팅되지 않은 무지부(無地部)에서 리드탭 용접용 <strong>탭(Tab)</strong> 부분만 남기고 V자 형태로 재단하는 공정</li>
+                <li>노칭 방식 : 프레스(칼날) vs 레이저 — 레이저는 칼날 마모가 없어 유지비 절감·속도 향상에 유리</li>
+                <li>절단면의 버(burr, 거스러미)나 이물은 분리막을 뚫어 쇼트를 유발하므로 깨끗한 절단이 필수</li>
+            </ul>
+            <div class="note">
+                <strong>학습 노트</strong> — 원통형·각형처럼 정해진 캔에 말아 넣는 형태는 노칭 과정이 생략되기도 합니다(폼팩터에 따라 다름). 전극 공정의 결과물은 "탭이 달린, 규격에 맞게 잘린 양극·음극"이며, 이것이 다음 조립 공정의 입력물이 됩니다.
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ STEP 2 ============ -->
+    <div class="section" id="step2">
+        <span class="step-badge">STEP 2</span>
+        <h2>조립 공정 — 배터리 형태 만들기</h2>
+        <div class="card">
+            <ul>
+                <li>전극에 분리막과 전해질을 더해 실제 배터리(셀) 모양을 갖추는 단계</li>
+                <li>배터리 형태(폼팩터)에 따라 조립 순서와 적용 기술이 달라짐 — 원통형은 <strong>와인딩</strong>, 파우치형은 <strong>스태킹</strong>이 대표적</li>
+            </ul>
+
+            <h3>A. 원통형 배터리 (와인딩 방식)</h3>
+            <ul>
+                <li><strong>와인딩(Winding)</strong> : 양극·음극·분리막 롤을 휴지 감듯 맨드릴(Mandrel)에 돌돌 말아 <strong>젤리롤</strong>을 만듦 (공정 속도가 빠른 것이 장점)</li>
+                <li><strong>탭 용접</strong> : 양극 무지부에 알루미늄 탭, 음극 무지부에 구리 탭을 용접</li>
+                <li><strong>캔 삽입 &amp; 비딩</strong> : 젤리롤을 캔에 넣고 저항 용접(스폿 용접)으로 고정, 비딩(Beading)으로 셀 목을 만들어 상단 캡 자리 확보</li>
+                <li><strong>전해질 주입 &#8594; 크림핑(Crimping)</strong> : 진공 캔에 전해질을 주입하고 압력을 가해 스며들게 한 뒤 기계적으로 밀봉, 사이징으로 규격화</li>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 900 150" xmlns="http://www.w3.org/2000/svg">
+                    <text x="450" y="28" text-anchor="middle" fill="#e5e7eb" font-size="13" font-weight="700">원통형 : 와인딩 → 탭 용접 → 캔 삽입 → 전해질 주입·밀봉</text>
+
+                    <!-- 젤리롤 (나선) -->
+                    <g transform="translate(90,90)">
+                        <circle r="32" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                        <circle r="24" fill="none" stroke="#ef4444" stroke-width="2"/>
+                        <circle r="16" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                        <circle r="8" fill="none" stroke="#ef4444" stroke-width="2"/>
+                    </g>
+                    <text x="90" y="140" text-anchor="middle" fill="#9ca3af" font-size="10">젤리롤(와인딩)</text>
+
+                    <path d="M135,90 H190" stroke="#6366f1" stroke-width="2"/><polygon points="190,90 181,85 181,95" fill="#6366f1"/>
+
+                    <!-- 탭 -->
+                    <rect x="200" y="70" width="70" height="40" rx="4" fill="#111827" stroke="#f59e0b" stroke-width="2"/>
+                    <line x1="235" y1="70" x2="235" y2="55" stroke="#f59e0b" stroke-width="3"/>
+                    <text x="235" y="128" text-anchor="middle" fill="#9ca3af" font-size="10">탭 용접</text>
+
+                    <path d="M280,90 H335" stroke="#6366f1" stroke-width="2"/><polygon points="335,90 326,85 326,95" fill="#6366f1"/>
+
+                    <!-- 캔 -->
+                    <rect x="350" y="58" width="44" height="64" rx="6" fill="#111827" stroke="#9ca3af" stroke-width="2"/>
+                    <rect x="364" y="50" width="16" height="10" rx="2" fill="#9ca3af"/>
+                    <text x="372" y="138" text-anchor="middle" fill="#9ca3af" font-size="10">캔 삽입</text>
+
+                    <path d="M404,90 H459" stroke="#6366f1" stroke-width="2"/><polygon points="459,90 450,85 450,95" fill="#6366f1"/>
+
+                    <!-- 전해질 -->
+                    <path d="M485,55 q10,15 0,25 q-10,-10 0,-25" fill="#f59e0b"/>
+                    <rect x="470" y="82" width="44" height="40" rx="6" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="2"/>
+                    <text x="492" y="138" text-anchor="middle" fill="#9ca3af" font-size="10">전해질 주입</text>
+
+                    <path d="M524,90 H579" stroke="#22c55e" stroke-width="2"/><polygon points="579,90 570,85 570,95" fill="#22c55e"/>
+
+                    <!-- 완성 -->
+                    <rect x="595" y="55" width="44" height="67" rx="6" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="2"/>
+                    <rect x="609" y="47" width="16" height="10" rx="2" fill="#22c55e"/>
+                    <text x="617" y="138" text-anchor="middle" fill="#22c55e" font-size="10">밀봉 완성</text>
+                </svg>
+            </div>
+
+            <h3>B. 파우치 배터리 (라미네이션 &amp; 스태킹 방식)</h3>
+            <ul>
+                <li><strong>파우치 케이스 제작</strong> : 나일론·접착제·알루미늄·PP 등 7개 레이어 필름을 프레스로 압착해 전극 포켓 + 공기 포켓을 만듦</li>
+                <li><strong>모노셀/바이셀 제작</strong> : 양극/분리막/음극을 결합해 기본 단위 셀을 만듦 (바이셀 = 양극/분리막/음극/분리막/양극처럼 대칭 적층)</li>
+                <li><strong>라미네이션(Lamination)</strong> : 하프셀(분리막+음극)을 붙여 정렬</li>
+                <li><strong>스태킹(Stacking)</strong> : 분리막을 기준으로 음극·양극을 층층이 쌓음 &#8594; 뒤틀림이 적어 빈 공간 없이 에너지밀도를 높임</li>
+                <li><strong>전해질 주입</strong> : 공기 포켓을 통해 전극 포켓 기공까지 전해질 주입</li>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 900 150" xmlns="http://www.w3.org/2000/svg">
+                    <text x="450" y="28" text-anchor="middle" fill="#e5e7eb" font-size="13" font-weight="700">파우치 : 스태킹(적층) — 셀 사이 빈 공간 없이 층층이 쌓음</text>
+
+                    <!-- 적층 레이어 -->
+                    <g transform="translate(300,45)">
+                        <rect x="0" y="0" width="300" height="12" rx="2" fill="#ef4444"/>
+                        <text x="315" y="10" fill="#9ca3af" font-size="10">양극</text>
+                        <rect x="0" y="16" width="300" height="8" rx="2" fill="#6b7280"/>
+                        <text x="315" y="24" fill="#9ca3af" font-size="10">분리막</text>
+                        <rect x="0" y="28" width="300" height="12" rx="2" fill="#3b82f6"/>
+                        <text x="315" y="38" fill="#9ca3af" font-size="10">음극</text>
+                        <rect x="0" y="44" width="300" height="8" rx="2" fill="#6b7280"/>
+                        <text x="315" y="52" fill="#9ca3af" font-size="10">분리막</text>
+                        <rect x="0" y="56" width="300" height="12" rx="2" fill="#ef4444"/>
+                        <text x="315" y="66" fill="#9ca3af" font-size="10">양극</text>
+                    </g>
+                    <text x="150" y="118" text-anchor="middle" fill="#6b7280" font-size="11">공간 효율 극대화 → 높은 에너지밀도</text>
+                </svg>
+            </div>
+
+            <table class="compare-table">
+                <tr><th>구분</th><th>원통형</th><th>파우치형</th></tr>
+                <tr><td>조립 방식</td><td>와인딩 (말기)</td><td>스태킹 (쌓기)</td></tr>
+                <tr><td>속도/생산성</td><td>빠름, 대량생산 유리</td><td>상대적으로 느림, 고난도</td></tr>
+                <tr><td>공간 효율</td><td>원형이라 빈틈 발생</td><td>빈틈 적어 에너지밀도 높음</td></tr>
+                <tr><td>추가 공정</td><td>비딩·크림핑</td><td>디개싱 필요</td></tr>
+            </table>
+
+            <div class="lg-note">
+                <strong>LG엔솔 기술 — 라미네이션 &amp; 스태킹</strong> — 독자 개발한 공법으로, 2mm 미만 초슬림부터 롱셀까지 다양한 파우치 배터리를 생산합니다. 셀 사이 뒤틀림이 적어 빈 공간 없이 에너지밀도와 안전성을 높입니다.
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ STEP 3 ============ -->
+    <div class="section" id="step3">
+        <span class="step-badge">STEP 3</span>
+        <h2>활성화 공정 — 배터리 기능의 활성화 (화성 공정)</h2>
+        <div class="card">
+            <ul>
+                <li>조립까지는 형태만 갖췄을 뿐 전기적 기능이 없는 상태 — 충·방전으로 전기적 특성을 부여하고 안정화·검사하는 단계</li>
+                <li>진행 순서(대략) : <strong>초충전(SEI 형성) &#8594; 에이징 &#8594; 디개싱(파우치) &#8594; 충·방전 &amp; 등급 판정 &#8594; OCV 검사</strong></li>
+                <li>시간·비용이 매우 큰 공정으로, 전체 제조 비용의 상당 부분(업계 추정 최대 약 30%)을 차지하며 전 과정이 수일&#126;수주까지 소요됨</li>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 900 150" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="15" y="50" width="150" height="60" rx="8" fill="rgba(99,102,241,0.12)" stroke="#6366f1" stroke-width="2"/>
+                    <text x="90" y="75" text-anchor="middle" fill="#e5e7eb" font-size="12" font-weight="700">초충전</text>
+                    <text x="90" y="93" text-anchor="middle" fill="#9ca3af" font-size="9">SEI 막 형성</text>
+
+                    <rect x="190" y="50" width="150" height="60" rx="8" fill="#111827" stroke="#374151" stroke-width="2"/>
+                    <text x="265" y="75" text-anchor="middle" fill="#e5e7eb" font-size="12" font-weight="700">에이징</text>
+                    <text x="265" y="93" text-anchor="middle" fill="#9ca3af" font-size="9">전해질 함침·안정화</text>
+
+                    <rect x="365" y="50" width="150" height="60" rx="8" fill="#111827" stroke="#374151" stroke-width="2"/>
+                    <text x="440" y="75" text-anchor="middle" fill="#e5e7eb" font-size="12" font-weight="700">디개싱</text>
+                    <text x="440" y="93" text-anchor="middle" fill="#9ca3af" font-size="9">가스 제거(파우치)</text>
+
+                    <rect x="540" y="50" width="150" height="60" rx="8" fill="#111827" stroke="#374151" stroke-width="2"/>
+                    <text x="615" y="75" text-anchor="middle" fill="#e5e7eb" font-size="12" font-weight="700">충·방전/등급</text>
+                    <text x="615" y="93" text-anchor="middle" fill="#9ca3af" font-size="9">용량·저항 측정</text>
+
+                    <rect x="715" y="50" width="150" height="60" rx="8" fill="rgba(34,197,94,0.1)" stroke="#22c55e" stroke-width="2"/>
+                    <text x="790" y="75" text-anchor="middle" fill="#22c55e" font-size="12" font-weight="700">OCV 검사</text>
+                    <text x="790" y="93" text-anchor="middle" fill="#9ca3af" font-size="9">저전압 불량 선별</text>
+
+                    <path d="M165,80 H190" stroke="#6366f1" stroke-width="2"/><polygon points="190,80 181,75 181,85" fill="#6366f1"/>
+                    <path d="M340,80 H365" stroke="#6366f1" stroke-width="2"/><polygon points="365,80 356,75 356,85" fill="#6366f1"/>
+                    <path d="M515,80 H540" stroke="#6366f1" stroke-width="2"/><polygon points="540,80 531,75 531,85" fill="#6366f1"/>
+                    <path d="M690,80 H715" stroke="#22c55e" stroke-width="2"/><polygon points="715,80 706,75 706,85" fill="#22c55e"/>
+                </svg>
+            </div>
+
+            <h3>① 초충전과 SEI 형성</h3>
+            <ul>
+                <li>처음 충전할 때 음극과 전해질 사이에 <strong>SEI(Solid Electrolyte Interphase)</strong>라는 얇은 고체막이 생성됨</li>
+                <li>SEI는 전자는 막고 리튬이온만 통과시키는 "또 하나의 분리막" 역할 — 전해질의 추가 분해를 막아 수명·안전을 좌우</li>
+                <li>양질의 SEI를 만들려면 <strong>낮은 C-rate로 천천히</strong> 첫 충전을 진행 (급하게 충전하면 불안정한 SEI가 형성됨)</li>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 760 160" xmlns="http://www.w3.org/2000/svg">
+                    <text x="380" y="28" text-anchor="middle" fill="#e5e7eb" font-size="13" font-weight="700">SEI : 음극 표면에 형성되는 보호막</text>
+
+                    <!-- 음극 -->
+                    <rect x="120" y="50" width="120" height="80" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="180" y="145" text-anchor="middle" fill="#3b82f6" font-size="11">음극 (Anode)</text>
+
+                    <!-- SEI 막 -->
+                    <rect x="240" y="50" width="18" height="80" fill="#22c55e" opacity="0.6"/>
+                    <text x="249" y="42" text-anchor="middle" fill="#22c55e" font-size="10">SEI</text>
+
+                    <!-- 전해질 영역 -->
+                    <rect x="258" y="50" width="200" height="80" fill="rgba(245,158,11,0.05)" stroke="#374151" stroke-width="1"/>
+                    <text x="358" y="145" text-anchor="middle" fill="#9ca3af" font-size="11">전해질</text>
+
+                    <!-- 리튬이온 통과 -->
+                    <circle cx="330" cy="75" r="7" fill="#f59e0b"/>
+                    <path d="M330,75 H262" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3"/>
+                    <polygon points="262,75 271,71 271,79" fill="#f59e0b"/>
+                    <text x="400" y="79" fill="#f59e0b" font-size="10">Li&#8314; 통과 &#10003;</text>
+
+                    <!-- 전자 차단 -->
+                    <circle cx="330" cy="108" r="6" fill="#ef4444"/>
+                    <path d="M330,108 H272" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+                    <line x1="266" y1="102" x2="256" y2="114" stroke="#ef4444" stroke-width="2"/>
+                    <line x1="256" y1="102" x2="266" y2="114" stroke="#ef4444" stroke-width="2"/>
+                    <text x="400" y="112" fill="#ef4444" font-size="10">e&#8315;·전해질 분해 차단 &#10007;</text>
+                </svg>
+            </div>
+
+            <h3>② 에이징 (Aging)</h3>
+            <ul>
+                <li>충·방전 직후 셀 전압은 전극 전위가 안정을 찾으며 계속 변하므로, 일정 온도·습도에서 <strong>일정 시간 보관(숙성)</strong>하는 과정</li>
+                <li>전해질을 양·음극에 고르게 함침시키고 SEI를 안정화함</li>
+                <li>상온에서 진행하는 1차 에이징(수 시간&#126;수일)과 60&#126;70&#176;C 고온에서 진행하는 2차 에이징으로 나뉨</li>
+                <li>타 공정 대비 시간·공간을 가장 많이 사용하는 단계 (formation + aging 전체가 3일&#126;3주 소요)</li>
+            </ul>
+
+            <h3>③ 디개싱 (Degassing) &#183; 파우치 전용</h3>
+            <ul>
+                <li>초충전·에이징 중 전해액 부반응으로 발생한 가스를 제거하는 공정 (SEI 형성 과정에서 가스가 나옴)</li>
+                <li>가스를 빼낸 만큼 전해질이 부족해질 수 있어, 2차 전해질 주입(보충)으로 설계량을 맞춘 뒤 최종 밀봉하기도 함</li>
+            </ul>
+            <div class="lg-note">
+                <strong>LG엔솔 기술</strong> — 셀을 <strong>수직으로 세워서 하는 디개싱</strong> 기술로 전해질이 흘러나오는 누수를 최소화하고, 작업 장비의 길이를 줄여 공간 효율을 높였습니다.
+            </div>
+
+            <h3>④ 충·방전, 등급 판정(Grading), OCV 검사</h3>
+            <ul>
+                <li>충·방전을 반복하며 용량·저항(IR)을 측정하고, 성능이 비슷한 셀끼리 <strong>등급을 부여(Grading)</strong>함</li>
+                <li>등급을 나누는 이유 : 성능이 다른 셀을 섞으면 가장 약한 셀 기준으로 성능이 제한됨(물통 효과) → 균일한 셀끼리 묶기 위함</li>
+                <li>일정 기간 보관 후 <strong>OCV(개방회로전압)</strong>를 측정해 자기방전이 큰 저전압 불량을 선별 — 안전성 확보의 핵심 방어선</li>
+                <li>충·방전 직후에는 전압이 급변(relaxation)하므로 일정 시간 안정화한 뒤 OCV를 측정해야 정확함</li>
+                <li>마지막 EOL(End of Line)에서 전압·저항·두께·외관을 최종 검사</li>
+            </ul>
+
+            <div class="note">
+                <strong>학습 노트</strong> — 활성화 공정은 "눈에 안 보이지만 배터리의 평생 성능·안전을 결정하는" 단계입니다. SEI 품질(초충전), 안정화(에이징), 불량 선별(OCV)이 모두 여기서 이뤄집니다. 시간·비용이 커서 업계 전체가 "빠른 formation" 기술 개발에 집중하고 있습니다. (진행 순서는 제조사·폼팩터마다 차이가 있음)
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ STEP 4 ============ -->
+    <div class="section" id="step4">
+        <span class="step-badge">STEP 4</span>
+        <h2>팩 공정 — 배터리 셀의 모듈화</h2>
+        <div class="card">
+            <ul>
+                <li>완성된 셀을 애플리케이션(전기차 등)에 맞게 조립하는 최종 단계</li>
+                <li>진행 순서 : <strong>셀 투 셀(Cell to Cell) &#8594; 모듈화 &#8594; 팩 조립(Module to Module) &#8594; BMS 적용</strong></li>
+                <li>배터리 셀과 애플리케이션 모델에 따라 팩에 들어가는 셀·모듈 수량이 달라짐</li>
+            </ul>
+
+            <div class="svg-box">
+                <svg viewBox="0 0 900 150" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 셀 -->
+                    <g transform="translate(40,60)">
+                        <rect x="0" y="0" width="10" height="40" rx="2" fill="#3b82f6"/>
+                        <rect x="14" y="0" width="10" height="40" rx="2" fill="#3b82f6"/>
+                        <rect x="28" y="0" width="10" height="40" rx="2" fill="#3b82f6"/>
+                    </g>
+                    <text x="60" y="120" text-anchor="middle" fill="#9ca3af" font-size="11">셀 (Cell)</text>
+
+                    <path d="M115,80 H165" stroke="#6366f1" stroke-width="2"/><polygon points="165,80 156,75 156,85" fill="#6366f1"/>
+
+                    <!-- 모듈 -->
+                    <rect x="185" y="55" width="120" height="50" rx="6" fill="rgba(99,102,241,0.12)" stroke="#6366f1" stroke-width="2"/>
+                    <g transform="translate(200,65)" fill="#6366f1">
+                        <rect x="0" y="0" width="8" height="30" rx="1"/><rect x="12" y="0" width="8" height="30" rx="1"/>
+                        <rect x="24" y="0" width="8" height="30" rx="1"/><rect x="36" y="0" width="8" height="30" rx="1"/>
+                        <rect x="48" y="0" width="8" height="30" rx="1"/><rect x="60" y="0" width="8" height="30" rx="1"/>
+                    </g>
+                    <text x="245" y="120" text-anchor="middle" fill="#9ca3af" font-size="11">모듈 (Module)</text>
+
+                    <path d="M315,80 H365" stroke="#6366f1" stroke-width="2"/><polygon points="365,80 356,75 356,85" fill="#6366f1"/>
+
+                    <!-- 팩 -->
+                    <rect x="385" y="48" width="170" height="64" rx="8" fill="rgba(34,197,94,0.1)" stroke="#22c55e" stroke-width="2"/>
+                    <g transform="translate(398,58)" fill="#22c55e" opacity="0.7">
+                        <rect x="0" y="0" width="30" height="20" rx="2"/><rect x="36" y="0" width="30" height="20" rx="2"/>
+                        <rect x="72" y="0" width="30" height="20" rx="2"/><rect x="108" y="0" width="30" height="20" rx="2"/>
+                        <rect x="0" y="24" width="30" height="20" rx="2"/><rect x="36" y="24" width="30" height="20" rx="2"/>
+                        <rect x="72" y="24" width="30" height="20" rx="2"/><rect x="108" y="24" width="30" height="20" rx="2"/>
+                    </g>
+                    <text x="470" y="128" text-anchor="middle" fill="#22c55e" font-size="11">팩 (Pack)</text>
+
+                    <path d="M565,80 H615" stroke="#22c55e" stroke-width="2"/><polygon points="615,80 606,75 606,85" fill="#22c55e"/>
+
+                    <!-- BMS -->
+                    <rect x="635" y="58" width="90" height="44" rx="6" fill="#111827" stroke="#f59e0b" stroke-width="2"/>
+                    <text x="680" y="84" text-anchor="middle" fill="#f59e0b" font-size="14" font-weight="700">BMS</text>
+                    <text x="680" y="120" text-anchor="middle" fill="#9ca3af" font-size="11">관리 시스템</text>
+
+                    <text x="800" y="76" fill="#9ca3af" font-size="11">셀 &#8594; 모듈</text>
+                    <text x="800" y="94" fill="#9ca3af" font-size="11">&#8594; 팩 완성</text>
+                </svg>
+            </div>
+
+            <h3>① 셀 투 셀 (Cell to Cell) &amp; 모듈화</h3>
+            <ul>
+                <li>셀 표면 이물질을 제거한 뒤 여러 셀을 연결(Cell to Cell)</li>
+                <li>연결한 셀을 접착제로 모듈 케이스에 고정하고, 버스 바(Bus Bar)·와이어링 하네스로 묶은 뒤 상부 커버를 씌워 모듈 완성</li>
+            </ul>
+
+            <h3>② 팩 조립 (Module to Module)</h3>
+            <ul>
+                <li>완성된 모듈 여러 개를 팩 케이스에 넣고 연결(Module to Module)해 하나의 팩을 완성</li>
+                <li>이렇게 완성된 팩이 전기차·ESS 등 다양한 애플리케이션에 탑재됨</li>
+            </ul>
+
+            <h3>③ BMS 적용 &amp; 셀 밸런싱</h3>
+            <ul>
+                <li><strong>BMS(Battery Management System)</strong> : 셀의 전류·전압·온도를 모니터링하고 최적 상태로 관리하는 제어 시스템</li>
+                <li>내부의 CMU(Cell Monitoring Unit)가 셀 상태를 측정해 <strong>셀 밸런싱</strong>(직렬 연결 셀 간 전압 편차 보정)을 수행</li>
+                <li>셀 밸런싱이 필요한 이유 : 직렬 셀 중 하나만 전압이 어긋나도 과충전·과방전으로 이어져 화재 위험 → 반드시 필요</li>
+                <li>궁극적으로 BMS는 배터리의 수명·성능·안전을 관리하는 두뇌 역할</li>
+            </ul>
+
+            <div class="note">
+                <strong>학습 노트</strong> — "셀은 낱개 배터리, 모듈은 셀 묶음, 팩은 모듈 묶음"으로 이해하면 됩니다. 전기차 한 대에는 수천 개의 셀이 들어가기도 하므로, 이들을 균일하게 관리하는 BMS·셀 밸런싱이 팩 공정의 핵심입니다. 폼팩터별 상세 형태는 다음 챕터(Chapter 04)에서 이어집니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>관련 학습</h2>
+        <div class="card nav-row">
+            <a href="./battery_material.html" class="detail-btn"><span class="arrow">&#8592;</span> 이전 : 핵심 소재</a>
+            <a href="./battery_formfactor.html" class="detail-btn">다음 : 배터리 폼팩터 <span class="arrow">&#8594;</span></a>
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 NDoubleuK Portfolio</p>
+</footer>
+
+</body>
+</html>
